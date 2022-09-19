@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./esbuild.config.js",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "dev": "esbuild --bundle ./src --outfile=www/main.js --servedir=www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +21,13 @@
   },
   "homepage": "https://github.com/dclstn/better-snapchat#readme",
   "dependencies": {
-    "esbuild": "^0.15.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.8",
+    "prettier": "^2.7.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0"
   }
 }
