@@ -1,0 +1,25 @@
+{
+  "name": "better-snapchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./esbuild.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dclstn/better-snapchat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dclstn/better-snapchat/issues"
+  },
+  "homepage": "https://github.com/dclstn/better-snapchat#readme",
+  "dependencies": {
+    "esbuild": "^0.15.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
