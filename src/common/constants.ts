@@ -1,17 +1,21 @@
 export const DynamicRuleIds = {
-  BLOCK_SEND_TYPING: 1,
+  BLOCK_PREVENT_TYPING_NOTIFICATION: 1,
 };
 
 export enum SettingIds {
-  PREVENT_SCREENSHOT_DETECTION = 'prevent:screenshot:detection',
-  PREVENT_TYPING_NOTIFICATION = 'prevent:typing:notification',
+  ALLOW_SCREENSHOT = 'ALLOW_SCREENSHOT',
+  PREVENT_TYPING_NOTIFICATION = 'PREVENT_TYPING_NOTIFICATION',
 }
 
 export const DefaultSettingValues = {
-  [SettingIds.PREVENT_SCREENSHOT_DETECTION]: true,
-  [SettingIds.PREVENT_TYPING_NOTIFICATION]: false,
+  [SettingIds.ALLOW_SCREENSHOT]: true,
+  [SettingIds.PREVENT_TYPING_NOTIFICATION]: true,
 };
 
 export const EventTypes = {
   SETTING_UPDATE: 'setting:update',
+};
+
+export const PayloadNames = {
+  PREVENT_TYPING_NOTIFICATION: 'send:typing',
 };

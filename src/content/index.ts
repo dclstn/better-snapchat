@@ -1,4 +1,6 @@
-import debug from './util/logger';
-import './modules/allow-screenshot';
+import './observers/dom';
 
-debug.log('Hello');
+(async () => {
+  // @ts-ignore
+  await import('./modules/**/index.ts');
+})();

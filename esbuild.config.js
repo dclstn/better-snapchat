@@ -1,5 +1,6 @@
 const ESBuild = require('esbuild');
-const BrowserSync = require('browser-sync');
+const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
+const cssModulesPlugin = require('esbuild-css-modules-plugin');
 
 ESBuild.build({
   entryPoints: ['./src/background', './src/content'],
@@ -8,4 +9,5 @@ ESBuild.build({
   sourcemap: true,
   target: ['chrome58', 'firefox57'],
   outdir: './dist/',
+  plugins: [EsbuildPluginImportGlob.default(), cssModulesPlugin()],
 });

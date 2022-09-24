@@ -1,7 +1,19 @@
-class PreventTyping {
+import { EventTypes, PayloadNames, SettingIds } from '../../../common/constants';
+import settings from '../../util/settings';
+
+class PreventTypingNotification {
   constructor() {
-    console.trace('PreventTyping: loaded');
+    this.load();
+    settings.on(`${SettingIds.PREVENT_TYPING_NOTIFICATION}.${EventTypes.SETTING_UPDATE}`, this.load);
+  }
+
+  load() {
+    console.trace('prevent notification');
+    chrome.runtime.sendMessage({
+      payload: PayloadNames.PREVENT_TYPING_NOTIFICATION,
+      value: settings.getSetting(SettingIds.PREVENT_TYPING_NOTIFICATION),
+    });
   }
 }
 
-export default new PreventTyping();
+export default new PreventTypingNotification();

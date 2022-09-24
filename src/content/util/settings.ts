@@ -1,4 +1,4 @@
-import { EventTypes, SettingIds } from '../../common/constants';
+import { DefaultSettingValues, EventTypes, SettingIds } from '../../common/constants';
 import EventEmitter from 'eventemitter3';
 
 class Settings extends EventEmitter {
@@ -11,7 +11,21 @@ class Settings extends EventEmitter {
 
   setSetting(key: SettingIds, value: boolean): void {
     this.settings.set(key, value);
+
     this.emit(`${key}.${EventTypes.SETTING_UPDATE}`, value);
+
+    console.trace(this.settings);
+  }
+
+  getSetting(key: SettingIds) {
+    const val = this.settings.get(key);
+
+    if (val == null) {
+      this.setSetting(key, DefaultSettingValues[key]);
+      return DefaultSettingValues[key];
+    }
+
+    return val;
   }
 }
 
