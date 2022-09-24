@@ -1,8 +1,6 @@
 import EventEmitter from 'eventemitter3';
-const consoleLog = console.log;
 
 const emitter = new EventEmitter();
-emitter.on('*', consoleLog);
 
 class NodeObserver extends EventEmitter {
   selectors: string[];

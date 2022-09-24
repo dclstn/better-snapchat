@@ -13,8 +13,6 @@ class Settings extends EventEmitter {
     this.settings.set(key, value);
 
     this.emit(`${key}.${EventTypes.SETTING_UPDATE}`, value);
-
-    console.trace(this.settings);
   }
 
   getSetting(key: SettingIds) {

@@ -8,7 +8,6 @@ class PreventTypingNotification {
   }
 
   load() {
-    console.trace('prevent notification');
     chrome.runtime.sendMessage({
       payload: PayloadNames.PREVENT_TYPING_NOTIFICATION,
       value: settings.getSetting(SettingIds.PREVENT_TYPING_NOTIFICATION),
