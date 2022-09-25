@@ -6,7 +6,7 @@ import ThemeProvider from '../../../components/ThemeProvider';
 
 const PREVIEW_IMAGE_SELECTOR = 'img[loading="lazy"]';
 
-export default function SaveButton({ parentNode }: { parentNode: ParentNode }) {
+export default function SaveButton({ parentNode }: { parentNode: Element }) {
   const [loading, setLoading] = React.useState(false);
 
   const downloadImage = React.useCallback(async () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Text, Row, Checkbox, NextUIProvider, createTheme } from '@nextui-org/react';
+import { Modal, Button, Text } from '@nextui-org/react';
 import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
 import SaveImage from './SaveImage';

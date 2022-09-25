@@ -7,8 +7,8 @@ export default function useTheme() {
     const node = document.querySelector('html') as Element;
 
     function handleThemeMutation() {
-      const theme = node.getAttribute('theme') ?? 'light';
-      setTheme(theme);
+      const currentTheme = node.getAttribute('theme') ?? 'light';
+      setTheme(currentTheme);
     }
 
     handleThemeMutation();

@@ -1,1 +1,1 @@
-import './SaveButton.tsx';
+import './SaveButton';

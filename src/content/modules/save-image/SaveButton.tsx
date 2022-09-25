@@ -1,10 +1,9 @@
-import '../../observers/dom';
-import dom from '../../observers/dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SaveButton from './components/Button';
 import settings from '../../util/settings';
 import { EventTypes, SettingIds } from '../../../common/constants';
+import dom from '../../observers/dom';
 
 const CLOSE_BUTTON_SELECTOR = '[title="Close"]';
 
@@ -37,7 +36,7 @@ class SaveImage {
       mountedButtonNode = null;
     }
 
-    const imageContainer = node.parentNode;
+    const imageContainer = node.parentNode as Element;
     if (imageContainer == null) {
       return;
     }
