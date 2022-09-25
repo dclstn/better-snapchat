@@ -2,6 +2,7 @@ import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@nextui-org/react';
 import React from 'react';
+import ThemeProvider from '../../../components/ThemeProvider';
 import styles from './Container.module.css';
 import SettingsModal from './Modal';
 
@@ -10,9 +11,11 @@ export default function ModalButton() {
   const handler = () => setVisible(false);
 
   return (
-    <div className={styles.container}>
-      <Button auto onPress={() => setVisible(true)} icon={<FontAwesomeIcon icon={faGhost} />} />
-      <SettingsModal closeHandler={handler} visible={visible} />
-    </div>
+    <ThemeProvider>
+      <div className={styles.container}>
+        <Button auto onPress={() => setVisible(true)} icon={<FontAwesomeIcon icon={faGhost} />} />
+        <SettingsModal closeHandler={handler} visible={visible} />
+      </div>
+    </ThemeProvider>
   );
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, Button, Text, Row, Checkbox } from '@nextui-org/react';
+import { Modal, Button, Text, Row, Checkbox, NextUIProvider, createTheme } from '@nextui-org/react';
 import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
 import SaveImage from './SaveImage';
+import styles from './Container.module.css';
 
 export default function App({ visible, closeHandler }: { visible: boolean; closeHandler: () => void }) {
   return (
@@ -13,9 +14,11 @@ export default function App({ visible, closeHandler }: { visible: boolean; close
         </Text>
       </Modal.Header>
       <Modal.Body>
-        <AllowScreenshot />
-        <PreventTypingNotification />
-        <SaveImage />
+        <div className={styles.checkboxColumn}>
+          <AllowScreenshot />
+          <PreventTypingNotification />
+          <SaveImage />
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button auto onPress={closeHandler}>

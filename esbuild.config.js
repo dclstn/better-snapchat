@@ -6,7 +6,7 @@ ESBuild.build({
   entryPoints: ['./src/background', './src/content'],
   bundle: true,
   minify: true,
-  sourcemap: true,
+  sourcemap: false,
   target: ['chrome58', 'firefox57'],
   outdir: './dist/',
   plugins: [EsbuildPluginImportGlob.default(), cssModulesPlugin()],

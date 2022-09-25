@@ -1,7 +1,5 @@
 import EventEmitter from 'eventemitter3';
 
-const emitter = new EventEmitter();
-
 class NodeObserver extends EventEmitter {
   selectors: string[];
 

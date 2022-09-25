@@ -2,6 +2,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Loading } from '@nextui-org/react';
 import React from 'react';
+import ThemeProvider from '../../../components/ThemeProvider';
 
 const PREVIEW_IMAGE_SELECTOR = 'img[loading="lazy"]';
 
@@ -33,14 +34,16 @@ export default function SaveButton({ parentNode }: { parentNode: ParentNode }) {
   }, [parentNode, setLoading]);
 
   return (
-    <Button
-      auto
-      style={{ position: 'absolute' }}
-      isDisabled={loading}
-      onPress={() => downloadImage()}
-      icon={!loading ? <FontAwesomeIcon icon={faDownload} fixedWidth /> : null}
-    >
-      {loading ? <Loading color="currentColor" size="sm" /> : null}
-    </Button>
+    <ThemeProvider>
+      <Button
+        auto
+        style={{ position: 'absolute' }}
+        isDisabled={loading}
+        onPress={() => downloadImage()}
+        icon={!loading ? <FontAwesomeIcon icon={faDownload} fixedWidth /> : null}
+      >
+        {loading ? <Loading color="currentColor" size="sm" /> : null}
+      </Button>
+    </ThemeProvider>
   );
 }

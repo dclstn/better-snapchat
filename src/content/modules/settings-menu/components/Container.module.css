@@ -1,4 +1,8 @@
 .container {
   margin-left: 12px;
   border-radius: 100%;
+
+  label {
+    margin-bottom: 0px !important;
+  }
 }
