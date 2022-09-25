@@ -3,12 +3,10 @@ import dom from '../../observers/dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ModalButton from './components/Button';
-import SettingsModal from './components/Modal';
 
 const CLOSE_BUTTON_SELECTOR = '[title="Close Chat"]';
 
 let mountedButtonNode: any = null;
-let mountedModalNode: any = null;
 
 class SettingsMenu {
   constructor() {

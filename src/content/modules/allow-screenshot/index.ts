@@ -1,7 +1,14 @@
+import { KeyCode } from '@nextui-org/react';
 import { EventTypes, SettingIds } from '../../../common/constants';
 import settings from '../../util/settings';
 
+const Keys = new Set([KeyCode.Ctrl, KeyCode.Alt, KeyCode.Meta, KeyCode.Shift]);
+
 function preventPropogation(event: KeyboardEvent) {
+  if (!Keys.has(event.keyCode) && event.key !== 'PrintScreen') {
+    return;
+  }
+
   event.stopImmediatePropagation();
 }
 

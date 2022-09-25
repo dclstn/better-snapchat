@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Button, Text, Row, Checkbox } from '@nextui-org/react';
 import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
+import SaveImage from './SaveImage';
 
 export default function App({ visible, closeHandler }: { visible: boolean; closeHandler: () => void }) {
   return (
@@ -14,6 +15,7 @@ export default function App({ visible, closeHandler }: { visible: boolean; close
       <Modal.Body>
         <AllowScreenshot />
         <PreventTypingNotification />
+        <SaveImage />
       </Modal.Body>
       <Modal.Footer>
         <Button auto onPress={closeHandler}>
