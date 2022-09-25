@@ -1,17 +1,25 @@
 import { DefaultSettingValues, EventTypes, SettingIds } from '../../common/constants';
 import EventEmitter from 'eventemitter3';
+import storage from './storage';
 
 class Settings extends EventEmitter {
-  settings: Map<SettingIds, boolean>;
+  settings: Map<string, boolean>;
 
   constructor() {
     super();
-    this.settings = new Map();
+
+    const settings = storage.get('settings');
+
+    if (settings != null) {
+      this.settings = new Map(Object.entries(settings));
+    } else {
+      this.settings = new Map();
+    }
   }
 
   setSetting(key: SettingIds, value: boolean): void {
     this.settings.set(key, value);
-
+    storage.set('settings', Object.fromEntries(this.settings));
     this.emit(`${key}.${EventTypes.SETTING_UPDATE}`, value);
   }
 

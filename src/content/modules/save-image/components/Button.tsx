@@ -8,7 +8,7 @@ const PREVIEW_IMAGE_SELECTOR = 'img[loading="lazy"]';
 export default function SaveButton({ parentNode }: { parentNode: ParentNode }) {
   const [loading, setLoading] = React.useState(false);
 
-  async function downloadImage() {
+  const downloadImage = React.useCallback(async () => {
     const img = parentNode.querySelector(PREVIEW_IMAGE_SELECTOR);
 
     if (img == null) {
@@ -30,11 +30,12 @@ export default function SaveButton({ parentNode }: { parentNode: ParentNode }) {
     document.body.removeChild(link);
 
     setLoading(false);
-  }
+  }, [parentNode, setLoading]);
 
   return (
     <Button
       auto
+      style={{ position: 'absolute' }}
       isDisabled={loading}
       onPress={() => downloadImage()}
       icon={!loading ? <FontAwesomeIcon icon={faDownload} fixedWidth /> : null}
