@@ -1,0 +1,9 @@
+.checkboxLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.checboxLabel p {
+  margin: 0 !important;
+}

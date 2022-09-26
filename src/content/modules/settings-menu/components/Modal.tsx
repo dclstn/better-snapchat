@@ -3,7 +3,7 @@ import { Modal, Button, Text } from '@nextui-org/react';
 import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
 import SaveImage from './SaveImage';
-import styles from './Container.module.css';
+import styles from './Modal.module.css';
 
 export default function App({ visible, closeHandler }: { visible: boolean; closeHandler: () => void }) {
   return (
@@ -21,8 +21,8 @@ export default function App({ visible, closeHandler }: { visible: boolean; close
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button auto onPress={closeHandler}>
-          Save
+        <Button flat auto onPress={closeHandler}>
+          Close
         </Button>
       </Modal.Footer>
     </Modal>
