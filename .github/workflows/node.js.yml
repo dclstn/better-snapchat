@@ -17,6 +17,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm install -g npm
     - name: Clean Install
       run: npm ci
     - name: Linting Check
