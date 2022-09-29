@@ -1,5 +1,6 @@
 export const DynamicRuleIds = {
   BLOCK_PREVENT_TYPING_NOTIFICATION: 1,
+  MODIFY_HEADER: 2,
 };
 
 export enum SettingIds {

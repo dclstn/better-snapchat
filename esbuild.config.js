@@ -8,6 +8,6 @@ ESBuild.build({
   minify: true,
   sourcemap: false,
   target: ['chrome58', 'firefox57'],
-  outdir: './dist/',
+  outdir: './public/',
   plugins: [EsbuildPluginImportGlob.default(), cssModulesPlugin()],
 });
