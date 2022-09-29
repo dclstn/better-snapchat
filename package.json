@@ -1,12 +1,12 @@
 {
-  "name": "better-snapchat",
+  "name": "Better Snapchat",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
+  "main": "esbuild.config.js",
   "scripts": {
     "build": "node ./esbuild.config.js",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\" && prettier --check \"src/**/*.ts\"",
     "start": "esbuild --bundle ./src --outfile=www/main.js --servedir=www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/dclstn/better-snapchat.git"
   },
-  "author": "",
+  "author": "donnieacolston@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dclstn/better-snapchat/issues"
