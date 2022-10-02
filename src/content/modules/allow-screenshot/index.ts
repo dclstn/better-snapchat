@@ -27,7 +27,7 @@ class AllowScreenshot {
       window.addEventListener('keydown', preventPropogation, true);
     }
 
-    if (!enabled) {
+    if (!enabled && listener != null) {
       window.removeEventListener('keydown', preventPropogation, true);
       listener = null;
     }
