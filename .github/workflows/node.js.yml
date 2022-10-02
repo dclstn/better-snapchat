@@ -19,7 +19,7 @@ jobs:
         cache: 'npm'
     - run: npm install -g npm
     - name: Clean Install
-      run: npm install
+      run: npm ci
     - name: Linting Check
       run: npm run lint
     - name: Build
