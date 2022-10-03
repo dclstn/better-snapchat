@@ -2,7 +2,7 @@ import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@nextui-org/react';
 import React from 'react';
-import ThemeProvider from '../../../components/ThemeProvider';
+import ThemeProvider from '../../../common/components/ThemeProvider';
 import styles from './Container.module.css';
 import SettingsModal from './Modal';
 

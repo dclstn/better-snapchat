@@ -1,7 +1,7 @@
 import { Checkbox, Text } from '@nextui-org/react';
 import React from 'react';
 import { SettingIds } from '../../../../common/constants';
-import useSettingState from '../hooks/useSettingState';
+import useSettingState from '../../../common/hooks/useSettingState';
 import styles from './Checkbox.module.css';
 
 export default function PreventTypingNotification() {
