@@ -3,3 +3,5 @@ node_modules/
 
 public/build/
 public/manifest.json
+
+*.zip
