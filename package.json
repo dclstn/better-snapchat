@@ -7,7 +7,7 @@
     "build": "node ./esbuild.config.js",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" && prettier --check \"src/**/*.ts\"",
-    "start": "esbuild --bundle ./src --outfile=www/main.js --servedir=www",
+    "package": "npm run build && zip -r better-snapchat.zip public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
