@@ -5,8 +5,8 @@
   "main": "esbuild.config.js",
   "scripts": {
     "build": "node ./esbuild.config.js",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*.ts\" && prettier --check \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
     "package": "npm run build && zip -r better-snapchat.zip public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
