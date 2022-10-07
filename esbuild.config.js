@@ -32,7 +32,7 @@ const fs = require('fs/promises');
     },
     background: { service_worker: './build/background.js' },
     content_scripts: [{ matches: ['https://web.snapchat.com/*'], js: ['./build/content.js'] }],
-    permissions: ['activeTab', 'declarativeNetRequest', 'declarativeNetRequestFeedback', 'webRequest'],
+    permissions: ['declarativeNetRequest', 'storage'],
     host_permissions: ['https://web.snapchat.com/*'],
   };
 
