@@ -12,6 +12,6 @@ This browser extension enhances your web.snapchat.com experience by adding sever
  - [ ] More to come...
 
 ## How to install
-You can install [Better Snapchat](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook/related) via the Chrome Web Store.
+You can install [Better Snapchat](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook) via the Chrome Web Store.
 
 (web.snapchat.com is only available on chromium browsers)
