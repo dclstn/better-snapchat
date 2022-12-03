@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SaveButton from './components/Button';
-import settings from '../../util/settings';
+import settings from '../../lib/settings';
 import { EventTypes, SettingIds } from '../../../common/constants';
 import dom from '../../observers/dom';
 

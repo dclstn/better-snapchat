@@ -1,1 +1,2 @@
-import './send-typing-notification';
+/* eslint-disable import/extensions, import/no-unresolved */
+import './modules/**/index';

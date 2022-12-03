@@ -1,7 +1,8 @@
-export const DynamicRuleIds = {
-  BLOCK_PREVENT_TYPING_NOTIFICATION: 1,
-  MODIFY_HEADER: 2,
-};
+export enum DynamicRuleIds {
+  BLOCK_PREVENT_TYPING_NOTIFICATION = 1,
+  BLOCK_EVENTS = 2,
+  MODIFY_HEADER = 3,
+}
 
 export enum SettingIds {
   ALLOW_SCREENSHOT = 'ALLOW_SCREENSHOT',
@@ -20,5 +21,5 @@ export const EventTypes = {
 };
 
 export const PayloadNames = {
-  PREVENT_TYPING_NOTIFICATION: 'send:typing',
+  SETTING_UPDATE: 'setting:update',
 };

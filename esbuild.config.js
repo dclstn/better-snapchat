@@ -31,7 +31,13 @@ const fs = require('fs/promises');
       128: 'logo128.png',
     },
     background: { service_worker: './build/background.js' },
-    content_scripts: [{ matches: ['https://web.snapchat.com/*'], js: ['./build/content.js'] }],
+    content_scripts: [
+      {
+        matches: ['https://web.snapchat.com/*'],
+        js: ['./build/content.js'],
+        run_at: 'document_start',
+      },
+    ],
     permissions: ['declarativeNetRequest'],
     host_permissions: ['https://web.snapchat.com/*'],
   };

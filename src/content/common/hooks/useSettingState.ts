@@ -1,6 +1,6 @@
 import React from 'react';
 import { EventTypes, SettingIds } from '../../../common/constants';
-import settings from '../../util/settings';
+import settings from '../../lib/settings';
 
 // eslint-disable-next-line no-unused-vars
 export default function useSettingState(key: SettingIds): [boolean, (value: boolean) => void] {

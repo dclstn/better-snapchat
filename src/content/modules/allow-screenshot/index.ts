@@ -1,6 +1,6 @@
 import { KeyCode } from '@nextui-org/react';
 import { EventTypes, SettingIds } from '../../../common/constants';
-import settings from '../../util/settings';
+import settings from '../../lib/settings';
 
 const Keys = new Set([KeyCode.Ctrl, KeyCode.Alt, KeyCode.Meta, KeyCode.Shift]);
 

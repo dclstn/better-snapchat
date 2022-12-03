@@ -1,5 +1,5 @@
 import { EventTypes, PayloadNames, SettingIds } from '../../../common/constants';
-import settings from '../../util/settings';
+import settings from '../../lib/settings';
 
 class PreventTypingNotification {
   constructor() {
@@ -9,7 +9,8 @@ class PreventTypingNotification {
 
   load() {
     chrome.runtime.sendMessage({
-      payload: PayloadNames.PREVENT_TYPING_NOTIFICATION,
+      payloadName: PayloadNames.SETTING_UPDATE,
+      settingId: SettingIds.PREVENT_TYPING_NOTIFICATION,
       value: settings.getSetting(SettingIds.PREVENT_TYPING_NOTIFICATION),
     });
   }
