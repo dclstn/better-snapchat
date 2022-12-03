@@ -1,6 +1,6 @@
 const ESBuild = require('esbuild');
 const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
-const cssModulesPlugin = require('esbuild-css-modules-plugin');
+const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('./package.json');
 const fs = require('fs/promises');
 
@@ -14,7 +14,7 @@ const fs = require('fs/promises');
     sourcemap: false,
     target: ['chrome58', 'firefox57'],
     outdir: './public/build/',
-    plugins: [EsbuildPluginImportGlob.default(), cssModulesPlugin()],
+    plugins: [EsbuildPluginImportGlob.default(), CSSModulesPlugin()],
   });
 
   console.log('Building: Manifest');

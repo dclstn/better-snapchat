@@ -1,5 +1,7 @@
 ![extension-preview](https://i.imgur.com/b5TKVJG.png)
 
+![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
+
 ## Better Snapchat
 This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
 
@@ -9,4 +11,7 @@ This browser extension enhances your web.snapchat.com experience by adding sever
  - [x] **Save Image Button** - Silently save images straight to your desktop
  - [ ] More to come...
 
-*(extension will be available for download shortly..)*
+## How to install
+You can install [Better Snapchat](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook) via the Chrome Web Store.
+
+(web.snapchat.com is only available on chromium browsers)
