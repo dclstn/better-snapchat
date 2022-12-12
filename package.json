@@ -35,7 +35,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.1",
+    "@typescript-eslint/parser": "^5.46.0",
     "esbuild": "^0.15.18",
     "esbuild-css-modules-plugin": "^2.6.2",
     "esbuild-plugin-import-glob": "^0.1.1",
