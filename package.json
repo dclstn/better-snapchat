@@ -37,7 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.54.1",
     "esbuild": "^0.17.7",
-    "esbuild-css-modules-plugin": "^2.6.3",
+    "esbuild-css-modules-plugin": "^2.7.1",
     "esbuild-plugin-import-glob": "^0.1.1",
     "eslint": "^8.34.0",
     "eslint-config-airbnb": "^19.0.4",
