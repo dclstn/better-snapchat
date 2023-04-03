@@ -30,7 +30,7 @@ export default function SaveButton({ parentNode }: { parentNode: Element }) {
 
   return (
     <ThemeProvider>
-      <div style={{ position: 'absolute' }}>
+      <div style={{ position: 'absolute', zIndex: 9999 }}>
         <Tooltip placement="bottom" content="This will not notify the sender.">
           <Button
             auto
