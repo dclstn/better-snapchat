@@ -34,7 +34,7 @@
     "@types/chrome": "^0.0.222",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.54.1",
     "esbuild": "^0.17.7",
     "esbuild-css-modules-plugin": "^2.6.3",
