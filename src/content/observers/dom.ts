@@ -37,14 +37,11 @@ class NodeObserver extends EventEmitter {
   }
 
   // @ts-ignore
-  on(selector: string, callback: () => any) {
+  on(selector: string, callback: (node: HTMLElement) => any) {
     this.selectors.push(selector);
-
     super.on(selector, callback);
-
     return () => {
       super.off(selector, callback);
-
       this.selectors = this.selectors.filter((_selector) => _selector !== selector);
     };
   }

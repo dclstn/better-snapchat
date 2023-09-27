@@ -4,6 +4,7 @@ import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
 import SaveImage from './SaveImage';
 import styles from './Modal.module.css';
+import AlwaysPresent from './AlwaysPresent';
 
 export default function App({ visible, closeHandler }: { visible: boolean; closeHandler: () => void }) {
   return (
@@ -18,6 +19,7 @@ export default function App({ visible, closeHandler }: { visible: boolean; close
           <AllowScreenshot />
           <PreventTypingNotification />
           <SaveImage />
+          <AlwaysPresent />
         </div>
       </Modal.Body>
       <Modal.Footer>

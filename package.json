@@ -1,6 +1,6 @@
 {
-  "name": "Better Snapchat",
-  "version": "1.0.0",
+  "name": "better_snapchat",
+  "version": "1.1.0",
   "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
   "main": "esbuild.config.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@nextui-org/react": "^2.1.13",
+    "@nextui-org/react": "^1.0.0-beta.12",
     "cookies-js": "^1.2.3",
     "eventemitter3": "^5.0.1",
     "react": "^18.2.0",
@@ -35,7 +35,6 @@
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^5.59.1",
     "esbuild": "^0.18.8",
     "esbuild-css-modules-plugin": "^2.7.1",
     "esbuild-plugin-import-glob": "^0.1.1",

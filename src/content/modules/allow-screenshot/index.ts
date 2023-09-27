@@ -8,11 +8,8 @@ function preventPropogation(event: KeyboardEvent) {
   if (!Keys.has(event.keyCode) && event.key !== 'PrintScreen') {
     return;
   }
-
   event.stopImmediatePropagation();
 }
-
-let listener: any = null;
 
 class AllowScreenshot {
   constructor() {
@@ -22,14 +19,10 @@ class AllowScreenshot {
 
   load() {
     const enabled = settings.getSetting(SettingIds.ALLOW_SCREENSHOT);
-
-    if (enabled && listener == null) {
+    if (enabled) {
       window.addEventListener('keydown', preventPropogation, true);
-    }
-
-    if (!enabled && listener != null) {
+    } else {
       window.removeEventListener('keydown', preventPropogation, true);
-      listener = null;
     }
   }
 }

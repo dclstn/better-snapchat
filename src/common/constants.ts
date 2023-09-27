@@ -7,13 +7,15 @@ export enum DynamicRuleIds {
 export enum SettingIds {
   ALLOW_SCREENSHOT = 'ALLOW_SCREENSHOT',
   PREVENT_TYPING_NOTIFICATION = 'PREVENT_TYPING_NOTIFICATION',
-  SAVE_IMAGE_BUTTON = 'SAVE_IMAGE_BUTTON',
+  SAVE_IMAGE = 'SAVE_IMAGE_BUTTON',
+  ALWAYS_PRESENT = 'ALWAYS_PRESENT',
 }
 
 export const DefaultSettingValues = {
   [SettingIds.ALLOW_SCREENSHOT]: true,
   [SettingIds.PREVENT_TYPING_NOTIFICATION]: false,
-  [SettingIds.SAVE_IMAGE_BUTTON]: true,
+  [SettingIds.SAVE_IMAGE]: true,
+  [SettingIds.ALWAYS_PRESENT]: false,
 };
 
 export const EventTypes = {

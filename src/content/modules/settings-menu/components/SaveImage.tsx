@@ -5,16 +5,16 @@ import useSettingState from '../../../common/hooks/useSettingState';
 import styles from './Checkbox.module.css';
 
 export default function SaveImage() {
-  const [value, setValue] = useSettingState(SettingIds.SAVE_IMAGE_BUTTON);
+  const [value, setValue] = useSettingState(SettingIds.SAVE_IMAGE);
 
   return (
     <Checkbox isSelected={value} onChange={(boolean) => setValue(boolean)}>
       <div className={styles.checkboxLabel}>
         <Text size={14} css={{ margin: 0 }}>
-          Save Image Button
+          Allow Save Image
         </Text>
         <Text size={14} color="#999" css={{ margin: 0 }}>
-          Add button to silently save images to desktop.
+          Prevent media blurring and allow right-click save on image and videos.
         </Text>
       </div>
     </Checkbox>
