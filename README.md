@@ -8,7 +8,8 @@ This browser extension enhances your web.snapchat.com experience by adding sever
  - [x] **Flush user interface** - That's friendly to use.
  - [x] **Allow Screenshots** - Create screenshots without snapchat capturing your keypresses.
  - [x] **Prevent Typing Notification** - Go incognito and don't worry about disturbing your friends.
- - [x] **Save Image Button** - Silently save images straight to your desktop
+ - [x] **Save Media** - Silently save images, videos and audio clips straight to your desktop
+ - [x] **Always Present** - Prevent the chat from going hidden when clicking away.
  - [ ] More to come...
 
 ## How to install
