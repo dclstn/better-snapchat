@@ -1,5 +1,5 @@
 import { EventTypes, SettingIds } from '../../../common/constants';
-import dom from '../../../content/observers/dom';
+import dom from '../../observers/dom';
 import settings from '../../lib/settings';
 import styles from './styles.module.css';
 

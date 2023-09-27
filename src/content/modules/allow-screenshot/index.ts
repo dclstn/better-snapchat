@@ -1,8 +1,8 @@
-import { KeyCode } from '@nextui-org/react';
+import { KeyCodes } from '../../../common/constants';
 import { EventTypes, SettingIds } from '../../../common/constants';
 import settings from '../../lib/settings';
 
-const Keys = new Set([KeyCode.Ctrl, KeyCode.Alt, KeyCode.Meta, KeyCode.Shift]);
+const Keys = new Set([KeyCodes.ctrl, KeyCodes.alt, KeyCodes.leftwindowkey, KeyCodes.shift, KeyCodes.rightwindowkey]);
 
 function preventPropogation(event: KeyboardEvent) {
   if (!Keys.has(event.keyCode) && event.key !== 'PrintScreen') {

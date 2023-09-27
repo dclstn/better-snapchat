@@ -1,6 +1,6 @@
 import { EventTypes, SettingIds } from '../../../common/constants';
 import settings from '../../lib/settings';
-import dom from '../../../content/observers/dom';
+import dom from '../../observers/dom';
 import styles from './styles.module.css';
 
 const MEDIA_CONTENT_SELECTOR = 'div[aria-label="media content"]';
