@@ -1,5 +1,4 @@
-import { KeyCodes } from '../../../common/constants';
-import { EventTypes, SettingIds } from '../../../common/constants';
+import { EventTypes, SettingIds, KeyCodes } from '../../../common/constants';
 import settings from '../../lib/settings';
 
 const Keys = new Set([KeyCodes.ctrl, KeyCodes.alt, KeyCodes.leftwindowkey, KeyCodes.shift, KeyCodes.rightwindowkey]);
