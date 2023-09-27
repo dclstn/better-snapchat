@@ -19,4 +19,4 @@ You can install [Better Snapchat](https://chrome.google.com/webstore/detail/bett
 (web.snapchat.com is only available on chromium browsers)
 
 ## Other stuff
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/gbraad)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dclstn)
