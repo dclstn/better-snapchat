@@ -2,7 +2,7 @@
 
 
 ## Better Snapchat 
-![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
+![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg) 
 
 This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
 
@@ -17,3 +17,6 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 You can install [Better Snapchat](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook) via the Chrome Web Store.
 
 (web.snapchat.com is only available on chromium browsers)
+
+## Other stuff
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/gbraad)
