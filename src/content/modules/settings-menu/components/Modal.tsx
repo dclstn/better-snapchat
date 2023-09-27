@@ -1,12 +1,12 @@
 import React from 'react';
-import { Modal, Button, Text, Divider, StyledButtonGroup } from '@nextui-org/react';
+import { Modal, Button, Text, Divider } from '@nextui-org/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import AllowScreenshot from './AllowScreenshot';
 import PreventTypingNotification from './PreventTyping';
-import SaveImage from './SaveImage';
 import styles from './Modal.module.css';
 import AlwaysPresent from './AlwaysPresent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faCoffee, faGhost, faHeart } from '@fortawesome/free-solid-svg-icons';
+import SaveImage from './SaveImage';
 
 export default function App({ visible, closeHandler }: { visible: boolean; closeHandler: () => void }) {
   return (

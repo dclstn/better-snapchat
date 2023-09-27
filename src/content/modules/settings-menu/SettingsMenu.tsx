@@ -1,7 +1,7 @@
 import React from 'react';
+import { Root, createRoot } from 'react-dom/client';
 import ModalButton from './components/Button';
 import dom from '../../observers/dom';
-import { Root, createRoot } from 'react-dom/client';
 
 const CLOSE_BUTTON_SELECTOR = '[title="Close Chat"]';
 
