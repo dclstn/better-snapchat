@@ -1,35 +1,30 @@
 import React from 'react';
 import { Root, createRoot } from 'react-dom/client';
 import ModalButton from './components/Button';
-import dom from '../../observers/dom';
-
-const CLOSE_BUTTON_SELECTOR = '[title="Close Chat"]';
 
 let root: Root | null = null;
+
+const BUTTON_CONTAINER_ID = 'settings-menu-button-container';
 
 class SettingsMenu {
   constructor() {
     this.load();
-    dom.on(CLOSE_BUTTON_SELECTOR, this.load);
   }
 
   load() {
-    const node: HTMLElement | null = document.querySelector(CLOSE_BUTTON_SELECTOR);
-
-    if (node == null) {
+    if (document.getElementById(BUTTON_CONTAINER_ID) != null) {
       return;
     }
 
-    const buttonsContainer = node.parentNode;
-    const contentContainer = document.createElement('div');
-    contentContainer.setAttribute('id', 'modalOpenButton');
-    buttonsContainer?.append(contentContainer);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.setAttribute('id', BUTTON_CONTAINER_ID);
+    document.body.appendChild(buttonContainer);
 
     if (root != null) {
       root.unmount();
     }
 
-    root = createRoot(contentContainer);
+    root = createRoot(buttonContainer);
     root.render(<ModalButton />);
   }
 }

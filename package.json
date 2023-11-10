@@ -1,6 +1,6 @@
 {
-  "name": "better_snapchat",
-  "version": "1.1.0",
+  "name": "Better Snapchat",
+  "version": "1.1.1",
   "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
   "main": "esbuild.config.js",
   "scripts": {

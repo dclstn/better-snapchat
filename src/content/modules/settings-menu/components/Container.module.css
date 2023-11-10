@@ -1,8 +1,6 @@
 .container {
-  margin-left: 12px;
-  border-radius: 100%;
-
-  label {
-    margin-bottom: 0px !important;
-  }
+  z-index: 99999;
+  position: fixed;
+  top: 50%;
+  right: 12px;
 }
