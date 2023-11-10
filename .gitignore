@@ -5,3 +5,5 @@ public/build/
 public/manifest.json
 
 *.zip
+
+.env
