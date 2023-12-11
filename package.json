@@ -31,7 +31,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.248",
+    "@types/chrome": "^0.0.254",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.8",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
