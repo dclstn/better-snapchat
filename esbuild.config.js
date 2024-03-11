@@ -8,11 +8,12 @@ const fs = require('fs/promises');
   console.log('Building: Extension');
 
   await ESBuild.build({
-    entryPoints: ['./src/background', './src/content'],
+    entryPoints: ['./src/content', './src/script'],
     bundle: true,
     minify: true,
     sourcemap: false,
     target: ['chrome58', 'firefox57'],
+    outbase: './src/',
     outdir: './public/build/',
     plugins: [EsbuildPluginImportGlob.default(), CSSModulesPlugin()],
   });
@@ -21,7 +22,7 @@ const fs = require('fs/promises');
 
   const manifest = {
     manifest_version: 3,
-    name: package.name,
+    name: 'Better Snapchat',
     description: package.description,
     version: package.version,
     icons: {
@@ -30,15 +31,15 @@ const fs = require('fs/promises');
       96: 'logo96.png',
       128: 'logo128.png',
     },
-    background: { service_worker: './build/background.js' },
     content_scripts: [
       {
         matches: ['https://web.snapchat.com/*'],
         js: ['./build/content.js'],
+        css: ['./build/script.css'],
         run_at: 'document_start',
       },
     ],
-    permissions: ['declarativeNetRequest'],
+    web_accessible_resources: [{ resources: ['build/script.js'], matches: ['https://web.snapchat.com/*'] }],
     host_permissions: ['https://web.snapchat.com/*'],
   };
 

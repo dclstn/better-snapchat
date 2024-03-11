@@ -1,8 +1,6 @@
-/* eslint-disable import/extensions, import/no-unresolved */
-import Logger from './lib/logger';
-
-document.addEventListener('DOMContentLoaded', () => {
-  // @ts-ignore
-  import('./modules/**/index.ts');
-  Logger.log('Modules loaded');
-});
+(() => {
+  const script = document.createElement('script');
+  script.src = chrome.runtime.getURL('./build/script.js');
+  (document.head ?? document.documentElement).appendChild(script);
+  script.addEventListener('load', () => script.remove());
+})();
