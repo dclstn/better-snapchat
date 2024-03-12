@@ -1,6 +1,7 @@
 import settings from '../../lib/settings';
-import { SettingIds } from '../../lib/constants';
+import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
+import Logger from '../../lib/logger';
 
 let oldSetAwayState: any = null;
 
@@ -22,7 +23,7 @@ function handleStoreEffect(storeState: any) {
 class AlwaysPresent {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.ALWAYS_PRESENT}.setting_update`, updateSnapchatStore);
+    settings.on(`${SettingIds.ALWAYS_PRESENT}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 

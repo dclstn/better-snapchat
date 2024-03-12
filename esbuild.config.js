@@ -3,9 +3,12 @@ const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
 const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('./package.json');
 const fs = require('fs/promises');
+const postCssPlugin = require('esbuild-style-plugin');
+const { tailwindPlugin } = require('esbuild-plugin-tailwindcss');
+const postcss = require('postcss');
 
 (async () => {
-  console.log('Building: Extension');
+  console.log('Building: Content & Script');
 
   await ESBuild.build({
     entryPoints: ['./src/content', './src/script'],
@@ -15,7 +18,8 @@ const fs = require('fs/promises');
     target: ['chrome58', 'firefox57'],
     outbase: './src/',
     outdir: './public/build/',
-    plugins: [EsbuildPluginImportGlob.default(), CSSModulesPlugin()],
+    logLevel: 'info',
+    plugins: [EsbuildPluginImportGlob.default(), CSSModulesPlugin(), tailwindPlugin()],
   });
 
   console.log('Building: Manifest');

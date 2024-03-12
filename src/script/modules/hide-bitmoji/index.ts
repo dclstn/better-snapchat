@@ -1,5 +1,5 @@
 import settings from '../../lib/settings';
-import { SettingIds } from '../../lib/constants';
+import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 
 let oldCreatePresenceSession: any = null;
@@ -21,7 +21,7 @@ function handleStoreEffect(storeState: any) {
 class HideBitmoji {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.HIDE_BITMOJI}.setting_update`, updateSnapchatStore);
+    settings.on(`${SettingIds.HIDE_BITMOJI}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 

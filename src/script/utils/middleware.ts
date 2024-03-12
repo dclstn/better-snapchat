@@ -25,7 +25,7 @@ export function registerMiddleware(callback: Callback) {
   updateSnapchatStore();
 }
 
-export function patchSnapchatStore() {
+export function attachSnapchatStoreListener() {
   unsubscribe = store.subscribe((newState: any) => {
     if (newState.__patched) {
       return;
@@ -34,7 +34,7 @@ export function patchSnapchatStore() {
   });
 }
 
-export function unpatchSnapchatStore() {
+export function unattachSnapchatStoreListener() {
   if (unsubscribe != null) {
     unsubscribe();
     unsubscribe = null;
