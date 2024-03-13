@@ -32,7 +32,7 @@ export default function SettingsModal({
       onClose={onClose}
       centered
       classNames={{ body: styles.modalBody, content: styles.modalContent }}
-      portalProps={{ className: styles.portal, target: portalTargetId }}
+      portalProps={{ className: styles.portal, target: `#${portalTargetId}` }}
     >
       <div className={styles.modalSection}>
         <Button

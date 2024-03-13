@@ -6,7 +6,9 @@ import ThemeProvider from '../../providers/ThemeProvider';
 import SettingsModal from './components/Modal';
 import Logo from './components/icons/Logo';
 
-export default function SettingsMenu({ portalTargetId }: { portalTargetId: string }) {
+const portalTargetId = 'settings-menu-portal';
+
+export default function SettingsMenu() {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <ThemeProvider>
@@ -14,6 +16,7 @@ export default function SettingsMenu({ portalTargetId }: { portalTargetId: strin
         <Logo size={18} />
       </ActionIcon>
       <SettingsModal isOpen={opened} onClose={close} portalTargetId={portalTargetId} />
+      <div id={portalTargetId} />
     </ThemeProvider>
   );
 }

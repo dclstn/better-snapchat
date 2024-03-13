@@ -17,7 +17,7 @@ class SettingsMenu {
     buttonContainer.setAttribute('id', BUTTON_CONTAINER_ID);
     buttonContainer.classList.add(styles.buttonContainer);
     document.body.appendChild(buttonContainer);
-    render(h(App, { portalTargetId: `#${BUTTON_CONTAINER_ID}` }), buttonContainer);
+    render(h(App, {}), buttonContainer);
   }
 }
 
