@@ -1,3 +1,11 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url('@mantine/core/styles/UnstyledButton.css');
+@import url('@mantine/core/styles/Overlay.css');
+@import url('@mantine/core/styles/ModalBase.css');
+@import url('@mantine/core/styles/Input.css');
+@import url('@mantine/core/styles/Flex.css');
+@import url('@mantine/core/styles/ActionIcon.css');
+@import url('@mantine/core/styles/Checkbox.css');
+@import url('@mantine/core/styles/Modal.css');
+@import url('@mantine/core/styles/InlineInput.css');
+@import url('@mantine/core/styles/Button.css');
+@import url('@mantine/core/styles/Divider.css');

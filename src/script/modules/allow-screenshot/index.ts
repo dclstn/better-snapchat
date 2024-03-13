@@ -8,10 +8,14 @@ function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting(SettingIds.ALLOW_SCREENSHOT);
 
   if (enabled) {
-    oldSetScreenshotDetected = storeState.presence.setScreenshotDetected;
     storeState.presence.setScreenshotDetected = () => {};
     storeState.presence.screenshotDetected = false;
-  } else if (oldSetScreenshotDetected != null) {
+    if (oldSetScreenshotDetected == null) {
+      oldSetScreenshotDetected = storeState.presence.setScreenshotDetected;
+    }
+  }
+
+  if (!enabled && oldSetScreenshotDetected != null) {
     storeState.presence.setScreenshotDetected = oldSetScreenshotDetected;
     oldSetScreenshotDetected = null;
   }

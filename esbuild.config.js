@@ -3,9 +3,7 @@ const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
 const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('./package.json');
 const fs = require('fs/promises');
-const postCssPlugin = require('esbuild-style-plugin');
-const { tailwindPlugin } = require('esbuild-plugin-tailwindcss');
-const postcss = require('postcss');
+const alias = require('esbuild-plugin-alias');
 
 (async () => {
   console.log('Building: Content & Script');
@@ -19,7 +17,14 @@ const postcss = require('postcss');
     outbase: './src/',
     outdir: './public/build/',
     logLevel: 'info',
-    plugins: [EsbuildPluginImportGlob.default(), CSSModulesPlugin(), tailwindPlugin()],
+    plugins: [
+      EsbuildPluginImportGlob.default(),
+      CSSModulesPlugin(),
+      alias({
+        react: require.resolve('preact/compat'),
+        'react-dom': require.resolve('preact/compat'),
+      }),
+    ],
   });
 
   console.log('Building: Manifest');

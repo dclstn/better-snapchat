@@ -8,9 +8,13 @@ function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting(SettingIds.HIDE_BITMOJI);
 
   if (enabled) {
-    oldCreatePresenceSession = storeState.presence.createPresenceSession;
     storeState.presence.createPresenceSession = () => {};
-  } else if (oldCreatePresenceSession != null) {
+    if (oldCreatePresenceSession == null) {
+      oldCreatePresenceSession = storeState.presence.createPresenceSession;
+    }
+  }
+
+  if (!enabled && oldCreatePresenceSession != null) {
     storeState.presence.createPresenceSession = oldCreatePresenceSession;
     oldCreatePresenceSession = null;
   }

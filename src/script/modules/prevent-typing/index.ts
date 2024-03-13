@@ -9,11 +9,17 @@ function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting(SettingIds.PREVENT_TYPING);
 
   if (enabled) {
-    oldBroadcastTypingActivity = storeState.presence.setAwayState;
-    oldSendTypingNotification = storeState.messaging.sendTypingNotification;
     storeState.presence.broadcastTypingActivity = () => {};
     storeState.messaging.sendTypingNotification = () => {};
-  } else if (oldBroadcastTypingActivity != null && oldSendTypingNotification != null) {
+    if (oldBroadcastTypingActivity == null) {
+      oldBroadcastTypingActivity = storeState.presence.setAwayState;
+    }
+    if (oldSendTypingNotification == null) {
+      oldSendTypingNotification = storeState.messaging.sendTypingNotification;
+    }
+  }
+
+  if (!enabled && oldBroadcastTypingActivity != null && oldSendTypingNotification != null) {
     storeState.presence.broadcastTypingActivity = oldBroadcastTypingActivity;
     storeState.messaging.sendTypingNotification = oldSendTypingNotification;
     oldBroadcastTypingActivity = null;

@@ -1,44 +1,19 @@
 import React from 'react';
-import { Root, createRoot } from 'react-dom/client';
 import ThemeProvider from '../../providers/ThemeProvider';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import styles from './SettingsMenu.module.css';
-import { Button } from '@nextui-org/react';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { ActionIcon } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconGhost2Filled } from '@tabler/icons-react';
+import SettingsModal from './components/Modal';
 
-let root: Root | null = null;
-
-const BUTTON_CONTAINER_ID = 'better-snapchat-app';
-
-function ModalButton() {
+export default function SettingsMenu() {
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <ThemeProvider>
-      <Button size="lg" isIconOnly color="secondary" className={styles.iconButton}>
-        <FontAwesomeIcon icon={faGhost as IconProp} />
-      </Button>
+      <ActionIcon size="lg" color="indigo" className={styles.iconButton} variant="filled" onClick={open}>
+        <IconGhost2Filled />
+      </ActionIcon>
+      <SettingsModal isOpen={opened} onClose={close} />
     </ThemeProvider>
   );
 }
-
-class SettingsMenu {
-  constructor() {
-    this.load();
-  }
-
-  load() {
-    if (document.getElementById(BUTTON_CONTAINER_ID) != null) {
-      return;
-    }
-    const buttonContainer = document.createElement('div');
-    buttonContainer.setAttribute('id', BUTTON_CONTAINER_ID);
-    document.body.appendChild(buttonContainer);
-    if (root != null) {
-      root.unmount();
-    }
-    root = createRoot(buttonContainer);
-    root.render(<ModalButton />);
-  }
-}
-
-export default new SettingsMenu();

@@ -5,6 +5,7 @@
   "main": "esbuild.config.js",
   "scripts": {
     "build": "node ./esbuild.config.js",
+    "dev": "nodemon --watch src --ext ts,tsx,css --exec \"npm run build\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
     "package": "npm ci && npm run build && zip -r better-snapchat.zip public",
@@ -21,29 +22,21 @@
   },
   "homepage": "https://github.com/dclstn/better-snapchat#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@nextui-org/react": "^2.2.10",
+    "@mantine/core": "^7.6.2",
+    "@tabler/icons-react": "^3.0.1",
     "cookies-js": "^1.2.3",
     "eventemitter3": "^5.0.1",
-    "next-themes": "^0.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "uuid": "^9.0.1"
+    "preact": "^10.19.6"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.256",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.8",
-    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "autoprefixer": "^10.4.18",
     "esbuild": "^0.19.5",
     "esbuild-css-modules-plugin": "^3.0.3",
+    "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-import-glob": "^0.1.1",
-    "esbuild-plugin-tailwindcss": "^1.2.0",
-    "esbuild-style-plugin": "^1.6.3",
     "eslint": "^8.52.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
@@ -51,11 +44,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.35",
-    "postcss-nested": "^6.0.1",
-    "prettier": "^3.0.3",
-    "tailwindcss": "^3.4.1",
-    "tailwindcss-scoped-preflight": "^2.1.0",
-    "postcss-scope": "^1.7.3"
+    "nodemon": "^3.1.0",
+    "prettier": "^3.0.3"
   }
 }

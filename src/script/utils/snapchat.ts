@@ -1,5 +1,3 @@
-import Logger from '../lib/logger';
-
 type WebpackRequire = <T>(id: string) => T;
 
 let snapchatWebpackRequire: WebpackRequire | null = null;

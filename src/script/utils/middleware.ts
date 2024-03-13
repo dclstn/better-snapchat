@@ -1,18 +1,16 @@
+import Logger from '../lib/logger';
 import { getSnapchatStore } from './snapchat';
-import { v4 as uuidv4 } from 'uuid';
-
-const store = getSnapchatStore();
 
 type Callback = (store: any) => any;
 
-const callbacks: Record<string, Callback> = {};
-
+const store = getSnapchatStore();
+const callbacks: Callback[] = [];
 let unsubscribe: (() => void) | null = null;
 
 export function updateSnapchatStore() {
   store.setState((prevState: any) => {
     prevState.__patched = true;
-    for (const callback of Object.values(callbacks)) {
+    for (const callback of callbacks) {
       prevState = callback(prevState);
     }
     return prevState;
@@ -20,8 +18,7 @@ export function updateSnapchatStore() {
 }
 
 export function registerMiddleware(callback: Callback) {
-  const id = uuidv4();
-  callbacks[id] = callback;
+  callbacks.push(callback);
   updateSnapchatStore();
 }
 

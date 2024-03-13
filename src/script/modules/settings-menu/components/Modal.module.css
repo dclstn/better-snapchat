@@ -1,0 +1,20 @@
+.modalSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.logo {
+  padding: 0px;
+}

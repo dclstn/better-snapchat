@@ -1,6 +1,6 @@
 .iconButton {
   position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 9999999;
+  top: 0px;
+  right: 0px;
+  z-index: 999;
 }
