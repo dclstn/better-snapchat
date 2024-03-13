@@ -10,7 +10,7 @@ export default function SettingsMenu() {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <ThemeProvider>
-      <ActionIcon size="lg" color="indigo" className={styles.iconButton} variant="filled" onClick={open}>
+      <ActionIcon size="xl" color="indigo" className={styles.iconButton} variant="filled" onClick={open}>
         <IconGhost2Filled />
       </ActionIcon>
       <SettingsModal isOpen={opened} onClose={close} />

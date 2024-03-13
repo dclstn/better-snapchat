@@ -9,7 +9,7 @@ function AlwaysPresent() {
     <Checkbox
       color="indigo"
       label="Always Present"
-      description="Prevent the away-state from showing when clicking away."
+      description="Disable snapchat's presence detection."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />

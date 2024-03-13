@@ -9,7 +9,7 @@ function HideBitmoji() {
     <Checkbox
       color="indigo"
       label="Hide Bitmoji"
-      description="Prevent others from seeing your Bitmoji appear in chat."
+      description="Prevent your Bitmoji from appearing in chat."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />

@@ -9,7 +9,7 @@ function AllowScreenshot() {
     <Checkbox
       color="indigo"
       label="Allow screenshots"
-      description="Allow screenshots to be captured in the app."
+      description="Disable snapchat's screenshot prevention."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />

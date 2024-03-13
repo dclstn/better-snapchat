@@ -3,19 +3,17 @@ import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 
-function PreventTyping() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING);
-  const [hideBitmoji] = useSettingState(SettingIds.HIDE_BITMOJI);
+function PreventTypingNotification() {
+  const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING_NOTIFICATION);
   return (
     <Checkbox
-      disabled={hideBitmoji}
       color="indigo"
-      label="Prevent Typing"
-      description="Prevent Bitmoji typing animation."
+      label="Prevent Typing Notification"
+      description="Prevent typing notifications from being sent out."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default PreventTyping;
+export default PreventTypingNotification;

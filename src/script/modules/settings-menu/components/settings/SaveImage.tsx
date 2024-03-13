@@ -9,7 +9,7 @@ function SaveImage() {
     <Checkbox
       color="indigo"
       label="Right-Click Save"
-      description="Silently save images when you right-click save them in chat."
+      description="Enable right-click saving of images and videos."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
