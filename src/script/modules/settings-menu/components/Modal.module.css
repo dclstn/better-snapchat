@@ -13,6 +13,12 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding: 32px;
+}
+
+.modalContent {
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .logo {
