@@ -2,14 +2,19 @@
 
 const PREFIX = '[Better-Snapchat]';
 
+let iframeConsole: any | null = null;
+
 export function restoreConsoleLog() {
   const iframe = document.createElement('iframe');
   iframe.style.display = 'none';
   document.body.appendChild(iframe);
-  window.console = (iframe.contentWindow as any).console;
+  iframeConsole = (iframe.contentWindow as any).console;
 }
 
 export function logInfo(...args: any[]) {
-  // eslint-disable-next-line no-console
-  console.log(PREFIX, ...args);
+  if (iframeConsole == null) {
+    restoreConsoleLog();
+    return;
+  }
+  iframeConsole.log(PREFIX, ...args);
 }
