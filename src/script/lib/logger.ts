@@ -1,12 +1,14 @@
 /* snapchat overwrites default console.log */
-const { log } = window.console;
 
 const PREFIX = '[Better-Snapchat]';
 
-class Logger {
-  static log(...args: any[]) {
-    log(PREFIX, ...args);
-  }
+export function restoreConsoleLog() {
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+  window.console = (iframe.contentWindow as any).console;
 }
 
-export default Logger;
+export function logInfo(...args: any[]) {
+  console.log(PREFIX, ...args);
+}

@@ -1,12 +1,13 @@
 /* eslint-disable import/extensions, import/no-unresolved */
-import Logger from './lib/logger.js';
+import { logInfo, restoreConsoleLog } from './lib/logger.js';
 import './index.css';
 
-document.addEventListener('DOMContentLoaded', async () => {
+(async () => {
   const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
   attachSnapchatStoreListener();
-  Logger.log('Patched Snapchat store.');
+  restoreConsoleLog();
+  logInfo('Patched Snapchat store.');
   // @ts-ignore glob-import
   await import('./modules/**/index.ts');
-  Logger.log('Successfully loaded all modules.');
-});
+  logInfo('Successfully loaded all modules.');
+})();
