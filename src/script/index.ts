@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions, import/no-unresolved */
-import { logInfo, restoreConsoleLog } from './lib/logger.js';
+import { logInfo, restoreConsoleLog } from './utils/logger.js';
 import './index.css';
 
 (async () => {
