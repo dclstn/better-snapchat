@@ -13,11 +13,11 @@ class SettingsMenu {
     if (document.getElementById(BUTTON_CONTAINER_ID) != null) {
       return;
     }
-    const buttonContainer = document.createElement('div');
-    buttonContainer.setAttribute('id', BUTTON_CONTAINER_ID);
-    buttonContainer.classList.add(styles.buttonContainer);
-    document.body.appendChild(buttonContainer);
-    render(h(App, {}), buttonContainer);
+    const appContainer = document.createElement('div');
+    appContainer.setAttribute('id', BUTTON_CONTAINER_ID);
+    appContainer.classList.add(styles.appContainer);
+    document.body.appendChild(appContainer);
+    render(h(App, {}), appContainer);
   }
 }
 
