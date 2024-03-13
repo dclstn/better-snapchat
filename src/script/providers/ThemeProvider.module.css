@@ -21,7 +21,6 @@
 
 /* ----- Main styles ----- */
 .main {
-  margin: 0;
   font-family: var(--mantine-font-family);
   font-size: var(--mantine-font-size-md);
   line-height: var(--mantine-line-height);
@@ -29,6 +28,11 @@
   color: var(--mantine-color-text);
   -webkit-font-smoothing: var(--mantine-webkit-font-smoothing);
   -moz-osx-font-smoothing: var(--mantine-moz-font-smoothing);
+}
+
+/* ----- Body styles ----- */
+body {
+  margin: 0px;
 }
 
 @media screen and (max-device-width: 500px) {

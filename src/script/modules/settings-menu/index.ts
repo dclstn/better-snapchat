@@ -1,5 +1,6 @@
 import { render, h } from 'preact';
 import App from './SettingsMenu';
+import styles from './SettingsMenu.module.css';
 
 const BUTTON_CONTAINER_ID = 'better-snapchat-app';
 
@@ -14,8 +15,9 @@ class SettingsMenu {
     }
     const buttonContainer = document.createElement('div');
     buttonContainer.setAttribute('id', BUTTON_CONTAINER_ID);
+    buttonContainer.classList.add(styles.buttonContainer);
     document.body.appendChild(buttonContainer);
-    render(h(App, {}), buttonContainer);
+    render(h(App, { portalTargetId: `#${BUTTON_CONTAINER_ID}` }), buttonContainer);
   }
 }
 

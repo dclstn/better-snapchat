@@ -16,7 +16,15 @@ function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
 }
 
-export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function SettingsModal({
+  portalTargetId,
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  portalTargetId: string;
+}) {
   return (
     <Modal
       withCloseButton={false}
@@ -24,7 +32,7 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
       onClose={onClose}
       centered
       classNames={{ body: styles.modalBody, content: styles.modalContent }}
-      portalProps={{ className: styles.portal }}
+      portalProps={{ className: styles.portal, target: portalTargetId }}
     >
       <div className={styles.modalSection}>
         <Button
