@@ -8,12 +8,11 @@ let unsubscribe: (() => void) | null = null;
 
 export function updateSnapchatStore() {
   store.setState((prevState: any) => {
-    let newState = prevState;
-    newState.patchedStore = true;
+    prevState.patchedStore = true;
     for (const callback of callbacks) {
-      newState = callback(newState);
+      prevState = callback(prevState);
     }
-    return newState;
+    return prevState;
   });
 }
 

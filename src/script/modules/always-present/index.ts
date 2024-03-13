@@ -4,16 +4,15 @@ import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware'
 
 let oldSetAwayState: any = null;
 
-function handleStoreEffect(prevStoreState: any) {
+function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting(SettingIds.ALWAYS_PRESENT);
-  const storeState = prevStoreState;
 
   if (enabled) {
-    storeState.presence.setAwayState = () => {};
-    storeState.presence.awayState = 0;
     if (oldSetAwayState == null) {
       oldSetAwayState = storeState.presence.setAwayState;
     }
+    storeState.presence.setAwayState = () => {};
+    storeState.presence.awayState = 0;
   }
 
   if (!enabled && oldSetAwayState != null) {

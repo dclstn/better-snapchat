@@ -5,19 +5,18 @@ import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware'
 let oldBroadcastTypingActivity: any = null;
 let oldSendTypingNotification: any = null;
 
-function handleStoreEffect(prevStoreState: any) {
+function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting(SettingIds.PREVENT_TYPING);
-  const storeState = prevStoreState;
 
   if (enabled) {
-    storeState.presence.broadcastTypingActivity = () => {};
-    storeState.messaging.sendTypingNotification = () => {};
     if (oldBroadcastTypingActivity == null) {
       oldBroadcastTypingActivity = storeState.presence.setAwayState;
     }
     if (oldSendTypingNotification == null) {
       oldSendTypingNotification = storeState.messaging.sendTypingNotification;
     }
+    storeState.presence.broadcastTypingActivity = () => {};
+    storeState.messaging.sendTypingNotification = () => {};
   }
 
   if (!enabled && oldBroadcastTypingActivity != null && oldSendTypingNotification != null) {
