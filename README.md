@@ -1,4 +1,4 @@
-<img width="1517" margin="4" alt="Screenshot 2023-09-27 at 18 56 55" src="https://github.com/dclstn/better-snapchat/assets/43322006/64c1d50a-0bd7-4032-ac77-aab62f376ee4">
+![app_preview](https://github.com/dclstn/better-snapchat/assets/43322006/747af03c-d07d-49a2-ba46-c01a5b8641a0)
 
 ## Better Snapchat
 
@@ -23,3 +23,5 @@ You can install [Better Snapchat](https://chrome.google.com/webstore/detail/bett
 ## Other stuff
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dclstn)
+
+Need support? Join our [Discord](https://discord.gg/Us65BKhC).
