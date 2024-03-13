@@ -10,5 +10,6 @@ export function restoreConsoleLog() {
 }
 
 export function logInfo(...args: any[]) {
+  // eslint-disable-next-line no-console
   console.log(PREFIX, ...args);
 }
