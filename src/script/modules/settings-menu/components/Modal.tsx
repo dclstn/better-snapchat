@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActionIcon, Button, Modal } from '@mantine/core';
-import { IconGhost2Filled, IconX } from '@tabler/icons-react';
+import { IconX } from '@tabler/icons-react';
 import AllowScreenshot from './settings/AllowScreenshot';
 import AlwaysPresent from './settings/AlwaysPresent';
 import HideBitmoji from './settings/HideBitmoji';

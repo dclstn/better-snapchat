@@ -9,7 +9,7 @@ function getAppTheme() {
   return store.getState().localSettings.appTheme;
 }
 
-export default function ThemeProvider({ children, ...props }: { children: React.ReactNode }) {
+export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = React.useState(getAppTheme());
 
   React.useEffect(() => {
