@@ -4,8 +4,9 @@ import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware'
 
 let oldCreatePresenceSession: any = null;
 
-function handleStoreEffect(storeState: any) {
+function handleStoreEffect(prevStoreState: any) {
   const enabled = settings.getSetting(SettingIds.HIDE_BITMOJI);
+  const storeState = prevStoreState;
 
   if (enabled) {
     storeState.presence.createPresenceSession = () => {};

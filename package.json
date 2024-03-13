@@ -23,10 +23,13 @@
   "homepage": "https://github.com/dclstn/better-snapchat#readme",
   "dependencies": {
     "@mantine/core": "^7.6.2",
+    "@mantine/hooks": "^7.6.2",
     "@tabler/icons-react": "^3.0.1",
     "cookies-js": "^1.2.3",
     "eventemitter3": "^5.0.1",
-    "preact": "^10.19.6"
+    "preact": "^10.19.6",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.256",

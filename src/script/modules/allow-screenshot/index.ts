@@ -4,8 +4,9 @@ import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware'
 
 let oldSetScreenshotDetected: any = null;
 
-function handleStoreEffect(storeState: any) {
+function handleStoreEffect(prevStoreState: any) {
   const enabled = settings.getSetting(SettingIds.ALLOW_SCREENSHOT);
+  const storeState = prevStoreState;
 
   if (enabled) {
     storeState.presence.setScreenshotDetected = () => {};

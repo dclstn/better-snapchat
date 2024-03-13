@@ -9,7 +9,12 @@ export function getSnapchatWebpackRequire(): WebpackRequire | null {
 
   window.webpackChunk_snapchat_web_calling_app.push([
     ['injectBetterSnapchat'],
-    { injectBetterSnapchat: (_a: any, _b: any, require: WebpackRequire) => (snapchatWebpackRequire = require) },
+    {
+      injectBetterSnapchat: (a: any, b: any, require: WebpackRequire) => {
+        snapchatWebpackRequire = require;
+      },
+    },
+    // eslint-disable-next-line import/no-unresolved
     (require: WebpackRequire) => require('injectBetterSnapchat'),
   ]);
 
@@ -24,7 +29,7 @@ export function getSnapchatWebpackModuleId(predicate: (module: string) => boolea
       continue;
     }
 
-    const [_, modules] = chunk;
+    const [, modules] = chunk;
     for (const moduleKey of Object.keys(modules)) {
       const module = modules[moduleKey];
       const moduleDeclaration = module?.toString();

@@ -1,19 +1,12 @@
 import React from 'react';
-import { ActionIcon, Button, Divider, Modal } from '@mantine/core';
+import { ActionIcon, Button, Modal } from '@mantine/core';
+import { IconCoffee, IconGhost2Filled, IconX } from '@tabler/icons-react';
 import AllowScreenshot from './settings/AllowScreenshot';
 import AlwaysPresent from './settings/AlwaysPresent';
 import HideBitmoji from './settings/HideBitmoji';
 import PreventTyping from './settings/PreventTyping';
 import SaveImage from './settings/SaveImage';
 import styles from './Modal.module.css';
-import {
-  IconBrandDiscord,
-  IconBrandDiscordFilled,
-  IconCoffee,
-  IconGhost2Filled,
-  IconSquareRoundedXFilled,
-  IconX,
-} from '@tabler/icons-react';
 
 export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (

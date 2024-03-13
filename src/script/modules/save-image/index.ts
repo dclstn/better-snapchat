@@ -14,9 +14,13 @@ class SaveImage {
   }
 
   load() {
-    if (settings.getSetting(SettingIds.SAVE_IMAGE)) {
+    const enabled = settings.getSetting(SettingIds.SAVE_IMAGE);
+    if (!attached && enabled) {
+      attached = true;
       window.addEventListener('contextmenu', preventContextMenu, true);
-    } else if (attached) {
+    }
+    if (attached && !enabled) {
+      attached = false;
       window.removeEventListener('contextmenu', preventContextMenu, true);
     }
   }

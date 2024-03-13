@@ -1,9 +1,9 @@
 import React from 'react';
-import ThemeProvider from '../../providers/ThemeProvider';
-import styles from './SettingsMenu.module.css';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconGhost2Filled } from '@tabler/icons-react';
+import styles from './SettingsMenu.module.css';
+import ThemeProvider from '../../providers/ThemeProvider';
 import SettingsModal from './components/Modal';
 
 export default function SettingsMenu() {

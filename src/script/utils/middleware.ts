@@ -1,4 +1,3 @@
-import Logger from '../lib/logger';
 import { getSnapchatStore } from './snapchat';
 
 type Callback = (store: any) => any;
@@ -9,11 +8,12 @@ let unsubscribe: (() => void) | null = null;
 
 export function updateSnapchatStore() {
   store.setState((prevState: any) => {
-    prevState.__patched = true;
+    let newState = prevState;
+    newState.patchedStore = true;
     for (const callback of callbacks) {
-      prevState = callback(prevState);
+      newState = callback(newState);
     }
-    return prevState;
+    return newState;
   });
 }
 
@@ -24,7 +24,7 @@ export function registerMiddleware(callback: Callback) {
 
 export function attachSnapchatStoreListener() {
   unsubscribe = store.subscribe((newState: any) => {
-    if (newState.__patched) {
+    if (newState.patchedStore) {
       return;
     }
     updateSnapchatStore();

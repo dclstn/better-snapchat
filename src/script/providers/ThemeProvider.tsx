@@ -1,6 +1,6 @@
 import React from 'react';
-import { getSnapchatStore } from '../utils/snapchat';
 import { MantineProvider } from '@mantine/core';
+import { getSnapchatStore } from '../utils/snapchat';
 import styles from './ThemeProvider.module.css';
 
 const store = getSnapchatStore();
