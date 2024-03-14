@@ -1,8 +1,8 @@
+import deepEqual from 'fast-deep-equal';
+import throttle from 'lodash.throttle';
 import settings from '../../lib/settings';
 import { EventTypes, SettingIds, SnapchatUpdateMessagePayload } from '../../lib/constants';
 import { getSnapchatStore } from '../../utils/snapchat';
-import deepEqual from 'fast-deep-equal';
-import throttle from 'lodash.throttle';
 
 const THROTTLE_TIME = 500;
 
@@ -53,7 +53,9 @@ function handleConversationEffect(storeState: any) {
     }
     try {
       throttledSaveMessage(conversationSerializedId, messageId);
-    } catch (_) {}
+    } catch (_) {
+      continue;
+    }
   }
 }
 
