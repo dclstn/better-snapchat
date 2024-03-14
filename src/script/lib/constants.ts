@@ -21,7 +21,7 @@ export enum EventTypes {
 }
 
 export enum ExternalUrls {
-  DISCORD = 'https://discord.gg/Us65BKhC',
+  DISCORD = 'https://discord.gg/hpmjAJZR3H',
   GITHUB = 'https://github.com/dclstn/better-snapchat',
   BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/dclstn',
 }
