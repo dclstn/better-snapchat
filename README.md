@@ -26,4 +26,4 @@ Or install the [User-Script](https://raw.githubusercontent.com/dclstn/better-sna
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dclstn)
 
-Need support? Join our [Discord](https://discord.gg/Us65BKhC).
+Need support? Join our [Discord](https://discord.gg/hpmjAJZR3H).
