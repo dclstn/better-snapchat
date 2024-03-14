@@ -11,7 +11,7 @@ function PreventTyping() {
       disabled={hideBitmoji}
       color="indigo"
       label="Prevent Typing"
-      description="Prevent Bitmoji typing animation."
+      description="Prevent your Bitmoji typing animation."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
