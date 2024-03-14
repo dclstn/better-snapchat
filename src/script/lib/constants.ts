@@ -5,6 +5,7 @@ export enum SettingIds {
   SAVE_IMAGE = 'SAVE_IMAGE_BUTTON',
   ALWAYS_PRESENT = 'ALWAYS_PRESENT',
   HIDE_BITMOJI = 'HIDE_BITMOJI',
+  AUTO_SAVE_CHATS = 'AUTO_SAVE_CHATS',
 }
 
 export const DefaultSettingValues = {
@@ -14,6 +15,7 @@ export const DefaultSettingValues = {
   [SettingIds.PREVENT_TYPING_NOTIFICATION]: false,
   [SettingIds.PREVENT_TYPING]: false,
   [SettingIds.HIDE_BITMOJI]: false,
+  [SettingIds.AUTO_SAVE_CHATS]: false,
 };
 
 export enum EventTypes {
@@ -24,4 +26,8 @@ export enum ExternalUrls {
   DISCORD = 'https://discord.gg/hpmjAJZR3H',
   GITHUB = 'https://github.com/dclstn/better-snapchat',
   BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/dclstn',
+}
+
+export enum SnapchatUpdateMessagePayload {
+  SAVE_CHAT = 3,
 }

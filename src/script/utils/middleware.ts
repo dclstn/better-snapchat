@@ -1,3 +1,4 @@
+import { logInfo } from './logger';
 import { getSnapchatStore } from './snapchat';
 
 type Callback = (store: any) => any;
