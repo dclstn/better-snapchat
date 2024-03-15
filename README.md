@@ -6,12 +6,14 @@
 
 This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
 
-- [x] **Flush user interface** - That's friendly to use!
 - [x] **Allow Screenshots** - Allow screenshots to be captured everywhere!
 - [x] **Always Present** - Prevent away-state from showing when clicking away!
+- [x] **Auto-Save Chats** - Automatically save chats when they're sent/recieved!
 - [x] **Hide Bitmoji** - Prevent others from seeing your bitmoji appear in chat!
-- [x] **Prevent Typing** - Prevent others from seeing when you are typing!
-- [x] **Right-Click Save** - Silently right-click save images in chat!
+- [x] **Prevent Typing** - Prevent others from seeing your bitmoji typing!
+- [x] **Prevent Typing Notification** - Prevent started-typing push-notifications from being sent!
+- [x] **Right-Click Save** - Silently right-click save images/video from chat!
+- [x] **Show Streaks** - Restore streaks, and see them next to your friends' status!
 - [ ] More to come...
 
 ## How to install
