@@ -27,7 +27,7 @@ function patchStatusNode(node: HTMLElement) {
 
   const { conversationId, streak } = metadata;
   const serializedId = serializeConversationId(conversationId);
-  if (streak == null || document.getElementById(serializedId) != null) {
+  if (streak == null || streak.count === 0 || document.getElementById(serializedId) != null) {
     return;
   }
 
