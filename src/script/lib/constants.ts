@@ -6,6 +6,7 @@ export enum SettingIds {
   ALWAYS_PRESENT = 'ALWAYS_PRESENT',
   HIDE_BITMOJI = 'HIDE_BITMOJI',
   AUTO_SAVE_CHATS = 'AUTO_SAVE_CHATS',
+  SHOW_STREAKS = 'SHOW_STREAKS',
 }
 
 export const DefaultSettingValues = {
@@ -16,6 +17,7 @@ export const DefaultSettingValues = {
   [SettingIds.PREVENT_TYPING]: false,
   [SettingIds.HIDE_BITMOJI]: false,
   [SettingIds.AUTO_SAVE_CHATS]: false,
+  [SettingIds.SHOW_STREAKS]: true,
 };
 
 export enum EventTypes {
