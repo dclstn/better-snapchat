@@ -12,7 +12,6 @@ import PreventTypingNotification from './settings/PreventTypingNotification';
 import DiscordIcon from './icons/Discord';
 import Logo from './icons/Logo';
 import AutoSaveChats from './settings/AutoSaveChats';
-import ShowStreaks from './settings/ShowStreaks';
 
 function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
@@ -58,7 +57,6 @@ export default function SettingsModal({
         <PreventTyping />
         <PreventTypingNotification />
         <SaveImage />
-        <ShowStreaks />
       </div>
       <div className={styles.modalSection}>
         <Button
