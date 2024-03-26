@@ -12,9 +12,13 @@ export function restoreConsoleLog() {
 }
 
 export function logInfo(...args: any[]) {
+  if (document.body == null) {
+    // eslint-disable-next-line no-console
+    console.log(PREFIX, ...args);
+    return;
+  }
   if (iframeConsole == null) {
     restoreConsoleLog();
-    return;
   }
   iframeConsole.log(PREFIX, ...args);
 }

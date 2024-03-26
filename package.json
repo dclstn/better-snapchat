@@ -4,11 +4,15 @@
   "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
   "main": "esbuild.config.js",
   "scripts": {
-    "build": "node ./esbuild.config.js",
+    "build": "npm run build:chrome",
+    "build:chrome": "node ./scripts/chromium.js",
+    "build:firefox": "node ./scripts/firefox.js",
+    "package": "npm run package:chrome",
+    "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && zip -r better-snapchat-chrome.zip public",
+    "package:firefox": "rm -rf ./public/build/ && npm run build:firefox && zip -r better-snapchat-firefox.zip public",
     "dev": "nodemon --watch src --ext ts,tsx,css --exec \"npm run build\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
-    "package": "npm ci && npm run build && zip -r better-snapchat.zip public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,13 +35,16 @@
     "lodash.throttle": "^4.1.1",
     "preact": "^10.19.6",
     "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat"
+    "react-dom": "npm:@preact/compat",
+    "ua-parser-js": "^1.0.37",
+    "web-ext-types": "^3.2.1"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.256",
     "@types/lodash.throttle": "^4.1.9",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.8",
+    "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "esbuild": "^0.19.5",
     "esbuild-css-modules-plugin": "^3.1.0",

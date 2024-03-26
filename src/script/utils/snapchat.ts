@@ -1,5 +1,3 @@
-import { getReactInstance, searchReactParents } from './react';
-
 type WebpackRequire = <T>(id: string) => T;
 
 let snapchatWebpackRequire: WebpackRequire | null = null;
@@ -68,18 +66,4 @@ export function getSnapchatStore() {
   snapchatStore = Object.values(module).find((value) => value.getState != null && value.setState != null);
 
   return snapchatStore;
-}
-
-export function getConversationMetadataFromNode(node: HTMLElement) {
-  const reactInstance = getReactInstance(node);
-  if (reactInstance == null) {
-    return null;
-  }
-
-  const conversationsNode = searchReactParents(reactInstance, (n: any) => n.pendingProps.streak != null);
-  if (conversationsNode?.pendingProps == null) {
-    return null;
-  }
-
-  return conversationsNode.pendingProps;
 }

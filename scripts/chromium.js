@@ -1,19 +1,19 @@
 const ESBuild = require('esbuild');
 const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
 const CSSModulesPlugin = require('esbuild-css-modules-plugin');
-const package = require('./package.json');
+const package = require('../package.json');
 const fs = require('fs/promises');
 const alias = require('esbuild-plugin-alias');
 
 (async () => {
-  console.log('Building: Content & Script');
+  console.log('Building: Chrome Extension');
 
   await ESBuild.build({
-    entryPoints: ['./src/content', './src/script'],
+    entryPoints: ['./src/script'],
     bundle: true,
     minify: true,
     sourcemap: false,
-    target: ['chrome58', 'firefox57'],
+    target: ['chrome58'],
     outbase: './src/',
     outdir: './public/build/',
     logLevel: 'info',
@@ -26,8 +26,6 @@ const alias = require('esbuild-plugin-alias');
       }),
     ],
   });
-
-  console.log('Building: Manifest');
 
   const manifest = {
     manifest_version: 3,
@@ -42,14 +40,14 @@ const alias = require('esbuild-plugin-alias');
     },
     content_scripts: [
       {
-        matches: ['https://web.snapchat.com/*'],
-        js: ['./build/content.js'],
+        matches: ['https://*.snapchat.com/*'],
+        js: ['./build/script.js'],
         css: ['./build/script.css'],
         run_at: 'document_start',
+        world: 'MAIN',
       },
     ],
-    web_accessible_resources: [{ resources: ['build/script.js'], matches: ['https://web.snapchat.com/*'] }],
-    host_permissions: ['https://web.snapchat.com/*'],
+    host_permissions: ['https://*.snapchat.com/*'],
   };
 
   await fs.writeFile('./public/manifest.json', JSON.stringify(manifest, null, 2));
