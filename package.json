@@ -13,7 +13,7 @@
     "dev": "nodemon --watch src --ext ts,tsx,css --exec \"npm run build\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
-    "postlint": "addons-linter public/",
+    "manifest-lint": "addons-linter public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
