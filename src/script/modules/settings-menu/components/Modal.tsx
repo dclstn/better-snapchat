@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Button, Modal } from '@mantine/core';
+import { ActionIcon, Button, Modal, Text } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 import AllowScreenshot from './settings/AllowScreenshot';
 import AlwaysPresent from './settings/AlwaysPresent';
@@ -43,7 +43,7 @@ export default function SettingsModal({
           variant="transparent"
           onClick={() => openExternalUrl(ExternalUrls.GITHUB)}
         >
-          Better Snapchat
+          Better Snapchat v{process.env.VERSION}
         </Button>
         <ActionIcon size="lg" color="gray" variant="transparent" onClick={onClose}>
           <IconX />

@@ -25,6 +25,7 @@ const alias = require('esbuild-plugin-alias');
         'react-dom': require.resolve('preact/compat'),
       }),
     ],
+    define: { 'process.env.VERSION': JSON.stringify(package.version) },
   });
 
   const manifest = {
