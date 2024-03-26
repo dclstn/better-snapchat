@@ -5,7 +5,7 @@
   "main": "esbuild.config.js",
   "scripts": {
     "build": "npm run build:chrome",
-    "build:chrome": "node ./scripts/chromium.js",
+    "build:chrome": "node ./scripts/chrome.js",
     "build:firefox": "node ./scripts/firefox.js",
     "package": "npm run package:chrome",
     "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && zip -r better-snapchat-chrome.zip public",
