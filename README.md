@@ -13,7 +13,7 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 - [x] **Prevent Typing** - Prevent others from seeing your bitmoji typing!
 - [x] **Prevent Typing Notification** - Prevent started-typing push-notifications from being sent!
 - [x] **Right-Click Save** - Silently right-click save images/video from chat!
-- [x] **Show Streaks** - Restore streaks, and see them next to your friends' status!
+- [x] **Cross-Browser Support** - Enable web.snapchat.com to work on any browser!
 - [ ] More to come...
 
 ## How to install

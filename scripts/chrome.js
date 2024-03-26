@@ -48,6 +48,7 @@ const alias = require('esbuild-plugin-alias');
       },
     ],
     host_permissions: ['https://*.snapchat.com/*'],
+    browser_specific_settings: { gecko: { id: 'extension@better-snapchat.com' } },
   };
 
   await fs.writeFile('./public/manifest.json', JSON.stringify(manifest, null, 2));

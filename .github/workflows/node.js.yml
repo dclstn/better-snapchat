@@ -2,24 +2,30 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3.5.0
-      with:
-        node-version: 16
-        registry-url: https://registry.npmjs.org
-        cache: 'npm'
-    - run: node --version
-    - run: npm --version
-    - run: npm cache clean --force
-    - name: Install Node Dependencies
-      run: npm install --no-package-lock
-    - name: Linting
-      run: npm run lint
-    - name: Build
-      run: npm run build
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3.5.0
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+          cache: 'npm'
+      - run: node --version
+      - run: npm --version
+      - run: npm cache clean --force
+      - name: Install Node Dependencies
+        run: npm install --no-package-lock
+      - name: Lint
+        run: npm run lint
+      - name: Build Chrome
+        run: npm run build:chrome
+      - name: Post Lint Chrome
+        run: npm run postlint
+      - name: Build Firefox
+        run: npm run build:firefox
+      - name: Post Lint Firefox
+        run: npm run postlint
