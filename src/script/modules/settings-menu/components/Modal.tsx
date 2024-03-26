@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Button, Modal, Text } from '@mantine/core';
+import { ActionIcon, Button, Modal } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 import AllowScreenshot from './settings/AllowScreenshot';
 import AlwaysPresent from './settings/AlwaysPresent';
