@@ -48,7 +48,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "addons-linter": "^6.24.0",
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.20.2",
     "esbuild-css-modules-plugin": "^3.1.0",
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-import-glob": "^0.1.1",
