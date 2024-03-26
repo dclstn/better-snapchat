@@ -8,11 +8,12 @@
     "build:chrome": "node ./scripts/chrome.js",
     "build:firefox": "node ./scripts/firefox.js",
     "package": "npm run package:chrome",
-    "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && zip -r better-snapchat-chrome.zip public",
-    "package:firefox": "rm -rf ./public/build/ && npm run build:firefox && zip -r better-snapchat-firefox.zip public",
+    "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && cd ./public && zip -D -r ../better-snapchat-chrome.zip . && cd ..",
+    "package:firefox": "rm -rf ./public/build/ && npm run build:firefox && cd ./public && zip -D -r ../better-snapchat-firefox.zip . && cd ..",
     "dev": "nodemon --watch src --ext ts,tsx,css --exec \"npm run build\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
+    "lint:firefox": "npm run build:firefox && addons-linter ./public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -46,6 +47,7 @@
     "@types/react-dom": "^18.2.8",
     "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "addons-linter": "^6.24.0",
     "esbuild": "^0.19.5",
     "esbuild-css-modules-plugin": "^3.1.0",
     "esbuild-plugin-alias": "^0.2.1",
