@@ -1,20 +1,13 @@
 /* eslint-disable import/extensions, import/no-unresolved */
-import UAParser from 'ua-parser-js';
 import { logInfo } from './utils/logger.js';
 import './index.css';
-import patchUserAgent from './utils/user-agent.js';
-
-const parser = new UAParser();
-const validBrowserAgents = new Set(['Chrome', 'Safari', 'Edge']);
+import patchNavigator from './utils/navigator.js';
 
 (() => {
   logInfo('Injected Script');
 
-  const browser = parser.getBrowser();
-  if (browser?.name != null && !validBrowserAgents.has(browser.name)) {
-    patchUserAgent();
-    logInfo('Patched User Agent.');
-  }
+  patchNavigator();
+  logInfo('Patched browser.');
 
   document.addEventListener('DOMContentLoaded', async () => {
     const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
