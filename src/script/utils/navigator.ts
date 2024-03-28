@@ -39,7 +39,7 @@ function patchUserMediaPermissions() {
 const parser = new UAParser();
 const validBrowserAgents = new Set(['Chrome', 'Safari', 'Edge']);
 
-export default function patchBrowser() {
+export default function patchNavigator() {
   const { browser } = parser.getResult();
   if (browser?.name == null || validBrowserAgents.has(browser.name)) {
     return;
