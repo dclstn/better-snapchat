@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Better Snapchat
-// @version      1.2.0
+// @version      1.2.1
 // @description  This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
 // @author       VaspDev
 // @match        https://web.snapchat.com/*
