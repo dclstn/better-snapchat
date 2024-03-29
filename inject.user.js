@@ -8,6 +8,8 @@
 // @grant        GM_addElement
 // @run-at       document-start
 // @connect      better-snapchat.vasp.dev
+// @license      MIT
+// @namespace    https://better-snapchat.vasp.dev
 // ==/UserScript==
 
 const head = document.querySelector('head');
