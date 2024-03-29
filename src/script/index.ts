@@ -18,6 +18,7 @@ async function onDOMContentLoaded() {
     onDOMContentLoaded();
   } else {
     patchNavigator();
+    logInfo('Patched Navigator');
     document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
   }
 })();
