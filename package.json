@@ -7,6 +7,7 @@
     "build": "npm run build:chrome",
     "build:chrome": "rm -rf ./public/build/ && node ./scripts/chrome.js",
     "build:firefox": "rm -rf ./public/build/ && node ./scripts/firefox.js",
+    "build:userscript": "rm -rf ./public/build/ && node ./scripts/userscript.js",
     "package": "npm run package:chrome",
     "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && cd ./public && zip -D -r ../better-snapchat-chrome.zip . && cd ..",
     "package:firefox": "rm -rf ./public/build/ && npm run build:firefox && cd ./public && zip -D -r ../better-snapchat-firefox.zip . && cd ..",
