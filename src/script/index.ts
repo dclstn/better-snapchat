@@ -7,7 +7,7 @@ import patchNavigator from './utils/navigator.js';
   logInfo('Injected Script');
 
   patchNavigator();
-  logInfo('Patched browser.');
+  logInfo('Patched Navigator.');
 
   document.addEventListener('DOMContentLoaded', async () => {
     const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
