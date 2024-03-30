@@ -68,6 +68,7 @@ class AutoSaveChats {
   load() {
     const enabled = settings.getSetting(SettingIds.AUTO_SAVE_CHATS);
     if (enabled && listener == null) {
+      handleConversationEffect(store.getState());
       listener = store.subscribe(handleConversationEffect);
     }
     if (!enabled && listener != null) {
