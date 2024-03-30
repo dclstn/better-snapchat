@@ -41,14 +41,14 @@ const alias = require('esbuild-plugin-alias');
     },
     content_scripts: [
       {
-        matches: ['https://*.snapchat.com/*'],
+        matches: ['https://web.snapchat.com/*'],
         js: ['./build/script.js'],
         css: ['./build/script.css'],
         run_at: 'document_start',
         world: 'MAIN',
       },
     ],
-    host_permissions: ['https://*.snapchat.com/*'],
+    host_permissions: ['https://web.snapchat.com/*'],
     browser_specific_settings: { gecko: { id: 'extension@better-snapchat.com' } },
   };
 
