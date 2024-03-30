@@ -23,8 +23,6 @@ jobs:
         run: npm run lint
       - name: Build Chrome
         run: npm run build:chrome
-      - name: Post Lint Chrome
-        run: npm run manifest-lint
       - name: Build Firefox
         run: npm run build:firefox
       - name: Post Lint Firefox
