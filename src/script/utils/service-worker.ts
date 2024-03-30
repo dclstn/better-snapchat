@@ -12,9 +12,11 @@ export default function initalizeServiceWorker(initialSettings: any) {
     preventReadRecieptsEnabled = settings[PREVENT_READ_RECEIPTS];
   });
 
+  // eslint-disable-next-line no-global-assign
   (fetch as Function) = new Proxy(fetch, {
     apply(target, thisArg, [request, ...rest]: [Request, AbortSignal]) {
       if (preventReadRecieptsEnabled && request.url.endsWith(READ_RECEIPT)) {
+        // eslint-disable-next-line no-promise-executor-return
         return new Promise((resolve) => resolve(new Response(null, { status: 200 })));
       }
       return Reflect.apply(target, thisArg, [request, ...rest]);
