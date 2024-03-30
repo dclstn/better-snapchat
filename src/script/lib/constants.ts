@@ -7,6 +7,7 @@ export enum SettingIds {
   HIDE_BITMOJI = 'HIDE_BITMOJI',
   AUTO_SAVE_CHATS = 'AUTO_SAVE_CHATS',
   SHOW_STREAKS = 'SHOW_STREAKS',
+  PREVENT_READ_RECEIPTS = 'PREVENT_READ_RECEIPTS',
 }
 
 export const DefaultSettingValues = {
@@ -18,6 +19,7 @@ export const DefaultSettingValues = {
   [SettingIds.HIDE_BITMOJI]: false,
   [SettingIds.AUTO_SAVE_CHATS]: false,
   [SettingIds.SHOW_STREAKS]: true,
+  [SettingIds.PREVENT_READ_RECEIPTS]: false,
 };
 
 export enum EventTypes {
@@ -32,4 +34,8 @@ export enum ExternalUrls {
 
 export enum SnapchatUpdateMessagePayload {
   SAVE_CHAT = 3,
+}
+
+export enum BroadcastChannelEvents {
+  SETTINGS_UPDATE = 'settings:update',
 }

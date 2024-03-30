@@ -11,7 +11,7 @@ import { ExternalUrls } from '../../../lib/constants';
 import PreventTypingNotification from './settings/PreventTypingNotification';
 import DiscordIcon from './icons/Discord';
 import Logo from './icons/Logo';
-import AutoSaveChats from './settings/AutoSaveChats';
+import Chats from './settings/Chats';
 
 function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
@@ -52,11 +52,11 @@ export default function SettingsModal({
       <div className={styles.modalSettings}>
         <AllowScreenshot />
         <AlwaysPresent />
-        <AutoSaveChats />
         <HideBitmoji />
         <PreventTyping />
         <PreventTypingNotification />
         <SaveImage />
+        <Chats />
       </div>
       <div className={styles.modalSection}>
         <Button

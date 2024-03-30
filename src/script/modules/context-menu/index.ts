@@ -7,7 +7,7 @@ function preventContextMenu(event: MouseEvent) {
   event.stopImmediatePropagation();
 }
 
-class SaveImage {
+class ContextMenu {
   constructor() {
     this.load();
     settings.on(`${SettingIds.SAVE_IMAGE}.${EventTypes.SETTING_UPDATE}`, this.load);
@@ -26,4 +26,4 @@ class SaveImage {
   }
 }
 
-export default new SaveImage();
+export default new ContextMenu();

@@ -7,9 +7,7 @@ class Settings extends EventEmitter {
 
   constructor() {
     super();
-
     const settings = storage.get('settings');
-
     if (settings != null) {
       this.settings = new Map(Object.entries(settings));
     } else {
@@ -21,17 +19,20 @@ class Settings extends EventEmitter {
     this.settings.set(key, value);
     storage.set('settings', Object.fromEntries(this.settings));
     this.emit(`${key}.${EventTypes.SETTING_UPDATE}`, value);
+    this.emit(EventTypes.SETTING_UPDATE, key, value);
   }
 
   getSetting(key: SettingIds) {
-    const val = this.settings.get(key);
-
-    if (val == null) {
+    const value = this.settings.get(key);
+    if (value == null) {
       this.setSetting(key, DefaultSettingValues[key]);
       return DefaultSettingValues[key];
     }
+    return value;
+  }
 
-    return val;
+  getSettings() {
+    return Object.fromEntries(this.settings);
   }
 }
 

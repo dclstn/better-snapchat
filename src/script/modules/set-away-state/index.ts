@@ -23,11 +23,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class AlwaysPresent {
+class SetAwayState {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`${SettingIds.ALWAYS_PRESENT}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 
-export default new AlwaysPresent();
+export default new SetAwayState();

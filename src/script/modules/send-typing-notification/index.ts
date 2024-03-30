@@ -22,11 +22,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class PreventTypingNotification {
+class SendTypingNotification {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`${SettingIds.PREVENT_TYPING_NOTIFICATION}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 
-export default new PreventTypingNotification();
+export default new SendTypingNotification();

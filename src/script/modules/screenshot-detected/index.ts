@@ -23,11 +23,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class AllowScreenshot {
+class ScreenshotDetected {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`${SettingIds.ALLOW_SCREENSHOT}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 
-export default new AllowScreenshot();
+export default new ScreenshotDetected();

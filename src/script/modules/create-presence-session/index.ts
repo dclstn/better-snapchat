@@ -22,11 +22,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class HideBitmoji {
+class CreatePresenceSession {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`${SettingIds.HIDE_BITMOJI}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
   }
 }
 
-export default new HideBitmoji();
+export default new CreatePresenceSession();
