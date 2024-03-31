@@ -18,11 +18,17 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 
 ## How to install
 
+### Chromium Browsers
+
 You can install [Better Snapchat](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook) via the Chrome Web Store.
 
-(web.snapchat.com is only available on chromium browsers)
+### Firefox Browsers
 
-Or install the [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with [Tampermonkey](https://www.tampermonkey.net/)
+You can install [Better Snapchat](https://addons.mozilla.org/firefox/addon/better-snapchat/) via the Firefox Addon Store.
+
+### Other Browsers
+
+You can install the [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with [Tampermonkey](https://www.tampermonkey.net/)
 
 ## Other stuff
 
