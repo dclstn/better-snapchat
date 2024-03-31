@@ -1,0 +1,17 @@
+.saveImage div[role='img'] > img {
+  pointer-events: unset !important;
+  user-select: none;
+}
+
+.saveImage div[role='img'] > img:hover {
+  cursor: pointer;
+}
+
+.saveImage div[role='img'] video {
+  user-select: none;
+  pointer-events: unset !important;
+}
+
+.saveImage div[role='img'] video:hover {
+  cursor: pointer;
+}

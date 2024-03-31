@@ -12,6 +12,7 @@ import PreventTypingNotification from './settings/PreventTypingNotification';
 import DiscordIcon from './icons/Discord';
 import Logo from './icons/Logo';
 import Chats from './settings/Chats';
+import UnlimitedFileSize from './settings/UnlimitedFileSize';
 
 function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
@@ -56,6 +57,7 @@ export default function SettingsModal({
         <PreventTyping />
         <PreventTypingNotification />
         <SaveImage />
+        <UnlimitedFileSize />
         <Chats />
       </div>
       <div className={styles.modalSection}>

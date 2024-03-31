@@ -1,5 +1,6 @@
 import { EventTypes, SettingIds } from '../../lib/constants';
 import settings from '../../lib/settings';
+import styles from './index.module.css';
 
 let attached = false;
 
@@ -15,6 +16,7 @@ class ContextMenu {
 
   load() {
     const enabled = settings.getSetting(SettingIds.SAVE_IMAGE);
+    document.body.classList.toggle(styles.saveImage, enabled);
     if (!attached && enabled) {
       attached = true;
       window.addEventListener('contextmenu', preventContextMenu, true);
