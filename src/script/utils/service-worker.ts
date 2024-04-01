@@ -31,7 +31,7 @@ export default function initalizeServiceWorker(initialSettings: any) {
     apply(target, thisArg, [data, ...rest]: [Uint8Array]) {
       const message = textDecoder.decode(data);
       if (hideBitmoji && message.includes('presence')) {
-        return;
+        return undefined;
       }
       return Reflect.apply(target, thisArg, [data, ...rest]);
     },

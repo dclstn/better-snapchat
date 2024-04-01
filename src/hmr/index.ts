@@ -42,5 +42,6 @@
   }
 
   initalizeWebSocket();
+  // eslint-disable-next-line no-console
   console.log('HMR Server running on port:', process.env.HMR_PORT);
 })();
