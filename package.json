@@ -4,6 +4,7 @@
   "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
   "main": "esbuild.config.js",
   "scripts": {
+    "dev": "rm -rf ./public/build/ && node ./scripts/dev.js",
     "build": "npm run build:chrome",
     "build:chrome": "rm -rf ./public/build/ && node ./scripts/chrome.js",
     "build:firefox": "rm -rf ./public/build/ && node ./scripts/firefox.js",
@@ -11,7 +12,6 @@
     "package": "npm run package:chrome",
     "package:chrome": "rm -rf ./public/build/ && npm run build:chrome && cd ./public && zip -D -r ../better-snapchat-chrome.zip . && cd ..",
     "package:firefox": "rm -rf ./public/build/ && npm run build:firefox && cd ./public && zip -D -r ../better-snapchat-firefox.zip . && cd ..",
-    "dev": "nodemon --watch src --ext ts,tsx,css --exec \"npm run build\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\"",
     "manifest-lint": "addons-linter public/",
@@ -46,8 +46,11 @@
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@types/ua-parser-js": "^0.7.39",
+    "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "addons-linter": "^6.24.0",
+    "chokidar": "^3.6.0",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",
     "esbuild-css-modules-plugin": "^3.1.0",
     "esbuild-plugin-alias": "^0.2.1",
@@ -61,6 +64,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
-    "web-ext-types": "^3.2.1"
+    "web-ext": "^7.11.0",
+    "web-ext-types": "^3.2.1",
+    "ws": "^8.16.0"
   }
 }
