@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions, import/no-unresolved */
 import './index.css';
-import { logInfo } from './utils/logger.js';
+import { logInfo, patchConsole } from './utils/console.js';
 import patchNavigator from './utils/navigator.js';
 import initalizeServiceWorker from './utils/service-worker';
 import settings from './lib/settings';
@@ -25,7 +25,7 @@ function injectServiceWorker() {
           ${initalizeServiceWorker.name}(${JSON.stringify(settings.getSettings())});
         `;
         window.Blob = oldBlobClass;
-        logInfo('Patched Service Worker');
+        logInfo('Injected Service Worker');
       }
       super(...args);
     }
@@ -36,6 +36,10 @@ function injectServiceWorker() {
 (async () => {
   logInfo('Injected Script');
   injectServiceWorker();
+
+  patchConsole();
+  logInfo('Patched Console');
+
   if (document.readyState !== 'loading') {
     onDOMContentLoaded();
   } else {
