@@ -16,6 +16,6 @@
   cursor: pointer;
 }
 
-.saveImage div[role='img']:has(video, img) > img {
+.saveImage div[role='img']:has(video):has(img) > img {
   pointer-events: none !important;
 }
