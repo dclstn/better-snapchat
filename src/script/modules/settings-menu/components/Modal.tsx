@@ -3,7 +3,7 @@ import { ActionIcon, Button, Modal } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 import AllowScreenshot from './settings/AllowScreenshot';
 import AlwaysPresent from './settings/AlwaysPresent';
-import HideBitmoji from './settings/HideBitmoji';
+import Bitmoji from './settings/Bitmoji';
 import PreventTyping from './settings/PreventTyping';
 import SaveImage from './settings/SaveImage';
 import styles from './Modal.module.css';
@@ -53,11 +53,11 @@ export default function SettingsModal({
       <div className={styles.modalSettings}>
         <AllowScreenshot />
         <AlwaysPresent />
-        <HideBitmoji />
         <PreventTyping />
         <PreventTypingNotification />
         <SaveImage />
         <UnlimitedFileSize />
+        <Bitmoji />
         <Chats />
       </div>
       <div className={styles.modalSection}>

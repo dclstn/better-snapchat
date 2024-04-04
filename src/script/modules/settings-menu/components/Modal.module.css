@@ -2,6 +2,23 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.modalSettings::-webkit-scrollbar {
+  width: 8px;
+  background: unset;
+  border: unset;
+}
+
+.modalSettings::-webkit-scrollbar-thumb {
+  background-color: var(--mantine-color-gray-light);
+  border-radius: 8px;
+}
+
+.modalSettings::-webkit-scrollbar-button {
+  display: none;
 }
 
 .modalSection {
@@ -13,7 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px;
+  padding: 24px;
 }
 
 .modalContent {

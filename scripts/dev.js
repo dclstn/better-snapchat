@@ -64,6 +64,10 @@ async function buildExtension() {
     console.log('Reloaded all clients');
   });
 
+  setInterval(() => {
+    websocket.clients.forEach((client) => client.send('ping'));
+  }, 60e3);
+
   console.log('Building: Chrome Extension');
   buildExtension();
 })();

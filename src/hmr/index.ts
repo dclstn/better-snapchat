@@ -20,23 +20,33 @@
     });
   });
 
+  async function reloadTabs() {
+    const tabs = await chrome.tabs.query({ url: 'https://web.snapchat.com/*' });
+    for (const tab of tabs) {
+      if (tab.id == null) {
+        continue;
+      }
+      chrome.tabs.reload(tab.id);
+    }
+  }
+
   function initalizeWebSocket() {
     const websocket = new WebSocket(`ws://localhost:${process.env.HMR_PORT}`);
+
+    websocket.addEventListener('open', () => reloadTabs());
 
     websocket.addEventListener('message', async ({ data }) => {
       if (data !== 'reload') {
         return;
       }
-      const tabs = await chrome.tabs.query({ url: 'https://web.snapchat.com/*' });
-      for (const tab of tabs) {
-        if (tab.id == null) {
-          continue;
-        }
-        chrome.tabs.reload(tab.id);
-      }
+      reloadTabs();
     });
 
     websocket.addEventListener('close', () => {
+      setTimeout(initalizeWebSocket, 5000);
+    });
+
+    websocket.addEventListener('error', () => {
       setTimeout(initalizeWebSocket, 5000);
     });
   }
