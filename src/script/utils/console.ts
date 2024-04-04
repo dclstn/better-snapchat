@@ -5,7 +5,7 @@ let iframeConsole: any | null = null;
 export function getIframeConsole() {
   const iframe = document.createElement('iframe');
   iframe.style.display = 'none';
-  document.body.appendChild(iframe);
+  (document.head ?? document.documentElement).appendChild(iframe);
   iframeConsole = (iframe.contentWindow as any).console;
 }
 
@@ -17,10 +17,6 @@ export function logInfo(...args: any[]) {
 }
 
 export function patchConsole() {
-  if (document.readyState !== 'loading') {
-    window.console.log = logInfo;
-    return;
-  }
   window.console = new Proxy(window.console, {
     set(target, prop, receiver) {
       if (prop === 'log') {
