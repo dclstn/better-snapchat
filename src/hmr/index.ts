@@ -51,7 +51,6 @@
     });
   }
 
-  initalizeWebSocket();
-  // eslint-disable-next-line no-console
+  chrome.runtime.onInstalled.addListener(initalizeWebSocket);
   console.log('HMR Server running on port:', process.env.HMR_PORT);
 })();
