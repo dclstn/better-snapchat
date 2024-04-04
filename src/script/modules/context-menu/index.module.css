@@ -15,3 +15,7 @@
 .saveImage div[role='img'] video:hover {
   cursor: pointer;
 }
+
+.saveImage div[role='img']:has(video, img) > img {
+  pointer-events: none !important;
+}
