@@ -1,3 +1,27 @@
-const broadcastChannel = new BroadcastChannel('BETTER_SNAPCHAT');
+import { SettingIds } from '../lib/constants';
+import settings from '../lib/settings';
 
-export default broadcastChannel;
+const CROSS_TAB_BROADCAST_CHANNEL = 'cross_tab';
+
+export default function patchBroadcastChannel() {
+  class BroadcastChannel extends window.BroadcastChannel {
+    constructor(name: string) {
+      super(name);
+    }
+
+    addEventListener(type: string, listener: EventListener) {
+      return super.addEventListener(type, (event) => {
+        if (
+          this.name === CROSS_TAB_BROADCAST_CHANNEL &&
+          settings.getSetting(SettingIds.ALLOW_CROSS_TAB) &&
+          (event as any)?.data?.type === 'CLAIM_ACTIVE'
+        ) {
+          return;
+        }
+        listener(event);
+      });
+    }
+  }
+
+  window.BroadcastChannel = BroadcastChannel;
+}

@@ -9,6 +9,7 @@ export enum SettingIds {
   SHOW_STREAKS = 'SHOW_STREAKS',
   PREVENT_READ_RECEIPTS = 'PREVENT_READ_RECEIPTS',
   UNLIMITED_FILE_SIZE = 'UNLIMITED_FILE_SIZE',
+  ALLOW_CROSS_TAB = 'ALLOW_CROSS_TAB',
 }
 
 export const DefaultSettingValues = {
@@ -22,6 +23,7 @@ export const DefaultSettingValues = {
   [SettingIds.SHOW_STREAKS]: true,
   [SettingIds.PREVENT_READ_RECEIPTS]: false,
   [SettingIds.UNLIMITED_FILE_SIZE]: true,
+  [SettingIds.ALLOW_CROSS_TAB]: true,
 };
 
 export enum EventTypes {

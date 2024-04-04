@@ -13,6 +13,7 @@ import DiscordIcon from './icons/Discord';
 import Logo from './icons/Logo';
 import Chats from './settings/Chats';
 import UnlimitedFileSize from './settings/UnlimitedFileSize';
+import CrossTab from './settings/CrossTab';
 
 function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
@@ -53,6 +54,7 @@ export default function SettingsModal({
       <div className={styles.modalSettings}>
         <AllowScreenshot />
         <AlwaysPresent />
+        <CrossTab />
         <PreventTyping />
         <PreventTypingNotification />
         <SaveImage />

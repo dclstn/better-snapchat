@@ -2,38 +2,24 @@
 import './index.css';
 import { logInfo, patchConsole } from './utils/console.js';
 import patchNavigator from './utils/navigator.js';
-import initalizeServiceWorker from './utils/service-worker';
-import settings from './lib/settings';
-
-async function onDOMContentLoaded() {
-  const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
-  attachSnapchatStoreListener();
-  logInfo('Hooked into Snapchat Store.');
-  // @ts-ignore glob-import
-  await import('./modules/**/index.ts');
-  logInfo('Successfully loaded all modules.');
-}
-
-function injectServiceWorker() {
-  const oldBlobClass = window.Blob;
-  class HookedBlob extends window.Blob {
-    constructor(...args: any[]) {
-      const [[content]] = args;
-      if (typeof content === 'string' && content.startsWith('importScripts')) {
-        args[0][0] += `
-          ${initalizeServiceWorker.toString()};
-          ${initalizeServiceWorker.name}(${JSON.stringify(settings.getSettings())});
-        `;
-        window.Blob = oldBlobClass;
-      }
-      super(...args);
-    }
-  }
-  window.Blob = HookedBlob;
-}
+import patchServiceWorker from './utils/service-worker';
+import patchBroadcastChannel from './utils/broadcast-channel';
 
 (async () => {
-  injectServiceWorker();
+  document.addEventListener(
+    'DOMContentLoaded',
+    async () => {
+      const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
+      attachSnapchatStoreListener();
+      logInfo('Hooked into Snapchat Store.');
+      // @ts-ignore glob-import
+      await import('./modules/**/index.ts');
+      logInfo('Successfully loaded all modules.');
+    },
+    { once: true },
+  );
+
+  patchServiceWorker();
   logInfo('Patched Service Worker');
 
   patchConsole();
@@ -42,5 +28,6 @@ function injectServiceWorker() {
   patchNavigator();
   logInfo('Patched Navigator');
 
-  document.addEventListener('DOMContentLoaded', onDOMContentLoaded, { once: true });
+  patchBroadcastChannel();
+  logInfo('Patched Broadcast Channel');
 })();

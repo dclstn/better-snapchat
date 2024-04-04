@@ -1,6 +1,7 @@
 import EventEmitter from 'eventemitter3';
-import { DefaultSettingValues, EventTypes, SettingIds } from './constants';
+import { BroadcastChannelEvents, DefaultSettingValues, EventTypes, SettingIds } from './constants';
 import storage from './storage';
+import broadcastChannel from './broadcast-channel';
 
 class Settings extends EventEmitter {
   settings: Map<string, boolean>;
@@ -13,9 +14,18 @@ class Settings extends EventEmitter {
     } else {
       this.settings = new Map();
     }
+
+    broadcastChannel.addEventListener('message', ({ data }) => {
+      if (data.type === BroadcastChannelEvents.SETTINGS_UPDATE) {
+        this.setSettings(data.settings);
+      }
+    });
   }
 
   setSetting(key: SettingIds, value: boolean): void {
+    if (this.settings.get(key) === value) {
+      return;
+    }
     this.settings.set(key, value);
     storage.set('settings', Object.fromEntries(this.settings));
     this.emit(`${key}.${EventTypes.SETTING_UPDATE}`, value);
@@ -33,6 +43,12 @@ class Settings extends EventEmitter {
 
   getSettings() {
     return Object.fromEntries(this.settings);
+  }
+
+  setSettings(settings: Record<string, boolean>) {
+    for (const [key, value] of Object.entries(settings)) {
+      this.setSetting(key as SettingIds, value);
+    }
   }
 }
 

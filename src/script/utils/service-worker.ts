@@ -1,4 +1,6 @@
-export default function initalizeServiceWorker(initialSettings: any) {
+import settings from '../lib/settings';
+
+function initalizeServiceWorker(initialSettings: any) {
   const READ_RECEIPT = 'messagingcoreservice.MessagingCoreService/UpdateConversation';
   const broadcastChannel = new BroadcastChannel('BETTER_SNAPCHAT');
   const PREVENT_READ_RECEIPTS = 'PREVENT_READ_RECEIPTS';
@@ -6,6 +8,7 @@ export default function initalizeServiceWorker(initialSettings: any) {
 
   let preventReadRecieptsEnabled = initialSettings[PREVENT_READ_RECEIPTS] ?? false;
   let hideBitmoji = initialSettings[HIDE_BITMOJI] ?? false;
+
   broadcastChannel.addEventListener('message', ({ data }) => {
     const { type, settings } = data;
     if (type !== 'settings:update') {
@@ -36,4 +39,22 @@ export default function initalizeServiceWorker(initialSettings: any) {
       return Reflect.apply(target, thisArg, [data, ...rest]);
     },
   });
+}
+
+export default function patchServiceWorker() {
+  const oldBlobClass = window.Blob;
+  class HookedBlob extends window.Blob {
+    constructor(...args: any[]) {
+      const [[content]] = args;
+      if (typeof content === 'string' && content.startsWith('importScripts')) {
+        args[0][0] += `
+          ${initalizeServiceWorker.toString()};
+          ${initalizeServiceWorker.name}(${JSON.stringify(settings.getSettings())});
+        `;
+        window.Blob = oldBlobClass;
+      }
+      super(...args);
+    }
+  }
+  window.Blob = HookedBlob;
 }

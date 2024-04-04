@@ -1,6 +1,6 @@
+import broadcastChannel from '../../lib/broadcast-channel';
 import { BroadcastChannelEvents, EventTypes } from '../../lib/constants';
 import settings from '../../lib/settings';
-import broadcastChannel from '../../utils/broadcast-channel';
 
 function settingsUpdateHandler() {
   broadcastChannel.postMessage({
@@ -9,11 +9,11 @@ function settingsUpdateHandler() {
   });
 }
 
-class BroadcastChannel {
+class BroadcastChannelModule {
   constructor() {
     settingsUpdateHandler();
     settings.on(EventTypes.SETTING_UPDATE, settingsUpdateHandler);
   }
 }
 
-export default new BroadcastChannel();
+export default new BroadcastChannelModule();
