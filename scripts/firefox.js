@@ -49,7 +49,6 @@ const alias = require('esbuild-plugin-alias');
       },
     ],
     permissions: ['webNavigation', 'https://web.snapchat.com/*'],
-    background: { scripts: ['build/background.js'] },
   };
 
   await fs.writeFile('./public/manifest.json', JSON.stringify(manifest, null, 2));
