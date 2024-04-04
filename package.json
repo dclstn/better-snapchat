@@ -37,8 +37,7 @@
     "lodash.throttle": "^4.1.1",
     "preact": "^10.20.1",
     "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-    "ua-parser-js": "^1.0.37"
+    "react-dom": "npm:@preact/compat"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.263",

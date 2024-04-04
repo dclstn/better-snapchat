@@ -9,7 +9,7 @@ const alias = require('esbuild-plugin-alias');
   console.log('Building: Firefox Extension');
 
   await ESBuild.build({
-    entryPoints: ['./src/script', './src/background'],
+    entryPoints: ['./src/script', './src/inject'],
     bundle: true,
     minify: true,
     sourcemap: false,
@@ -43,6 +43,7 @@ const alias = require('esbuild-plugin-alias');
       {
         matches: ['https://web.snapchat.com/*'],
         css: ['./build/script.css'],
+        js: ['./build/inject.js'],
         run_at: 'document_start',
         all_frames: true,
       },

@@ -1,5 +1,3 @@
-import UAParser from 'ua-parser-js';
-
 const USER_AGENTS = [
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
@@ -36,14 +34,7 @@ function patchUserMediaPermissions() {
   });
 }
 
-const parser = new UAParser();
-const validBrowserAgents = new Set(['Chrome', 'Safari', 'Edge']);
-
 export default function patchNavigator() {
-  const { browser } = parser.getResult();
-  if (browser?.name == null || validBrowserAgents.has(browser.name)) {
-    return;
-  }
   patchUserAgent();
   patchUserMediaPermissions();
 }

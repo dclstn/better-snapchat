@@ -25,7 +25,6 @@ function injectServiceWorker() {
           ${initalizeServiceWorker.name}(${JSON.stringify(settings.getSettings())});
         `;
         window.Blob = oldBlobClass;
-        logInfo('Injected Service Worker');
       }
       super(...args);
     }
@@ -34,17 +33,14 @@ function injectServiceWorker() {
 }
 
 (async () => {
-  logInfo('Injected Script');
   injectServiceWorker();
+  logInfo('Patched Service Worker');
 
   patchConsole();
   logInfo('Patched Console');
 
-  if (document.readyState !== 'loading') {
-    onDOMContentLoaded();
-  } else {
-    patchNavigator();
-    logInfo('Patched Navigator');
-    document.addEventListener('DOMContentLoaded', onDOMContentLoaded, { once: true });
-  }
+  patchNavigator();
+  logInfo('Patched Navigator');
+
+  document.addEventListener('DOMContentLoaded', onDOMContentLoaded, { once: true });
 })();
