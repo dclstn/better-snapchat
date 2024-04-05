@@ -56,5 +56,6 @@
   // keep-alive
   setInterval(chrome.runtime.getPlatformInfo, 20e3);
 
+  // eslint-disable-next-line no-console
   console.log('HMR Server running on port:', process.env.HMR_PORT);
 })();
