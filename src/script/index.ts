@@ -6,6 +6,8 @@ import patchServiceWorker from './utils/service-worker';
 import patchBroadcastChannel from './utils/broadcast-channel';
 
 (async () => {
+  logInfo(`Better Snapchat v${process.env.VERSION}`);
+
   document.addEventListener(
     'DOMContentLoaded',
     async () => {

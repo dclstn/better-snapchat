@@ -5,10 +5,7 @@ const CROSS_TAB_BROADCAST_CHANNEL = 'cross_tab';
 
 export default function patchBroadcastChannel() {
   class BroadcastChannel extends window.BroadcastChannel {
-    constructor(name: string) {
-      super(name);
-    }
-
+    // eslint-disable-next-line no-undef
     addEventListener(type: string, listener: EventListener) {
       return super.addEventListener(type, (event) => {
         if (

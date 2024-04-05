@@ -10,12 +10,12 @@ function initalizeServiceWorker(initialSettings: any) {
   let hideBitmoji = initialSettings[HIDE_BITMOJI] ?? false;
 
   broadcastChannel.addEventListener('message', ({ data }) => {
-    const { type, settings } = data;
+    const { type, settings: newSettings } = data;
     if (type !== 'settings:update') {
       return;
     }
-    preventReadRecieptsEnabled = settings[PREVENT_READ_RECEIPTS];
-    hideBitmoji = settings[HIDE_BITMOJI];
+    preventReadRecieptsEnabled = newSettings[PREVENT_READ_RECEIPTS];
+    hideBitmoji = newSettings[HIDE_BITMOJI];
   });
 
   // eslint-disable-next-line no-global-assign
