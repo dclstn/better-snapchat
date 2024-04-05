@@ -14,6 +14,7 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 - [x] **Prevent Typing Notification** - Prevent started-typing push-notifications from being sent!
 - [x] **Right-Click Save** - Silently right-click save images/video from chat!
 - [x] **Cross-Browser Support** - Enable web.snapchat.com to work on any browser!
+- [x] **Multiple-Tab Support** - Block snapchat's detection that you've opened multiple tabs!
 - [ ] More to come...
 
 ## How to install
