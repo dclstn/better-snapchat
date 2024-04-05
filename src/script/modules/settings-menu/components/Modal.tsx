@@ -14,6 +14,7 @@ import Logo from './icons/Logo';
 import Chats from './settings/Chats';
 import UnlimitedFileSize from './settings/UnlimitedFileSize';
 import CrossTab from './settings/CrossTab';
+import StoryReadReceipts from './settings/StoryReadReceipt';
 
 function openExternalUrl(url: ExternalUrls) {
   window.open(url, '_blank');
@@ -57,6 +58,7 @@ export default function SettingsModal({
         <CrossTab />
         <PreventTyping />
         <PreventTypingNotification />
+        <StoryReadReceipts />
         <SaveImage />
         <UnlimitedFileSize />
         <Bitmoji />

@@ -8,7 +8,7 @@ function CrossTab() {
   return (
     <Checkbox
       color="indigo"
-      label="Allow Multiple Tabs"
+      label="Multiple Tabs"
       description="Allow multiple tabs to be open at once."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}

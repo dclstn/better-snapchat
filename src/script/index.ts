@@ -1,9 +1,11 @@
 /* eslint-disable import/extensions, import/no-unresolved */
 import './index.css';
-import { logInfo, patchConsole } from './utils/console.js';
+import { patchConsole } from './utils/console.js';
 import patchNavigator from './utils/navigator.js';
 import patchServiceWorker from './utils/service-worker';
 import patchBroadcastChannel from './utils/broadcast-channel';
+import { logInfo } from './lib/debug';
+import patchFetch from './utils/fetch';
 
 (async () => {
   logInfo(`Better Snapchat v${process.env.VERSION}`);
@@ -32,4 +34,7 @@ import patchBroadcastChannel from './utils/broadcast-channel';
 
   patchBroadcastChannel();
   logInfo('Patched Broadcast Channel');
+
+  patchFetch();
+  logInfo('Patched Fetch');
 })();

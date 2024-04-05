@@ -1,12 +1,12 @@
 import settings from '../lib/settings';
 
 function initalizeServiceWorker(initialSettings: any) {
-  const READ_RECEIPT = 'messagingcoreservice.MessagingCoreService/UpdateConversation';
+  const READ_RECEIPT_URL = 'messagingcoreservice.MessagingCoreService/UpdateConversation';
   const broadcastChannel = new BroadcastChannel('BETTER_SNAPCHAT');
-  const PREVENT_READ_RECEIPTS = 'PREVENT_READ_RECEIPTS';
+  const PREVENT_CHAT_READ_RECEIPTS = 'PREVENT_READ_RECEIPTS';
   const HIDE_BITMOJI = 'HIDE_BITMOJI';
 
-  let preventReadRecieptsEnabled = initialSettings[PREVENT_READ_RECEIPTS] ?? false;
+  let preventReadRecieptsEnabled = initialSettings[PREVENT_CHAT_READ_RECEIPTS] ?? false;
   let hideBitmoji = initialSettings[HIDE_BITMOJI] ?? false;
 
   broadcastChannel.addEventListener('message', ({ data }) => {
@@ -14,14 +14,14 @@ function initalizeServiceWorker(initialSettings: any) {
     if (type !== 'settings:update') {
       return;
     }
-    preventReadRecieptsEnabled = newSettings[PREVENT_READ_RECEIPTS];
+    preventReadRecieptsEnabled = newSettings[PREVENT_CHAT_READ_RECEIPTS];
     hideBitmoji = newSettings[HIDE_BITMOJI];
   });
 
   // eslint-disable-next-line no-global-assign
   (fetch as Function) = new Proxy(fetch, {
     apply(target, thisArg, [request, ...rest]: [Request, AbortSignal]) {
-      if (preventReadRecieptsEnabled && request.url.endsWith(READ_RECEIPT)) {
+      if (preventReadRecieptsEnabled && request.url.endsWith(READ_RECEIPT_URL)) {
         // eslint-disable-next-line no-promise-executor-return
         return new Promise((resolve) => resolve(new Response(null, { status: 200 })));
       }

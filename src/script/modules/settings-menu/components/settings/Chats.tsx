@@ -6,16 +6,16 @@ import styles from './Chats.module.css';
 
 enum ChatSettings {
   AUTO_SAVE_CHATS = SettingIds.AUTO_SAVE_CHATS,
-  PREVENT_READ_RECEIPTS = SettingIds.PREVENT_READ_RECEIPTS,
+  PREVENT_CHAT_READ_RECEIPTS = SettingIds.PREVENT_CHAT_READ_RECEIPTS,
 }
 
 function Chats() {
-  const [preventReadReceipts, setPreventReadReceipts] = useSettingState(SettingIds.PREVENT_READ_RECEIPTS);
+  const [preventReadReceipts, setPreventReadReceipts] = useSettingState(SettingIds.PREVENT_CHAT_READ_RECEIPTS);
   const [autoSaveChats, setAutoSaveChats] = useSettingState(SettingIds.AUTO_SAVE_CHATS);
 
   function handleSettingChange(setting: ChatSettings | null) {
     setAutoSaveChats(setting === ChatSettings.AUTO_SAVE_CHATS);
-    setPreventReadReceipts(setting === ChatSettings.PREVENT_READ_RECEIPTS);
+    setPreventReadReceipts(setting === ChatSettings.PREVENT_CHAT_READ_RECEIPTS);
   }
 
   return (
@@ -40,7 +40,7 @@ function Chats() {
       <Radio
         color="indigo"
         checked={preventReadReceipts}
-        onChange={() => handleSettingChange(ChatSettings.PREVENT_READ_RECEIPTS)}
+        onChange={() => handleSettingChange(ChatSettings.PREVENT_CHAT_READ_RECEIPTS)}
         description="Prevent others from seeing you read their chat."
         label="No Read-Receipts"
       />

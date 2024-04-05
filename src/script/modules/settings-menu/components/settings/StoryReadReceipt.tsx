@@ -3,17 +3,17 @@ import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 
-function UnlimitedFileSize() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.UNLIMITED_FILE_SIZE);
+function StoryReadReceipts() {
+  const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_STORY_READ_RECEIPTS);
   return (
     <Checkbox
       color="indigo"
-      label="Unlimited Upload Size"
-      description="Enable sending files of any size."
+      label="Prevent Story Read Receipts"
+      description="Prevent others from knowing you seen their story."
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default UnlimitedFileSize;
+export default StoryReadReceipts;
