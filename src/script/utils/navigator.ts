@@ -20,13 +20,13 @@ function patchUserMediaPermissions() {
 
   navigator.getUserMedia = navigator.getUserMedia ?? navigator.webkitGetUserMedia ?? navigator.mozGetUserMedia;
   function userMediaPromise() {
-    return new Promise((resolve) =>
+    return new Promise((resolve) => {
       navigator.getUserMedia(
         { audio: true, video: true },
         () => resolve({ state: 'granted' }),
         () => resolve({ state: 'denied' }),
-      ),
-    );
+      );
+    });
   }
 
   navigator.permissions.query = new Proxy(navigator.permissions.query, {
