@@ -10,24 +10,29 @@ function patchUserAgent() {
 }
 
 function patchUserMediaPermissions() {
-  if (!('permissions' in navigator) || typeof navigator.permissions.query !== 'function') {
+  if (
+    !('permissions' in navigator) ||
+    typeof navigator.permissions.query !== 'function' ||
+    !navigator.userAgent.toLowerCase().includes('firefox')
+  ) {
     return;
   }
 
   navigator.getUserMedia = navigator.getUserMedia ?? navigator.webkitGetUserMedia ?? navigator.mozGetUserMedia;
-  const userMediaPromise = new Promise((resolve) => {
-    navigator.getUserMedia(
-      { audio: true, video: true },
-      () => resolve({ state: 'granted' }),
-      () => resolve({ state: 'denied' }),
+  const userMediaPromise = () =>
+    new Promise((resolve) =>
+      navigator.getUserMedia(
+        { audio: true, video: true },
+        () => resolve({ state: 'granted' }),
+        () => resolve({ state: 'denied' }),
+      ),
     );
-  });
 
   navigator.permissions.query = new Proxy(navigator.permissions.query, {
     apply: async (target, thisArg, args) => {
       const [permission] = args;
       if (permission.name === 'camera' || permission.name === 'microphone') {
-        return userMediaPromise;
+        return userMediaPromise();
       }
       return target.apply(thisArg, args as any);
     },
@@ -35,6 +40,6 @@ function patchUserMediaPermissions() {
 }
 
 export default function patchNavigator() {
-  patchUserAgent();
   patchUserMediaPermissions();
+  patchUserAgent();
 }
