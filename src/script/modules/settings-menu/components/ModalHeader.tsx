@@ -28,7 +28,7 @@ export default function ModalHeader({
       </ActionIcon>
       <Input
         color="indigo"
-        variant="filled"
+        variant="default"
         size="xs"
         placeholder="Search settings"
         leftSection={<IconSearch size={16} />}
