@@ -3,8 +3,8 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
-const NAME = 'Prevent Typing Notification';
-const DESCRIPTION = 'Prevent typing notifications from being sent out.';
+const NAME = 'Started Typing Notification';
+const DESCRIPTION = 'Let others know when you are typing by push-notification.';
 
 function PreventTypingNotification() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING_NOTIFICATION);
@@ -13,8 +13,8 @@ function PreventTypingNotification() {
       color="indigo"
       label={NAME}
       description={DESCRIPTION}
-      checked={enabled}
-      onChange={(event) => setEnabled(event.currentTarget.checked)}
+      checked={!enabled}
+      onChange={() => setEnabled(!enabled)}
     />
   );
 }

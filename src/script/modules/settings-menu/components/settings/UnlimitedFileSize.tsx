@@ -3,7 +3,7 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
-const NAME = 'Unlimited File Size';
+const NAME = 'Unlimited File Upload Size';
 const DESCRIPTION = 'Enable sending files of any size.';
 
 function UnlimitedFileSize() {
@@ -14,7 +14,7 @@ function UnlimitedFileSize() {
       label={NAME}
       description={DESCRIPTION}
       checked={enabled}
-      onChange={(event) => setEnabled(event.currentTarget.checked)}
+      onChange={() => setEnabled(!enabled)}
     />
   );
 }

@@ -14,7 +14,7 @@ function SaveImage() {
       label={NAME}
       description={DESCRIPTION}
       checked={enabled}
-      onChange={(event) => setEnabled(event.currentTarget.checked)}
+      onChange={() => setEnabled(!enabled)}
     />
   );
 }

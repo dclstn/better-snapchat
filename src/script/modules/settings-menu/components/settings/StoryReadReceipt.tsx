@@ -3,8 +3,8 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
-const NAME = 'Prevent Story Read Receipts';
-const DESCRIPTION = 'Prevent others from knowing you seen their story.';
+const NAME = 'Viewed Story';
+const DESCRIPTION = 'Let others know when you have viewed their story.';
 
 function StoryReadReceipts() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_STORY_READ_RECEIPTS);
@@ -13,8 +13,8 @@ function StoryReadReceipts() {
       color="indigo"
       label={NAME}
       description={DESCRIPTION}
-      checked={enabled}
-      onChange={(event) => setEnabled(event.currentTarget.checked)}
+      checked={!enabled}
+      onChange={() => setEnabled(!enabled)}
     />
   );
 }

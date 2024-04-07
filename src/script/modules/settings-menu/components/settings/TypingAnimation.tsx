@@ -3,8 +3,8 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
-const NAME = 'Prevent Typing';
-const DESCRIPTION = 'Prevent your Bitmoji typing animation.';
+const NAME = 'Started Typing Animation';
+const DESCRIPTION = 'Let others know when you are typing.';
 
 function PreventTyping() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING);
@@ -15,8 +15,8 @@ function PreventTyping() {
       color="indigo"
       label={NAME}
       description={DESCRIPTION}
-      checked={enabled}
-      onChange={(event) => setEnabled(event.currentTarget.checked)}
+      checked={!enabled}
+      onChange={() => setEnabled(!enabled)}
     />
   );
 }
