@@ -1,19 +1,27 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import styles from './AllowScreenshot.module.css';
+import Switch from '../Switch';
+
+const NAME = 'Allow screenshots';
+const DESCRIPTION = "Disable snapchat's screenshot prevention.";
 
 function AllowScreenshot() {
   const [enabled, setEnabled] = useSettingState(SettingIds.ALLOW_SCREENSHOT);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Allow screenshots"
-      description="Disable snapchat's screenshot prevention."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default AllowScreenshot;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: AllowScreenshot,
+};

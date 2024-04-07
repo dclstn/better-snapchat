@@ -1,21 +1,28 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Prevent Typing';
+const DESCRIPTION = 'Prevent your Bitmoji typing animation.';
 
 function PreventTyping() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING);
   const [hideBitmoji] = useSettingState(SettingIds.HIDE_BITMOJI);
   return (
-    <Checkbox
+    <Switch
       disabled={hideBitmoji}
       color="indigo"
-      label="Prevent Typing"
-      description="Prevent your Bitmoji typing animation."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default PreventTyping;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: PreventTyping,
+};

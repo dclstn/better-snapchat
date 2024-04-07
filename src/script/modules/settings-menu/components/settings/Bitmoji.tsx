@@ -1,33 +1,46 @@
 import React from 'react';
-import { Radio, Stack, Text } from '@mantine/core';
+import { Stack, Text } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
 import styles from './Chats.module.css';
+import Radio from '../Radio';
 
-function Bitmoji() {
+const NAME = 'Bitmoji Settings';
+
+const DEFAULT_NAME = 'Default';
+const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does..';
+
+const HIDE_NAME = 'Hide Bitmoji';
+const HIDE_DESCRIPTION = 'Prevent your Bitmoji from appearing in chat.';
+
+function BitmojiSettings() {
   const [hideBitmoji, setHideBitmoji] = useSettingState(SettingIds.HIDE_BITMOJI);
 
   return (
     <Stack>
       <Text className={styles.heading} size="xs">
-        Bitmoji Settings
+        {NAME}
       </Text>
       <Radio
         color="indigo"
         checked={!hideBitmoji}
         onChange={() => setHideBitmoji(false)}
-        label="Default"
-        description="Do what Snapchat normally does.."
+        label={DEFAULT_NAME}
+        description={DEFAULT_DESCRIPTION}
       />
       <Radio
         color="indigo"
         checked={hideBitmoji}
         onChange={() => setHideBitmoji(true)}
-        label="Hide Bitmoji"
-        description="Prevent your Bitmoji from appearing in chat."
+        label={HIDE_NAME}
+        description={HIDE_DESCRIPTION}
       />
     </Stack>
   );
 }
 
-export default Bitmoji;
+export default {
+  name: [NAME, DEFAULT_NAME, HIDE_NAME],
+  description: [DEFAULT_DESCRIPTION, HIDE_DESCRIPTION],
+  component: BitmojiSettings,
+};

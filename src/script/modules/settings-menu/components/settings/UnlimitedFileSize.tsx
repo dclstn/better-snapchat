@@ -1,19 +1,26 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Unlimited File Size';
+const DESCRIPTION = 'Enable sending files of any size.';
 
 function UnlimitedFileSize() {
   const [enabled, setEnabled] = useSettingState(SettingIds.UNLIMITED_FILE_SIZE);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Unlimited Upload Size"
-      description="Enable sending files of any size."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default UnlimitedFileSize;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: UnlimitedFileSize,
+};

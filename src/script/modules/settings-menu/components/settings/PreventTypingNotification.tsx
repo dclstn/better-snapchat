@@ -1,19 +1,26 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Prevent Typing Notification';
+const DESCRIPTION = 'Prevent typing notifications from being sent out.';
 
 function PreventTypingNotification() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING_NOTIFICATION);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Prevent Typing Notification"
-      description="Prevent typing notifications from being sent out."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default PreventTypingNotification;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: PreventTypingNotification,
+};

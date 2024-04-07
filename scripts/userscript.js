@@ -7,7 +7,7 @@ const fs = require('fs/promises');
 
 const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
 // ==UserScript==
-// @name         Better Snapchat
+// @name         ${package.name}
 // @version      ${package.version}
 // @description  ${package.description}
 // @author       ${package.author}

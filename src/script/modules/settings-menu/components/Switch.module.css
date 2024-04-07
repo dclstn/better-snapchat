@@ -1,0 +1,10 @@
+.track {
+  min-width: 16px;
+  cursor: pointer;
+}
+
+.body {
+  align-items: center;
+  cursor: pointer;
+  gap: 4px;
+}

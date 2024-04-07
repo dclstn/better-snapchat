@@ -1,19 +1,26 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Multiple Tabs';
+const DESCRIPTION = 'Allow multiple tabs of Snapchat to be open at once.';
 
 function CrossTab() {
   const [enabled, setEnabled] = useSettingState(SettingIds.ALLOW_CROSS_TAB);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Multiple Tabs"
-      description="Allow multiple tabs to be open at once."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default CrossTab;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: CrossTab,
+};

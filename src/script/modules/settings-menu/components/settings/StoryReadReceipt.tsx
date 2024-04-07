@@ -1,19 +1,26 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Prevent Story Read Receipts';
+const DESCRIPTION = 'Prevent others from knowing you seen their story.';
 
 function StoryReadReceipts() {
   const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_STORY_READ_RECEIPTS);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Prevent Story Read Receipts"
-      description="Prevent others from knowing you seen their story."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default StoryReadReceipts;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: StoryReadReceipts,
+};

@@ -12,7 +12,7 @@ dotenv.config();
 
 const manifest = {
   manifest_version: 3,
-  name: 'Better Snapchat',
+  name: package.name,
   description: package.description,
   version: package.version,
   icons: { 32: 'logo32.png', 48: 'logo48.png', 96: 'logo96.png', 128: 'logo128.png' },

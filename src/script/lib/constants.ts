@@ -35,6 +35,7 @@ export enum EventTypes {
 export enum ExternalUrls {
   DISCORD = 'https://discord.gg/hpmjAJZR3H',
   GITHUB = 'https://github.com/dclstn/better-snapchat',
+  GITHUB_DCLSTN = 'https://github.com/dclstn',
   BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/dclstn',
 }
 

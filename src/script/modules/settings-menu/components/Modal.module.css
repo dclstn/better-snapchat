@@ -1,8 +1,8 @@
 .modalSettings {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-height: 300px;
+  gap: 20px;
+  height: 380px;
   overflow-y: scroll;
 }
 
@@ -23,14 +23,24 @@
 
 .modalSection {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 20px;
+}
+
+.closeButton {
+  margin-left: auto;
+}
+
+.searchInput {
+  height: 20px;
 }
 
 .modalBody {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 24px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .modalContent {

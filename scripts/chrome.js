@@ -30,7 +30,7 @@ const alias = require('esbuild-plugin-alias');
 
   const manifest = {
     manifest_version: 3,
-    name: 'Better Snapchat',
+    name: package.name,
     description: package.description,
     version: package.version,
     icons: {

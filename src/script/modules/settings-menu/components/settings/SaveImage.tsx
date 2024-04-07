@@ -1,19 +1,26 @@
 import React from 'react';
-import { Checkbox } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { SettingIds } from '../../../../lib/constants';
+import Switch from '../Switch';
+
+const NAME = 'Right-Click Save';
+const DESCRIPTION = 'Enable right-click saving of images and videos.';
 
 function SaveImage() {
   const [enabled, setEnabled] = useSettingState(SettingIds.SAVE_IMAGE);
   return (
-    <Checkbox
+    <Switch
       color="indigo"
-      label="Right-Click Save"
-      description="Enable right-click saving of images and videos."
+      label={NAME}
+      description={DESCRIPTION}
       checked={enabled}
       onChange={(event) => setEnabled(event.currentTarget.checked)}
     />
   );
 }
 
-export default SaveImage;
+export default {
+  name: NAME,
+  description: DESCRIPTION,
+  component: SaveImage,
+};
