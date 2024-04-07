@@ -4,7 +4,7 @@ import { IconSearch, IconX } from '@tabler/icons-react';
 import styles from './Modal.module.css';
 import { ExternalUrls } from '../../../lib/constants';
 import Logo from './icons/Logo';
-import { openExternalUrl } from '../../../utils/url';
+import openExternalUrl from '../../../utils/url';
 
 export default function ModalHeader({
   onClose,

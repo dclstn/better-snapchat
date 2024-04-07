@@ -10,7 +10,7 @@ const NAME = 'Bitmoji Settings';
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does..';
 
-const HIDE_NAME = 'Hide Bitmoji';
+const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Prevent your Bitmoji from appearing in chat.';
 
 function BitmojiSettings() {

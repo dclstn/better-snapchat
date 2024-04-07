@@ -3,9 +3,9 @@ import { Button, Text } from '@mantine/core';
 import styles from './Modal.module.css';
 import { ExternalUrls } from '../../../lib/constants';
 import DiscordIcon from './icons/Discord';
-import { openExternalUrl } from '../../../utils/url';
+import openExternalUrl from '../../../utils/url';
 
-export default function ModalFooter({ onClose }: { onClose: () => void }) {
+export default function ModalFooter() {
   return (
     <div className={styles.modalSection}>
       <Button

@@ -1,10 +1,11 @@
 import React from 'react';
-import { type SettingModule } from '../../../../types/client';
-// @ts-ignore glob-import
-import * as migrations from './settings/*.tsx';
-import styles from './Modal.module.css';
 import Fuse from 'fuse.js';
 import { Text } from '@mantine/core';
+import { type SettingModule } from '../../../../types/client';
+// @ts-ignore glob-import
+// eslint-disable-next-line import/no-unresolved
+import * as migrations from './settings/*.tsx';
+import styles from './Modal.module.css';
 
 const { default: settingsDefault } = migrations;
 const settings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
@@ -22,7 +23,7 @@ export default function ModalSettings({ search }: { search: string }) {
   return (
     <div className={styles.modalSettings}>
       {search.length > 0 && filteredSettings.length === 0 ? (
-        <Text style={{ margin: 0 }}>No settings found matching "{search}".</Text>
+        <Text style={{ margin: 0 }}>No settings found matching &quot;{search}&quot;.</Text>
       ) : null}
       {filteredSettings.map((setting: SettingModule) => {
         const SettingComponent = setting.component;

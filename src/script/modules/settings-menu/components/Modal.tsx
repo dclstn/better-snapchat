@@ -33,7 +33,7 @@ function SettingsModal({
     >
       <ModalHeader onClose={onClose} search={search} setSearch={setSearch} />
       <ModalSettings search={search} />
-      <ModalFooter onClose={onClose} />
+      <ModalFooter />
     </Modal>
   );
 }

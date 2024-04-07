@@ -13,7 +13,7 @@ const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 const AUTO_SAVE_NAME = 'Auto-Save';
 const AUTO_SAVE_DESCRIPTION = 'Automatically save chats to your history.';
 
-const NO_READ_RECEIPTS_NAME = "Don't Read";
+const NO_READ_RECEIPTS_NAME = 'Unread';
 const NO_READ_RECEIPTS_DESCRIPTION = 'Prevent others from knowing you read their chat.';
 
 enum ChatSettings {
