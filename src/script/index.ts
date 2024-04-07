@@ -8,7 +8,7 @@ import patchFetch from './utils/fetch';
 import patchConsole from './utils/console';
 
 (async () => {
-  logInfo(`Better Snapchat v${process.env.VERSION}`);
+  logInfo(`BetterSnap v${process.env.VERSION}`);
 
   document.addEventListener(
     'DOMContentLoaded',

@@ -1,6 +1,6 @@
 ![app_preview](https://github.com/dclstn/better-snapchat/assets/43322006/747af03c-d07d-49a2-ba46-c01a5b8641a0)
 
-## Better Snapchat
+## BetterSnap
 
 ![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
 
@@ -21,15 +21,15 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 
 ### Chromium Browsers
 
-You can install **Better Snapchat** via the [Chrome Extension Store](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook).
+You can install **BetterSnap** via the [Chrome Extension Store](https://chrome.google.com/webstore/detail/better-snapchat/bomphfefmmkghdkkpjdafehnmfpifook).
 
 ### Firefox Browsers
 
-You can install **Better Snapchat** via the [Firefox Addon Store](https://addons.mozilla.org/firefox/addon/better-snapchat/).
+You can install **BetterSnap** via the [Firefox Addon Store](https://addons.mozilla.org/firefox/addon/better-snapchat/).
 
 ### Other Browsers
 
-You can install **Better Snapchat** via [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/)
+You can install **BetterSnap** via [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/)
 
 ## Other stuff
 

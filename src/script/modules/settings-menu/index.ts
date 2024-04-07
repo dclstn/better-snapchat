@@ -2,7 +2,7 @@ import { render, h } from 'preact';
 import App from './SettingsMenu';
 import styles from './SettingsMenu.module.css';
 
-const APP_CONTAINER_ID = 'better-snapchat-app';
+const APP_CONTAINER_ID = 'better-snap-app';
 
 class SettingsMenu {
   constructor() {

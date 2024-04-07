@@ -1,4 +1,4 @@
-const PREFIX = '[Better-Snapchat]';
+const PREFIX = '[Better-Snap]';
 
 let iframeConsole: any | null = null;
 

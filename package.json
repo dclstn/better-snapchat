@@ -1,7 +1,7 @@
 {
-  "name": "BetterSnap",
-  "version": "1.2.9",
-  "description": "This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.",
+  "name": "BetterSnap - Supercharge your Snapchat Web Experience.",
+  "version": "1.3.0",
+  "description": "Screenshot chats, Save stories & videos, Hide your Bitmoji, and more! Previously known as Better Snapchat.",
   "scripts": {
     "dev": "rm -rf ./public/build/ && node ./scripts/dev.js",
     "build": "npm run build:chrome",
