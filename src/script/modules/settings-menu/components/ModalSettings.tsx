@@ -11,7 +11,7 @@ const { default: settingsDefault } = migrations;
 const settings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
 
 export default function ModalSettings({ search }: { search: string }) {
-  const fuse = React.useMemo(() => new Fuse(Object.values(settings), { keys: ['name', 'description'] }), []);
+  const fuse = React.useMemo(() => new Fuse(settings, { keys: ['name', 'description'] }), []);
 
   const filteredSettings = React.useMemo(() => {
     if (search.length > 0) {
