@@ -1,3 +1,5 @@
+import { SettingIds } from '../../lib/constants';
+import settings from '../../lib/settings';
 import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
 
 enum PresenceStates {
@@ -54,14 +56,21 @@ const senderPresenceStates = new Map<string, number>();
 
               let notification: Notification | null = null;
 
+              const openChatNotification = settings.getSetting(SettingIds.OPEN_CHAT_NOTIFICATION);
+              const peekChatNotification = settings.getSetting(SettingIds.HALF_SWIPE_NOTIFICATION);
+
               if (presenceState.extendedBits === PresenceStates.IDLE) {
                 senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
-                notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
+                if (openChatNotification) {
+                  notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
+                }
               }
 
               if (presenceState.extendedBits === PresenceStates.HALF_SWIPING) {
                 senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
-                notification = new Notification(presencePayload.senderUsername, { body: 'Peeked at your Chat' });
+                if (peekChatNotification) {
+                  notification = new Notification(presencePayload.senderUsername, { body: 'Peeked at your Chat' });
+                }
               }
 
               setTimeout(() => notification?.close(), 5000);
