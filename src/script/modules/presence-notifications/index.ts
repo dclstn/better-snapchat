@@ -6,6 +6,32 @@ enum PresenceStates {
   HALF_SWIPING = 256,
 }
 
+const halfSwipeNotifications = new Set();
+function sendThrottledHalfSwipeNotification(presencePayload: any) {
+  if (halfSwipeNotifications.has(presencePayload.senderUserId)) {
+    return;
+  }
+  halfSwipeNotifications.add(presencePayload.senderUserId);
+  const notification = new Notification(presencePayload.senderUsername, { body: 'Peeking your Chat' });
+  setTimeout(() => {
+    halfSwipeNotifications.delete(presencePayload.senderUserId);
+    notification.close();
+  }, 10000);
+}
+
+const openChatNotifications = new Set();
+function sendThrottledOpenChatNotification(presencePayload: any) {
+  if (openChatNotifications.has(presencePayload.senderUserId)) {
+    return;
+  }
+  openChatNotifications.add(presencePayload.senderUserId);
+  const notification = new Notification(presencePayload.senderUsername, { body: 'Peeking your Chat' });
+  setTimeout(() => {
+    openChatNotifications.delete(presencePayload.senderUserId);
+    notification.close();
+  }, 10000);
+}
+
 (() => {
   const GRPCTransientMessage = getTransientMessage();
   const GRPCPresencePayload = getPresencePayload();
@@ -45,14 +71,12 @@ enum PresenceStates {
 
               // TODO: this might break, as I'm assuming 1:1 presenceState and extendedBits
               if (presenceState.extendedBits === PresenceStates.HALF_SWIPING) {
-                const notification = new Notification(presencePayload.senderUsername, { body: 'Peeking your Chat' });
-                setTimeout(() => notification.close(), 5000);
+                sendThrottledHalfSwipeNotification(presencePayload);
               }
 
               // TODO: this might break, as I'm assuming 1:1 presenceState and extendedBits
               if (presenceState.extendedBits === PresenceStates.IDLE) {
-                const notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
-                setTimeout(() => notification.close(), 5000);
+                sendThrottledOpenChatNotification(presencePayload);
               }
             }
           } catch (_) {}
