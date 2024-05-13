@@ -12,6 +12,8 @@ export enum SettingIds {
   PREVENT_STORY_READ_RECEIPTS = 'PREVENT_STORY_READ_RECEIPTS',
   UNLIMITED_FILE_SIZE = 'UNLIMITED_FILE_SIZE',
   ALLOW_CROSS_TAB = 'ALLOW_CROSS_TAB',
+  HALF_SWIPE_NOTIFICATION = 'HALF_SWIPE_NOTIFICATION',
+  OPEN_CHAT_NOTIFICATION = 'OPEN_CHAT_NOTIFICATION',
 }
 
 export const DefaultSettingValues = {
@@ -27,6 +29,8 @@ export const DefaultSettingValues = {
   [SettingIds.UNLIMITED_FILE_SIZE]: true,
   [SettingIds.ALLOW_CROSS_TAB]: true,
   [SettingIds.PREVENT_STORY_READ_RECEIPTS]: false,
+  [SettingIds.HALF_SWIPE_NOTIFICATION]: false,
+  [SettingIds.OPEN_CHAT_NOTIFICATION]: false,
 };
 
 export enum EventTypes {
