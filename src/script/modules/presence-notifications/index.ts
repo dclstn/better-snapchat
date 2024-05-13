@@ -6,31 +6,7 @@ enum PresenceStates {
   HALF_SWIPING = 256,
 }
 
-const halfSwipeNotifications = new Set();
-function sendThrottledHalfSwipeNotification(presencePayload: any) {
-  if (halfSwipeNotifications.has(presencePayload.senderUserId)) {
-    return;
-  }
-  halfSwipeNotifications.add(presencePayload.senderUserId);
-  const notification = new Notification(presencePayload.senderUsername, { body: 'Peeking your Chat' });
-  setTimeout(() => {
-    halfSwipeNotifications.delete(presencePayload.senderUserId);
-    notification.close();
-  }, 10000);
-}
-
-const openChatNotifications = new Set();
-function sendThrottledOpenChatNotification(presencePayload: any) {
-  if (openChatNotifications.has(presencePayload.senderUserId)) {
-    return;
-  }
-  openChatNotifications.add(presencePayload.senderUserId);
-  const notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
-  setTimeout(() => {
-    openChatNotifications.delete(presencePayload.senderUserId);
-    notification.close();
-  }, 10000);
-}
+const senderPresenceStates = new Map<string, number>();
 
 (() => {
   const GRPCTransientMessage = getTransientMessage();
@@ -65,19 +41,30 @@ function sendThrottledOpenChatNotification(presencePayload: any) {
               const presencePayload = PresencePayload.decode(transientMessage.payload.data);
               const presenceStateKey = `${presencePayload.senderUserId}:${presencePayload.senderSessionId}`;
               const presenceState = presencePayload.presenceStates[presenceStateKey];
+
               if (presenceState == null) {
+                senderPresenceStates.delete(presencePayload.senderUserId);
                 return listener(event);
               }
 
-              // TODO: this might break, as I'm assuming 1:1 presenceState and extendedBits
-              if (presenceState.extendedBits === PresenceStates.HALF_SWIPING) {
-                sendThrottledHalfSwipeNotification(presencePayload);
+              const senderPrecenseState = senderPresenceStates.get(presencePayload.senderUserId);
+              if (senderPrecenseState === presenceState.extendedBits) {
+                return listener(event);
               }
 
-              // TODO: this might break, as I'm assuming 1:1 presenceState and extendedBits
+              let notification: Notification | null = null;
+
               if (presenceState.extendedBits === PresenceStates.IDLE) {
-                sendThrottledOpenChatNotification(presencePayload);
+                senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
+                notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
               }
+
+              if (presenceState.extendedBits === PresenceStates.HALF_SWIPING) {
+                senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
+                notification = new Notification(presencePayload.senderUsername, { body: 'Peeked at your Chat' });
+              }
+
+              setTimeout(() => notification?.close(), 5000);
             }
           } catch (_) {}
 

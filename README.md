@@ -6,6 +6,7 @@
 
 This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
 
+- [x] **Appear on Mobile** - Disguise your client as if you're sending from from a phone!
 - [x] **Allow Screenshots** - Allow screenshots to be captured everywhere!
 - [x] **Always Present** - Prevent away-state from showing when clicking away!
 - [x] **Auto-Save Chats** - Automatically save chats when they're sent/recieved!
@@ -16,6 +17,8 @@ This browser extension enhances your web.snapchat.com experience by adding sever
 - [x] **Cross-Browser Support** - Enable web.snapchat.com to work on any browser!
 - [x] **Multiple-Tab Support** - Block snapchat's detection that you've opened multiple tabs!
 - [x] **Stop Story View-Receipts** - Silently views others' snaps
+- [x] **Half-Swipe Notification** - Recieve a notification when a chat is half-swiped!
+- [x] **Open-Chat Notification** - Recieve a notification when a chat is opened!
 - [ ] More to come...
 
 ## How to install
