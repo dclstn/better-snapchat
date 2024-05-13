@@ -25,7 +25,7 @@ function sendThrottledOpenChatNotification(presencePayload: any) {
     return;
   }
   openChatNotifications.add(presencePayload.senderUserId);
-  const notification = new Notification(presencePayload.senderUsername, { body: 'Peeking your Chat' });
+  const notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
   setTimeout(() => {
     openChatNotifications.delete(presencePayload.senderUserId);
     notification.close();
