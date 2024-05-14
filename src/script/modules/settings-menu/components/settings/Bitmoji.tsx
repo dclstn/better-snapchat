@@ -8,7 +8,7 @@ import Radio from '../Radio';
 const NAME = 'Bitmoji Settings';
 
 const DEFAULT_NAME = 'Default';
-const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does..';
+const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 
 const MOBILE_NAME = 'Mobile';
 const MOBILE_DESCRIPTION = 'Appear to be on mobile.';
