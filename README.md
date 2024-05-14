@@ -4,22 +4,18 @@
 
 ![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
 
-This browser extension enhances your web.snapchat.com experience by adding several essential privacy features.
+Screenshot & View Unread Chats, Send as Mobile, and more! Previously known as Better Snapchat.
 
-- [x] **Appear on Mobile** - Disguise your client as if you're sending from from a phone!
-- [x] **Allow Screenshots** - Allow screenshots to be captured everywhere!
-- [x] **Always Present** - Prevent away-state from showing when clicking away!
-- [x] **Auto-Save Chats** - Automatically save chats when they're sent/recieved!
-- [x] **Hide Bitmoji** - Prevent others from seeing your bitmoji appear in chat!
-- [x] **Prevent Typing** - Prevent others from seeing your bitmoji typing!
-- [x] **Prevent Typing Notification** - Prevent started-typing push-notifications from being sent!
-- [x] **Right-Click Save** - Silently right-click save images/video from chat!
-- [x] **Cross-Browser Support** - Enable web.snapchat.com to work on any browser!
-- [x] **Multiple-Tab Support** - Block snapchat's detection that you've opened multiple tabs!
-- [x] **Stop Story View-Receipts** - Silently views others' snaps
-- [x] **Half-Swipe Notification** - Recieve a notification when a chat is half-swiped!
-- [x] **Open-Chat Notification** - Recieve a notification when a chat is opened!
-- [ ] More to come...
+📸 Allow Screenshots - Freely take screenshots of chats / stories!
+👤 Always Present - Disable Snapchat's presence detection!
+📥 View Unread Chats - Secretly view chats without the recipient knowing!
+📱 Appear on Mobile - Disguise your client as if you're sending from a phone!
+💾 Right-Click Save - Silently right-click save images / videos from chat!
+🔔 Half-Swipe Notification - Receive a notification when a chat is half-swiped!
+💬 Auto-Save Chats - Automatically save chats when they're sent / received!
+🙈 Hide Bitmoji - Prevent others from seeing your Bitmoji appear in chat!
+
+✨ And more!
 
 ## How to install
 
