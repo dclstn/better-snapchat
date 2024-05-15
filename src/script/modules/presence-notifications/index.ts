@@ -34,6 +34,10 @@ const senderPresenceStates = new Map<string, number>();
           try {
             if (Array.isArray(data?.path) && data?.path?.includes('onReceive')) {
               const encodedTransientMessage = data.argumentList[0];
+              if (!encodedTransientMessage) {
+                throw new Error('No encoded transient message');
+              }
+
               const transientMessage = InboundTransientMessage.decode(encodedTransientMessage.value);
               if (transientMessage?.payload?.type !== 'presence') {
                 return listener(event);
