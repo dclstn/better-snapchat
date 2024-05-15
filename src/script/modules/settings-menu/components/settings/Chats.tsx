@@ -16,9 +16,8 @@ const AUTO_SAVE_DESCRIPTION = 'Automatically save chats to your history.';
 const NO_READ_RECEIPTS_NAME = 'Unread';
 const NO_READ_RECEIPTS_DESCRIPTION = 'Prevent others from knowing you read their chat.';
 
-
-const chatSettings = ['AUTO_SAVE_CHATS', 'PREVENT_CHAT_READ_RECEIPTS'] satisfies (SettingId)[];
-type ChatSettings = typeof chatSettings[number];
+const chatSettings = ['AUTO_SAVE_CHATS', 'PREVENT_CHAT_READ_RECEIPTS'] satisfies SettingId[];
+type ChatSettings = (typeof chatSettings)[number];
 
 function Chats() {
   const [preventReadReceipts, setPreventReadReceipts] = useSettingState('PREVENT_CHAT_READ_RECEIPTS');
