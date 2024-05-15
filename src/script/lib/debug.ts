@@ -13,7 +13,7 @@ export function getIframeConsole() {
   return iframeConsole;
 }
 
-export function logInfo(...args: any[]) {
+export function logInfo(...args: unknown[]) {
   const { console } = getIframeConsole();
   console.log(PREFIX, ...args);
 }

@@ -3,7 +3,6 @@ import Fuse from 'fuse.js';
 import { Text } from '@mantine/core';
 import { type SettingModule } from '../../../../types/client';
 // @ts-ignore glob-import
-// eslint-disable-next-line import/no-unresolved, import/extensions
 import * as migrations from './settings/*.tsx';
 import styles from './Modal.module.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Text } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
+import { SettingId } from '../../../../lib/constants';
 import styles from './Chats.module.css';
 import Radio from '../Radio';
 
@@ -17,12 +17,12 @@ const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Prevent your Bitmoji from appearing in chat.';
 
 function BitmojiSettings() {
-  const [hideBitmoji, setHideBitmoji] = useSettingState(SettingIds.HIDE_BITMOJI);
-  const [mobileBitmoji, setMobileBitmoji] = useSettingState(SettingIds.MOBILE_BITMOJI);
+  const [hideBitmoji, setHideBitmoji] = useSettingState('HIDE_BITMOJI');
+  const [mobileBitmoji, setMobileBitmoji] = useSettingState('MOBILE_BITMOJI');
 
-  function handleSettingsChange(setting: SettingIds | null) {
-    setHideBitmoji(setting === SettingIds.HIDE_BITMOJI);
-    setMobileBitmoji(setting === SettingIds.MOBILE_BITMOJI);
+  function handleSettingsChange(setting: SettingId | null) {
+    setHideBitmoji(setting === 'HIDE_BITMOJI');
+    setMobileBitmoji(setting === 'MOBILE_BITMOJI');
   }
 
   return (
@@ -40,14 +40,14 @@ function BitmojiSettings() {
       <Radio
         color="indigo"
         checked={mobileBitmoji}
-        onChange={() => handleSettingsChange(SettingIds.MOBILE_BITMOJI)}
+        onChange={() => handleSettingsChange('MOBILE_BITMOJI')}
         label={MOBILE_NAME}
         description={MOBILE_DESCRIPTION}
       />
       <Radio
         color="indigo"
         checked={hideBitmoji}
-        onChange={() => handleSettingsChange(SettingIds.HIDE_BITMOJI)}
+        onChange={() => handleSettingsChange('HIDE_BITMOJI')}
         label={HIDE_NAME}
         description={HIDE_DESCRIPTION}
       />

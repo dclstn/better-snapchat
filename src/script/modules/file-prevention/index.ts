@@ -1,15 +1,14 @@
-import { EventTypes, SettingIds } from '../../lib/constants';
 import settings from '../../lib/settings';
 
 let oldFilePrototype: any = null;
 class FilePrevention {
   constructor() {
     this.load();
-    settings.on(`${SettingIds.UNLIMITED_FILE_SIZE}.${EventTypes.SETTING_UPDATE}`, this.load);
+    settings.on(`UNLIMITED_FILE_SIZE.setting:update`, this.load);
   }
 
   load() {
-    const enabled = settings.getSetting(SettingIds.UNLIMITED_FILE_SIZE);
+    const enabled = settings.getSetting('UNLIMITED_FILE_SIZE');
 
     if (enabled && oldFilePrototype == null) {
       oldFilePrototype = window.File.prototype;

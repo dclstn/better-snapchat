@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions, import/no-unresolved */
 import './index.css';
 import patchNavigator from './utils/navigator.js';
 import patchServiceWorker from './utils/service-worker';

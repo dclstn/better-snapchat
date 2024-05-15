@@ -1,14 +1,13 @@
 import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
 const NAME = 'Started Typing Animation';
 const DESCRIPTION = 'Let others know when you are typing.';
 
 function PreventTyping() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.PREVENT_TYPING);
-  const [hideBitmoji] = useSettingState(SettingIds.HIDE_BITMOJI);
+  const [enabled, setEnabled] = useSettingState('PREVENT_TYPING');
+  const [hideBitmoji] = useSettingState('HIDE_BITMOJI');
   return (
     <Switch
       disabled={hideBitmoji}

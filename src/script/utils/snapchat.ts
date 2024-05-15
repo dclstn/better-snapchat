@@ -14,7 +14,6 @@ export function getSnapchatWebpackRequire(): WebpackRequire | null {
         snapchatWebpackRequire = require;
       },
     },
-    // eslint-disable-next-line import/no-unresolved
     (require: WebpackRequire) => require('injectBetterSnapchat'),
   ]);
 

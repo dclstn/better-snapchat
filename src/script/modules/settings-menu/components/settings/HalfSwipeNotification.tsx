@@ -1,6 +1,5 @@
 import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 import useNotificationPermission from '../../../../hooks/useNotificationPermission';
 
@@ -8,7 +7,7 @@ const NAME = 'Half Swipe Notification';
 const DESCRIPTION = 'Recieve a notification when a chat is half-swiped.';
 
 function HalfSwipeNotification() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.HALF_SWIPE_NOTIFICATION);
+  const [enabled, setEnabled] = useSettingState('HALF_SWIPE_NOTIFICATION');
   useNotificationPermission(enabled);
 
   return (

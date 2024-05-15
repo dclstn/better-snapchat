@@ -2,7 +2,6 @@ import React from 'react';
 import { ActionIcon, Input } from '@mantine/core';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import styles from './Modal.module.css';
-import { ExternalUrls } from '../../../lib/constants';
 import Logo from './icons/Logo';
 import openExternalUrl from '../../../utils/url';
 
@@ -22,7 +21,7 @@ export default function ModalHeader({
         color="indigo"
         className={styles.iconButton}
         variant="filled"
-        onClick={() => openExternalUrl(ExternalUrls.BUY_ME_A_COFFEE)}
+        onClick={() => openExternalUrl('BUY_ME_A_COFFEE')}
       >
         <Logo size={18} />
       </ActionIcon>

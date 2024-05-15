@@ -1,9 +1,9 @@
 import React from 'react';
 import { Stack, Text } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
 import styles from './Chats.module.css';
 import Radio from '../Radio';
+import { SettingId } from '../../../../lib/constants';
 
 const NAME = 'Chat Settings';
 
@@ -16,18 +16,17 @@ const AUTO_SAVE_DESCRIPTION = 'Automatically save chats to your history.';
 const NO_READ_RECEIPTS_NAME = 'Unread';
 const NO_READ_RECEIPTS_DESCRIPTION = 'Prevent others from knowing you read their chat.';
 
-enum ChatSettings {
-  AUTO_SAVE_CHATS = SettingIds.AUTO_SAVE_CHATS,
-  PREVENT_CHAT_READ_RECEIPTS = SettingIds.PREVENT_CHAT_READ_RECEIPTS,
-}
+
+const chatSettings = ['AUTO_SAVE_CHATS', 'PREVENT_CHAT_READ_RECEIPTS'] satisfies (SettingId)[];
+type ChatSettings = typeof chatSettings[number];
 
 function Chats() {
-  const [preventReadReceipts, setPreventReadReceipts] = useSettingState(SettingIds.PREVENT_CHAT_READ_RECEIPTS);
-  const [autoSaveChats, setAutoSaveChats] = useSettingState(SettingIds.AUTO_SAVE_CHATS);
+  const [preventReadReceipts, setPreventReadReceipts] = useSettingState('PREVENT_CHAT_READ_RECEIPTS');
+  const [autoSaveChats, setAutoSaveChats] = useSettingState('AUTO_SAVE_CHATS');
 
   function handleSettingChange(setting: ChatSettings | null) {
-    setAutoSaveChats(setting === ChatSettings.AUTO_SAVE_CHATS);
-    setPreventReadReceipts(setting === ChatSettings.PREVENT_CHAT_READ_RECEIPTS);
+    setAutoSaveChats(setting === 'AUTO_SAVE_CHATS');
+    setPreventReadReceipts(setting === 'PREVENT_CHAT_READ_RECEIPTS');
   }
 
   return (
@@ -45,14 +44,14 @@ function Chats() {
       <Radio
         color="indigo"
         checked={autoSaveChats}
-        onChange={() => handleSettingChange(ChatSettings.AUTO_SAVE_CHATS)}
+        onChange={() => handleSettingChange('AUTO_SAVE_CHATS')}
         label={AUTO_SAVE_NAME}
         description={AUTO_SAVE_DESCRIPTION}
       />
       <Radio
         color="indigo"
         checked={preventReadReceipts}
-        onChange={() => handleSettingChange(ChatSettings.PREVENT_CHAT_READ_RECEIPTS)}
+        onChange={() => handleSettingChange('PREVENT_CHAT_READ_RECEIPTS')}
         description={NO_READ_RECEIPTS_DESCRIPTION}
         label={NO_READ_RECEIPTS_NAME}
       />

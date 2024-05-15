@@ -1,11 +1,10 @@
 import settings from '../../lib/settings';
-import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 
 let oldBroadcastTypingActivity: any = null;
 
 function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting(SettingIds.PREVENT_TYPING);
+  const enabled = settings.getSetting('PREVENT_TYPING');
 
   if (enabled) {
     if (oldBroadcastTypingActivity == null) {
@@ -25,7 +24,7 @@ function handleStoreEffect(storeState: any) {
 class BroadcastTypingActivity {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.PREVENT_TYPING}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
+    settings.on(`PREVENT_TYPING.setting:update`, updateSnapchatStore);
   }
 }
 

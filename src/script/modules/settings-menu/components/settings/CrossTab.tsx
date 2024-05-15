@@ -1,13 +1,12 @@
 import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 
 const NAME = 'Allow Multiple-Tabs';
 const DESCRIPTION = 'Allow multiple tabs of Snapchat to be open at once.';
 
 function CrossTab() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.ALLOW_CROSS_TAB);
+  const [enabled, setEnabled] = useSettingState('ALLOW_CROSS_TAB');
   return (
     <Switch
       color="indigo"
