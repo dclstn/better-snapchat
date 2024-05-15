@@ -1,10 +1,10 @@
 import EventEmitter from 'eventemitter3';
 
-class NodeObserver extends EventEmitter {
+class NodeObserver {
   selectors: string[];
+  eventEmitter = new EventEmitter();
 
   constructor() {
-    super();
     this.selectors = [];
 
     const observer = new MutationObserver((mutations) => {
@@ -27,17 +27,16 @@ class NodeObserver extends EventEmitter {
         continue;
       }
       for (const foundNode of element.querySelectorAll(selector)) {
-        this.emit(selector, foundNode);
+        this.eventEmitter.emit(selector, foundNode);
       }
     }
   }
 
-  // @ts-ignore
   on(selector: string, callback: (node: HTMLElement) => any) {
     this.selectors.push(selector);
-    super.on(selector, callback);
+    this.eventEmitter.on(selector, callback);
     return () => {
-      super.off(selector, callback);
+      this.eventEmitter.off(selector, callback);
       this.selectors = this.selectors.filter((s) => s !== selector);
     };
   }

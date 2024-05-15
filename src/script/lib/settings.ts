@@ -1,13 +1,13 @@
 import EventEmitter from 'eventemitter3';
-import { defaultSettingValues, SettingId } from './constants';
+import { defaultSettingValues, EventType, eventTypes, SettingId } from './constants';
 import storage from './storage';
 import broadcastChannel from './broadcast-channel';
 
-class Settings extends EventEmitter {
+class Settings {
   settings: Map<string, boolean>;
+  eventEmitter = new EventEmitter();
 
   constructor() {
-    super();
     const settings = storage.get('settings');
     if (settings != null) {
       this.settings = new Map(Object.entries(settings));
@@ -28,8 +28,8 @@ class Settings extends EventEmitter {
     }
     this.settings.set(key, value);
     storage.set('settings', Object.fromEntries(this.settings));
-    this.emit(`${key}.setting:update`, value);
-    this.emit('setting:update', key, value);
+    this.eventEmitter.emit(`${key}.setting:update`, value);
+    this.eventEmitter.emit('setting:update', key, value);
   }
 
   getSetting(key: SettingId) {
@@ -49,6 +49,14 @@ class Settings extends EventEmitter {
     for (const [key, value] of Object.entries(settings)) {
       this.setSetting(key as SettingId, value);
     }
+  }
+
+  on(event: EventType | `${SettingId}.${EventType}`, listener: (...args: any[]) => void) {
+    this.eventEmitter.on(event, listener);
+  }
+
+  off(event: EventType | `${SettingId}.${EventType}`, listener: (...args: any[]) => void) {
+    this.eventEmitter.off(event, listener);
   }
 }
 
