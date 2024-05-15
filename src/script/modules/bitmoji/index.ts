@@ -1,4 +1,3 @@
-import { SettingIds } from '../../lib/constants';
 import settings from '../../lib/settings';
 import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
 
@@ -21,11 +20,11 @@ import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
             return Reflect.apply(target, thisArg, [message, ...rest]);
           }
 
-          if (settings.getSetting(SettingIds.HIDE_BITMOJI)) {
+          if (settings.getSetting('HIDE_BITMOJI')) {
             return undefined;
           }
 
-          if (settings.getSetting(SettingIds.MOBILE_BITMOJI)) {
+          if (settings.getSetting('MOBILE_BITMOJI')) {
             const presencePayload = PresencePayload.decode(transientMessage.payload.data);
             presencePayload.senderPlatform = PresencePayload_Platform.MOBILE;
             transientMessage.payload.data = PresencePayload.encode(presencePayload).finish();

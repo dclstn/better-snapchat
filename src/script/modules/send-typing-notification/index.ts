@@ -1,11 +1,10 @@
 import settings from '../../lib/settings';
-import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 
 let oldSendTypingNotification: any = null;
 
 function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting(SettingIds.PREVENT_TYPING_NOTIFICATION);
+  const enabled = settings.getSetting('PREVENT_TYPING_NOTIFICATION');
 
   if (enabled) {
     if (oldSendTypingNotification == null) {
@@ -25,7 +24,7 @@ function handleStoreEffect(storeState: any) {
 class SendTypingNotification {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.PREVENT_TYPING_NOTIFICATION}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
+    settings.on(`PREVENT_TYPING_NOTIFICATION.setting:update`, updateSnapchatStore);
   }
 }
 

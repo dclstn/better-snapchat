@@ -1,7 +1,7 @@
 import deepEqual from 'fast-deep-equal';
 import throttle from 'lodash.throttle';
 import settings from '../../lib/settings';
-import { EventTypes, SettingIds, SnapchatUpdateMessagePayload } from '../../lib/constants';
+import { SnapchatUpdateMessagePayload } from '../../lib/constants';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 const THROTTLE_TIME = 500;
@@ -62,11 +62,11 @@ function handleConversationEffect(storeState: any) {
 class AutoSaveChats {
   constructor() {
     this.load();
-    settings.on(`${SettingIds.AUTO_SAVE_CHATS}.${EventTypes.SETTING_UPDATE}`, this.load);
+    settings.on(`AUTO_SAVE_CHATS.setting:update`, this.load);
   }
 
   load() {
-    const enabled = settings.getSetting(SettingIds.AUTO_SAVE_CHATS);
+    const enabled = settings.getSetting('AUTO_SAVE_CHATS');
     if (enabled && listener == null) {
       handleConversationEffect(store.getState());
       listener = store.subscribe(handleConversationEffect);

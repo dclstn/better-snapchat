@@ -1,11 +1,10 @@
 import settings from '../../lib/settings';
-import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 
 let oldSetAwayState: any = null;
 
 function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting(SettingIds.ALWAYS_PRESENT);
+  const enabled = settings.getSetting('ALWAYS_PRESENT');
 
   if (enabled) {
     if (oldSetAwayState == null) {
@@ -26,7 +25,7 @@ function handleStoreEffect(storeState: any) {
 class SetAwayState {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.ALWAYS_PRESENT}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
+    settings.on(`ALWAYS_PRESENT.setting:update`, updateSnapchatStore);
   }
 }
 

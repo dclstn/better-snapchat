@@ -9,7 +9,7 @@ function initalizeServiceWorker(initialSettings: any) {
 
   broadcastChannel.addEventListener('message', ({ data }) => {
     const { type, settings: newSettings } = data;
-    if (type !== 'settings:update') {
+    if (type !== 'setting:update') {
       return;
     }
     preventReadRecieptsEnabled = newSettings[PREVENT_CHAT_READ_RECEIPTS];

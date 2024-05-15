@@ -1,4 +1,3 @@
-import { EventTypes, SettingIds } from '../../lib/constants';
 import settings from '../../lib/settings';
 import styles from './index.module.css';
 
@@ -11,11 +10,11 @@ function preventContextMenu(event: MouseEvent) {
 class ContextMenu {
   constructor() {
     this.load();
-    settings.on(`${SettingIds.SAVE_IMAGE}.${EventTypes.SETTING_UPDATE}`, this.load);
+    settings.on(`SAVE_IMAGE.setting:update`, this.load);
   }
 
   load() {
-    const enabled = settings.getSetting(SettingIds.SAVE_IMAGE);
+    const enabled = settings.getSetting('SAVE_IMAGE');
     document.body.classList.toggle(styles.saveImage, enabled);
     if (!attached && enabled) {
       attached = true;

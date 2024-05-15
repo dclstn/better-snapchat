@@ -1,11 +1,10 @@
 import settings from '../../lib/settings';
-import { EventTypes, SettingIds } from '../../lib/constants';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 
 let oldSetScreenshotDetected: any = null;
 
 function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting(SettingIds.ALLOW_SCREENSHOT);
+  const enabled = settings.getSetting('ALLOW_SCREENSHOT');
 
   if (enabled) {
     if (oldSetScreenshotDetected == null) {
@@ -26,7 +25,7 @@ function handleStoreEffect(storeState: any) {
 class ScreenshotDetected {
   constructor() {
     registerMiddleware(handleStoreEffect);
-    settings.on(`${SettingIds.ALLOW_SCREENSHOT}.${EventTypes.SETTING_UPDATE}`, updateSnapchatStore);
+    settings.on(`ALLOW_SCREENSHOT.setting:update`, updateSnapchatStore);
   }
 }
 

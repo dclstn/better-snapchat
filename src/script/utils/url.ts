@@ -1,5 +1,5 @@
-import { ExternalUrls } from '../lib/constants';
+import { externalUrls } from '../lib/constants';
 
-export default function openExternalUrl(url: ExternalUrls) {
-  window.open(url, '_blank');
+export default function openExternalUrl(url: keyof typeof externalUrls) {
+  window.open(externalUrls[url], '_blank');
 }

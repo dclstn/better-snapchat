@@ -1,4 +1,3 @@
-import { SettingIds } from '../../lib/constants';
 import settings from '../../lib/settings';
 import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
 
@@ -35,6 +34,10 @@ const senderPresenceStates = new Map<string, number>();
           try {
             if (Array.isArray(data?.path) && data?.path?.includes('onReceive')) {
               const encodedTransientMessage = data.argumentList[0];
+              if (!encodedTransientMessage) {
+                throw new Error('No encoded transient message');
+              }
+
               const transientMessage = InboundTransientMessage.decode(encodedTransientMessage.value);
               if (transientMessage?.payload?.type !== 'presence') {
                 return listener(event);
@@ -56,8 +59,8 @@ const senderPresenceStates = new Map<string, number>();
 
               let notification: Notification | null = null;
 
-              const openChatNotification = settings.getSetting(SettingIds.OPEN_CHAT_NOTIFICATION);
-              const peekChatNotification = settings.getSetting(SettingIds.HALF_SWIPE_NOTIFICATION);
+              const openChatNotification = settings.getSetting('OPEN_CHAT_NOTIFICATION');
+              const peekChatNotification = settings.getSetting('HALF_SWIPE_NOTIFICATION');
 
               if (presenceState.extendedBits === PresenceStates.IDLE) {
                 senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);

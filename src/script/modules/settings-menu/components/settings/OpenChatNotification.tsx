@@ -1,6 +1,5 @@
 import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
-import { SettingIds } from '../../../../lib/constants';
 import Switch from '../Switch';
 import useNotificationPermission from '../../../../hooks/useNotificationPermission';
 
@@ -8,7 +7,7 @@ const NAME = 'Open Chat Notification';
 const DESCRIPTION = 'Recieve a notification when a chat is opened.';
 
 function OpenChatNotification() {
-  const [enabled, setEnabled] = useSettingState(SettingIds.OPEN_CHAT_NOTIFICATION);
+  const [enabled, setEnabled] = useSettingState('OPEN_CHAT_NOTIFICATION');
   useNotificationPermission(enabled);
 
   return (
