@@ -28,13 +28,13 @@ const senderPresenceStates = new Map<string, number>();
 
       return Reflect.apply(target, thisArg, [
         type,
-        (event: MessageEvent<{ path?: string[]; argumentList: { value: any }[] }>) => {
+        (event: MessageEvent<{ path?: string[]; argumentList: { value: unknown }[] }>) => {
           const { data } = event;
 
           try {
             if (Array.isArray(data?.path) && data?.path?.includes('onReceive')) {
               const encodedTransientMessage = data.argumentList[0];
-              if (!encodedTransientMessage) {
+              if (encodedTransientMessage == null) {
                 throw new Error('No encoded transient message');
               }
 
