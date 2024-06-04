@@ -17,18 +17,21 @@ const manifest = {
   version: package.version,
   icons: { 32: 'logo32.png', 48: 'logo48.png', 96: 'logo96.png', 128: 'logo128.png' },
   host_permissions: ['https://web.snapchat.com/*'],
-  background: { service_worker: './build/hmr.js' },
-  permissions: ['webNavigation', 'scripting', 'tabs', 'activeTab'],
+  background: { service_worker: './build/worker.js' },
+  content_scripts: [
+    { matches: ['https://web.snapchat.com/*'], js: ['./build/content.js'], run_at: 'document_start', all_frames: true },
+  ],
+  permissions: ['webNavigation', 'scripting', 'tabs', 'activeTab', 'storage'],
   web_accessible_resources: [{ resources: ['./build/*'], matches: ['https://web.snapchat.com/*'] }],
 };
 
 async function buildExtension() {
   await Promise.all([
     ESBuild.build({
-      entryPoints: ['./src/script', './src/hmr'],
+      entryPoints: ['./src/script', './src/worker', './src/content'],
       bundle: true,
-      minify: true,
-      sourcemap: false,
+      minify: false,
+      sourcemap: true,
       target: ['chrome58'],
       outbase: './src/',
       outdir: './public/build/',
@@ -44,6 +47,10 @@ async function buildExtension() {
       define: {
         'process.env.VERSION': JSON.stringify(package.version),
         'process.env.HMR_PORT': process.env.HMR_PORT,
+        'process.env.RUNTIME_CONTEXT': JSON.stringify('chrome'),
+        'process.env.NODE_ENV': JSON.stringify('development'),
+        'process.env.GUMROAD_PRODUCT_ID': JSON.stringify(process.env.GUMROAD_PRODUCT_ID),
+        'process.env.EXTENSION_ID': JSON.stringify('bomphfefmmkghdkkpjdafehnmfpifook'),
       },
     }),
     fs.writeFile('./public/manifest.json', JSON.stringify(manifest, null, 2)),
@@ -66,7 +73,7 @@ async function buildExtension() {
 
   setInterval(() => {
     websocket.clients.forEach((client) => client.send('ping'));
-  }, 60e3);
+  }, 30e3);
 
   console.log('Building: Chrome Extension');
   buildExtension();

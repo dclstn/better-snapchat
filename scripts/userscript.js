@@ -4,6 +4,9 @@ const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('../package.json');
 const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
 // ==UserScript==
@@ -52,7 +55,11 @@ GM_addElement('link', {
         'react-dom': require.resolve('preact/compat'),
       }),
     ],
-    define: { 'process.env.VERSION': JSON.stringify(package.version) },
+    define: {
+      'process.env.VERSION': JSON.stringify(package.version),
+      'process.env.RUNTIME_CONTEXT': "'userscript'",
+      'process.env.NODE_ENV': "'production'",
+    },
   });
 
   const [scriptTextContent, styleTextContent] = await Promise.all([
