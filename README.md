@@ -1,8 +1,8 @@
-![app preview](https://github.com/dclstn/better-snapchat/assets/43322006/6547f17d-0429-4baa-8854-eda1dde2cd0c)
+![Extension menu preview](https://github.com/dclstn/better-snapchat/assets/51604173/48ea06e4-7315-4dec-9cd7-039f063ffa6a)
 
 ## BetterSnap
 
-![example workflow](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
+![Node CI badge](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
 
 Screenshot & View Unread Chats, Send as Mobile, and more! Previously known as Better Snapchat.
 
@@ -29,7 +29,7 @@ You can install **BetterSnap** via the [Firefox Addon Store](https://addons.mozi
 
 ### Other Browsers
 
-You can install **BetterSnap** via [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/)
+You can install **BetterSnap** via the [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/).
 
 ## Other stuff
 
