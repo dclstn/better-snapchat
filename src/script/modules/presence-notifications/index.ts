@@ -1,13 +1,71 @@
+import { logTimeSensitiveInfo } from '../../lib/debug';
 import settings from '../../lib/settings';
-import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
+import { getPresencePayload, getSerializeUserId, getTransientMessage } from '../../utils/snapchat';
+import { getSnapchatStore } from '../../utils/snapchat';
+import ExpiryMap from 'expiry-map';
 
-enum PresenceStates {
+const PRESENCE_TIMEOUT = 10e3;
+
+enum SnapchatPresenceStates {
   IDLE = 1,
   TYPING = 17,
-  HALF_SWIPING = 256,
+  PEEKING = 256,
 }
 
-const senderPresenceStates = new Map<string, number>();
+enum ChatStates {
+  PEEK,
+  OPEN,
+}
+
+const chatState: Map<string, ChatStates> = new Map();
+
+interface SnapchatPublicInfo {
+  username?: string;
+  display_name?: string;
+  bitmoji_avatar_id?: string;
+  bitmoji_selfie_id?: string;
+  mutable_username?: string;
+}
+
+function bitmojiAvatarUrl(bitmojiAvatarId?: string, bitmojiSelfieId?: string) {
+  if (bitmojiAvatarId == null || bitmojiSelfieId == null) {
+    return undefined;
+  }
+  return `https://sdk.bitmoji.com/render/panel/${bitmojiSelfieId}-${bitmojiAvatarId}-v1.webp?transparent=1&trim=circle&scale=1`;
+}
+
+function createNotification({
+  username,
+  iconUrl,
+  action,
+  conversationTitle,
+  navigationPath,
+}: {
+  username: string;
+  action: string;
+  iconUrl?: string;
+  conversationTitle?: string;
+  navigationPath?: string;
+}) {
+  const notification = new Notification(username, { body: `${action} ${conversationTitle}`, icon: iconUrl });
+
+  notification.addEventListener('click', () => {
+    if (navigationPath == null) {
+      return;
+    }
+    window.location.pathname = navigationPath;
+  });
+
+  logTimeSensitiveInfo(`${username}: ${action} ${conversationTitle}`);
+}
+
+function getUserFromPublicUsers(
+  serializedUserId: { str: string },
+  publicUsers: Map<{ str: string }, SnapchatPublicInfo>,
+) {
+  const publicUsersArray = Array.from(publicUsers, ([key, value]) => ({ key, value }));
+  return publicUsersArray.find((user) => user.key.str === serializedUserId.str)?.value;
+}
 
 (() => {
   const GRPCTransientMessage = getTransientMessage();
@@ -28,7 +86,7 @@ const senderPresenceStates = new Map<string, number>();
 
       return Reflect.apply(target, thisArg, [
         type,
-        (event: MessageEvent<{ path?: string[]; argumentList: { value: unknown }[] }>) => {
+        async (event: MessageEvent<{ path?: string[]; argumentList: { value: unknown }[] }>) => {
           const { data } = event;
 
           try {
@@ -46,39 +104,64 @@ const senderPresenceStates = new Map<string, number>();
               const presencePayload = PresencePayload.decode(transientMessage.payload.data);
               const presenceStateKey = `${presencePayload.senderUserId}:${presencePayload.senderSessionId}`;
               const presenceState = presencePayload.presenceStates[presenceStateKey];
+              const conversationId = presencePayload?.conversationId;
+              const chatStateKey = `${presencePayload.senderUserId}:${conversationId ?? 'self'}`;
 
               if (presenceState == null) {
-                senderPresenceStates.delete(presencePayload.senderUserId);
+                // user has now closed/stop peeking chat
+                chatState.delete(chatStateKey);
                 return listener(event);
               }
 
-              const senderPrecenseState = senderPresenceStates.get(presencePayload.senderUserId);
-              if (senderPrecenseState === presenceState.extendedBits) {
+              const newChatState =
+                presenceState.extendedBits === SnapchatPresenceStates.PEEKING ? ChatStates.PEEK : ChatStates.OPEN;
+              if (newChatState === chatState.get(chatStateKey)) {
                 return listener(event);
               }
 
-              let notification: Notification | null = null;
+              chatState.set(chatStateKey, newChatState);
+
+              const { messaging } = getSnapchatStore().getState();
+              const conversation = messaging.conversations[conversationId]?.conversation;
+              const { fetchPublicInfo, publicUsers } = getSnapchatStore().getState().user;
+              const serializedUserId = getSerializeUserId(presencePayload.senderUserId);
+
+              let user = null;
+              if (serializedUserId != null) {
+                user = getUserFromPublicUsers(serializedUserId, publicUsers);
+              }
+
+              if (serializedUserId != null && user == null) {
+                await fetchPublicInfo([serializedUserId]);
+                const { publicUsers } = getSnapchatStore().getState().user;
+                user = getUserFromPublicUsers(serializedUserId, publicUsers);
+              }
 
               const openChatNotification = settings.getSetting('OPEN_CHAT_NOTIFICATION');
-              const peekChatNotification = settings.getSetting('HALF_SWIPE_NOTIFICATION');
-
-              if (presenceState.extendedBits === PresenceStates.IDLE) {
-                senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
-                if (openChatNotification) {
-                  notification = new Notification(presencePayload.senderUsername, { body: 'Opened your Chat' });
-                }
+              if (presenceState.extendedBits === SnapchatPresenceStates.IDLE && openChatNotification) {
+                createNotification({
+                  action: 'Opened',
+                  username: user?.display_name ?? user?.username ?? presencePayload.senderUsername ?? 'Unknown User',
+                  iconUrl: bitmojiAvatarUrl(user?.bitmoji_avatar_id, user?.bitmoji_selfie_id),
+                  conversationTitle: conversation?.title ?? 'your Chat',
+                  navigationPath: conversationId != null ? `/${conversationId}` : undefined,
+                });
               }
 
-              if (presenceState.extendedBits === PresenceStates.HALF_SWIPING) {
-                senderPresenceStates.set(presencePayload.senderUserId, presenceState.extendedBits);
-                if (peekChatNotification) {
-                  notification = new Notification(presencePayload.senderUsername, { body: 'Peeked at your Chat' });
-                }
+              const halfSwipeNotification = settings.getSetting('HALF_SWIPE_NOTIFICATION');
+              if (presenceState.extendedBits === SnapchatPresenceStates.PEEKING && halfSwipeNotification) {
+                createNotification({
+                  action: 'Peeked',
+                  username: user?.display_name ?? user?.username ?? presencePayload.senderUsername ?? 'Unknown User',
+                  iconUrl: bitmojiAvatarUrl(user?.bitmoji_avatar_id, user?.bitmoji_selfie_id),
+                  conversationTitle: conversation?.title ?? 'your Chat',
+                  navigationPath: conversationId != null ? `/${conversationId}` : undefined,
+                });
               }
-
-              setTimeout(() => notification?.close(), 5000);
             }
-          } catch (_) {}
+          } catch (error) {
+            console.error(error);
+          }
 
           return listener(event);
         },

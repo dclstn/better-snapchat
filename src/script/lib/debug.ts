@@ -17,3 +17,7 @@ export function logInfo(...args: unknown[]) {
   const { console } = getIframeConsole();
   console.log(PREFIX, ...args);
 }
+
+export function logTimeSensitiveInfo(...args: unknown[]) {
+  logInfo(`[${new Date().toISOString()}]`, ...args);
+}
