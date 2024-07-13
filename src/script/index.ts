@@ -6,17 +6,21 @@ import { logInfo } from './lib/debug';
 import patchFetch from './utils/fetch';
 import patchConsole from './utils/console';
 
-async function DOMContentLoaded() {
-  const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
-  attachSnapchatStoreListener();
-  logInfo('Hooked into Snapchat Store.');
-  // @ts-ignore glob-import
-  await import('./modules/**/index.ts');
-  logInfo('Successfully loaded all modules.');
-}
-
 (async () => {
   logInfo(`BetterSnap v${process.env.VERSION}`);
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    async () => {
+      const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
+      attachSnapchatStoreListener();
+      logInfo('Hooked into Snapchat Store.');
+      // @ts-ignore glob-import
+      await import('./modules/**/index.ts');
+      logInfo('Successfully loaded all modules.');
+    },
+    { once: true },
+  );
 
   patchServiceWorker();
   patchConsole();
@@ -24,5 +28,5 @@ async function DOMContentLoaded() {
   patchBroadcastChannel();
   patchFetch();
 
-  document.addEventListener('DOMContentLoaded', DOMContentLoaded, { once: true });
+  logInfo('Patched Window');
 })();

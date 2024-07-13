@@ -7,7 +7,6 @@ const DESCRIPTION = "Disable snapchat's screenshot prevention.";
 
 function AllowScreenshot() {
   const [enabled, setEnabled] = useSettingState('ALLOW_SCREENSHOT');
-
   return (
     <Switch
       color="indigo"
