@@ -108,3 +108,24 @@ export function getPresencePayload() {
 
   return webpackRequire(presenceModuleId);
 }
+
+export function getSerializeUserId(userId: string) {
+  const webpackRequire = getSnapchatWebpackRequire();
+  if (webpackRequire == null) {
+    return null;
+  }
+
+  const presenceModuleId = getSnapchatWebpackModuleId(
+    (module) => module.includes('Invalid UUID') && module.length < 1000,
+  );
+  if (presenceModuleId == null) {
+    return null;
+  }
+
+  const module = webpackRequire(presenceModuleId) as Record<string, any>;
+  if (module?.A == null) {
+    return null;
+  }
+
+  return { id: Uint8Array.from((0, module.A)(userId)), str: userId };
+}
