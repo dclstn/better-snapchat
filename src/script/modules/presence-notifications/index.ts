@@ -2,9 +2,6 @@ import { logTimeSensitiveInfo } from '../../lib/debug';
 import settings from '../../lib/settings';
 import { getPresencePayload, getSerializeUserId, getTransientMessage } from '../../utils/snapchat';
 import { getSnapchatStore } from '../../utils/snapchat';
-import ExpiryMap from 'expiry-map';
-
-const PRESENCE_TIMEOUT = 10e3;
 
 enum SnapchatPresenceStates {
   IDLE = 1,
@@ -159,9 +156,7 @@ function getUserFromPublicUsers(
                 });
               }
             }
-          } catch (error) {
-            console.error(error);
-          }
+          } catch (_) {}
 
           return listener(event);
         },
