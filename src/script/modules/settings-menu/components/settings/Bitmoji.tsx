@@ -5,7 +5,7 @@ import { SettingId } from '../../../../lib/constants';
 import styles from './Chats.module.css';
 import Radio from '../Radio';
 
-const NAME = 'Bitmoji Settings';
+const NAME = 'Presence Settings';
 
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
@@ -14,7 +14,7 @@ const MOBILE_NAME = 'Mobile';
 const MOBILE_DESCRIPTION = 'Appear to be on mobile.';
 
 const HIDE_NAME = 'Invisible';
-const HIDE_DESCRIPTION = 'Prevent your Bitmoji from appearing in chat.';
+const HIDE_DESCRIPTION = 'Appear offline to everyone.';
 
 function BitmojiSettings() {
   const [hideBitmoji, setHideBitmoji] = useSettingState('HIDE_BITMOJI');
