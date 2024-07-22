@@ -47,7 +47,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "@types/ws": "^8.5.11",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "addons-linter": "^6.31.1",
+    "addons-linter": "^6.32.1",
     "chokidar": "^3.6.0",
     "dotenv": "^16.4.5",
     "esbuild": "^0.23.0",
