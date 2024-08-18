@@ -1,16 +1,16 @@
-> [!IMPORTANT]  
+> [!WARNING]  
 > # Why is this repository archived?
 > BetterSnap has transitioned to a private repository. As a result, v1.3.2 will be the last version available to the public.
-> 
+>
 > Why the change? This decision has been made to help protect and extend the lifespan of the features currently available.
-> 
-> For those interested in future developments or specific feature implementations, feel free to reach out to me on Discord. I'm open to sharing updates and potentially collaborating on new features.
-> 
+>
+> Please note that BetterSnap will still be receiving updates. However, these updates will now be distributed through the private repository.
+>
+> For those interested in future developments, specific feature implementations, or who wish to report bugs, you're encouraged to join the [BetterSnap Discord](https://discord.gg/hpmjAJZR3H). I’m open to sharing updates, discussing feature requests, and addressing any issues that arise.
+>
+> Additionally, if you appreciate the work done so far, please don't forget to star the project—it helps others discover BetterSnap and supports future growth.
+>
 > Thank you for your understanding and continued support!
->
-> ### Join our [Discord](https://discord.gg/hpmjAJZR3H) for **feature requests** or **bug reports**.
->
-> Or just simply ⭐ to show your support for the project!
 
 ---
 
