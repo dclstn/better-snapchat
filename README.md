@@ -1,6 +1,6 @@
 > [!WARNING]  
 > # Why is this repository archived?
-> BetterSnap has transitioned to a private repository. As a result, v1.3.2 will be the last version available to the public.
+> BetterSnap has transitioned to a private repository. As a result, v1.3.2 will be the last version of the code publicly accessible.
 >
 > Why the change? This decision has been made to help protect and extend the lifespan of the features currently available.
 >
