@@ -81,6 +81,8 @@ function getUserFromPublicUsers(
         return Reflect.apply(target, thisArg, [type, listener, ...rest]);
       }
 
+      console.dir('listener', listener);
+
       return Reflect.apply(target, thisArg, [
         type,
         async (event: MessageEvent<{ path?: string[]; argumentList: { value: unknown }[] }>) => {

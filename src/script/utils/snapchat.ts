@@ -129,3 +129,5 @@ export function getSerializeUserId(userId: string) {
 
   return { id: Uint8Array.from((0, module.A)(userId)), str: userId };
 }
+
+window.snapchatStore = getSnapchatStore();

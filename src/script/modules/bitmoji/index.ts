@@ -13,6 +13,7 @@ import { getPresencePayload, getTransientMessage } from '../../utils/snapchat';
 
   MessagePort.prototype.postMessage = new Proxy(MessagePort.prototype.postMessage, {
     apply(target, thisArg, [message, ...rest]: [any]) {
+      console.dir('message', message);
       try {
         if (Array.isArray(message?.path) && message?.path?.includes('send')) {
           const transientMessage = OutboundTransientMessage.decode(message.argumentList[1].value);

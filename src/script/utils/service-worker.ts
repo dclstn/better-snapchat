@@ -25,6 +25,32 @@ function initalizeServiceWorker(initialSettings: any) {
       return Reflect.apply(target, thisArg, [request, ...rest]);
     },
   });
+
+  MessagePort.prototype.postMessage = new Proxy(MessagePort.prototype.postMessage, {
+    apply(target, thisArg, [data, ...rest]: [any]) {
+      if (data?.path?.includes('onReceive')) {
+        console.dir(data);
+        console.dir(data.argumentList[0].value);
+      }
+      return Reflect.apply(target, thisArg, [data, ...rest]);
+    },
+  });
+
+  MessagePort.prototype.addEventListener = new Proxy(MessagePort.prototype.addEventListener, {
+    apply(target, thisArg, [type, listener, ...rest]: [string, EventListener]) {
+      if (type !== 'message') {
+        return Reflect.apply(target, thisArg, [type, listener, ...rest]);
+      }
+
+      return Reflect.apply(target, thisArg, [
+        type,
+        async (event: MessageEvent<{ path?: string[]; argumentList: { value: unknown }[] }>) => {
+          // console.log('listener', listener);
+          return Reflect.apply(listener, thisArg, [event]);
+        },
+      ]);
+    },
+  });
 }
 
 export default function patchServiceWorker() {
