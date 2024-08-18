@@ -8,7 +8,9 @@
 > 
 > Thank you for your understanding and continued support!
 >
-> Join our [Discord](https://discord.gg/hpmjAJZR3H).
+> ### Join our [Discord](https://discord.gg/hpmjAJZR3H) for **feature requests** or **bug reports**.
+>
+> Or just simply ⭐ to show your support for the project!
 
 ---
 
