@@ -1,3 +1,13 @@
+> [!WARNING]  
+> # Why is this repository archived?
+> BetterSnap has transitioned to a private repository. As a result, v1.3.2 will be the last version available to the public.
+> 
+> Why the change? This decision has been made to help protect and extend the lifespan of the features currently available.
+> 
+> For those interested in future developments or specific feature implementations, feel free to reach out to me on Discord. I'm open to sharing updates and potentially collaborating on new features.
+> 
+> Thank you for your understanding and continued support!
+
 ![Extension menu preview](https://github.com/dclstn/better-snapchat/assets/51604173/48ea06e4-7315-4dec-9cd7-039f063ffa6a)
 
 ## BetterSnap
