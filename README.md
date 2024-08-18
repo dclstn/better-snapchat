@@ -2,9 +2,9 @@
 > # Why is this repository archived?
 > BetterSnap has transitioned to a private repository. As a result, v1.3.2 will be the last version of the code publicly accessible.
 >
-> Why the change? This decision has been made to help protect and extend the lifespan of the features currently available.
+> Why the change? As someone who dislikes when repositories are made private, I made this decision to protect BetterSnap’s features and secure its long-term maintainability. By keeping the code private, I can better manage the project, prevent misuse, and ensure the extension remains stable and reliable for all users.
 >
-> Please note that BetterSnap will still be receiving updates. However, these updates will now be distributed through the private repository.
+> Please note that BetterSnap will still be receiving updates. However, these updates will now be distributed through a private repository.
 >
 > For those interested in future developments, specific feature implementations, or who wish to report bugs, you're encouraged to join the [BetterSnap Discord](https://discord.gg/hpmjAJZR3H). I’m open to sharing updates, discussing feature requests, and addressing any issues that arise.
 >
