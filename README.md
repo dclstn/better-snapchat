@@ -1,19 +1,3 @@
-> [!WARNING]  
-> # Why is this repository archived?
-> **BetterSnap has transitioned to a private repository**. As a result, v1.3.2 will be the last version of the code publicly accessible.
->
-> Why the change? As someone who dislikes when repositories are made private, I made this decision to protect BetterSnap’s features and secure its long-term maintainability. By keeping the code private, I can better manage the project, prevent misuse, and ensure the extension remains stable and reliable for all users.
->
-> Please note that BetterSnap will still be receiving updates. However, these updates will now be distributed through a private repository.
->
-> For those interested in future developments, specific feature implementations, or who wish to report bugs, you're encouraged to join the [BetterSnap Discord](https://discord.gg/hpmjAJZR3H). I’m open to sharing updates, discussing feature requests, and addressing any issues that arise.
->
-> Additionally, if you appreciate the work done so far, please don't forget to star the project—it helps others discover BetterSnap and supports future growth.
->
-> **Thank you for your understanding and continued support!**
-
----
-
 ![Extension menu preview](https://github.com/dclstn/better-snapchat/assets/51604173/48ea06e4-7315-4dec-9cd7-039f063ffa6a)
 
 ## BetterSnap
