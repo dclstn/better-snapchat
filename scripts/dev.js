@@ -28,7 +28,7 @@ async function buildExtension() {
       entryPoints: ['./src/script', './src/hmr'],
       bundle: true,
       minify: true,
-      sourcemap: false,
+      sourcemap: true,
       target: ['chrome58'],
       outbase: './src/',
       outdir: './public/build/',
