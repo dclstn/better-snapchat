@@ -95,8 +95,9 @@ export function getPresencePayload() {
   }
 
   const presenceModuleId = getSnapchatWebpackModuleId((module, moduleKey) => {
-    if (/PresencePayload/.test(module) && moduleKey != null) {
+    if (module.includes('senderUsername') && moduleKey != null) {
       const Payload = webpackRequire(moduleKey) as Record<string, any>;
+      console.log(Payload);
       return Payload.PresencePayload != null;
     }
     return false;
@@ -118,11 +119,13 @@ export function getSerializeUserId(userId: string) {
   const presenceModuleId = getSnapchatWebpackModuleId(
     (module) => module.includes('Invalid UUID') && module.length < 1000,
   );
+  console.log(presenceModuleId);
   if (presenceModuleId == null) {
     return null;
   }
 
   const module = webpackRequire(presenceModuleId) as Record<string, any>;
+  console.log(module);
   if (module?.A == null) {
     return null;
   }
@@ -130,4 +133,26 @@ export function getSerializeUserId(userId: string) {
   return { id: Uint8Array.from((0, module.A)(userId)), str: userId };
 }
 
+function getDuplexWrapper() {
+  const webpackRequire = getSnapchatWebpackRequire();
+  if (webpackRequire == null) {
+    return null;
+  }
+
+  const duplexModuleId = getSnapchatWebpackModuleId((module) => module.includes('Duplex'));
+  if (duplexModuleId == null) {
+    return null;
+  }
+
+  return webpackRequire(duplexModuleId);
+}
+
 window.snapchatStore = getSnapchatStore();
+
+window.getTransientMessage = getTransientMessage;
+
+window.getPresencePayload = getPresencePayload;
+
+window.getSerializeUserId = getSerializeUserId;
+
+window.getDuplexWrapper = getDuplexWrapper;
