@@ -4,16 +4,12 @@
 
 ![Node CI badge](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
 
-Screenshot & View Unread Chats, Send as Mobile, and more! Previously known as Better Snapchat.
+Screenshot & Always Present, Auto-Save Chats, and more! Previously known as Better Snapchat.
 
 - 📸 **Allow Screenshots** - Freely take screenshots of chats / stories!
 - 👤 **Always Present** - Disable Snapchat's presence detection!
-- 📥 **View Unread Chats** - Secretly view chats without the recipient knowing!
-- 📱 **Appear on Mobile** - Disguise your client as if you're sending from a phone!
 - 💾 **Right-Click Save** - Silently right-click save images / videos from chat!
-- 🔔 **Half-Swipe Notification** - Receive a notification when a chat is half-swiped!
 - 💬 **Auto-Save Chats** - Automatically save chats when they're sent / received!
-- 🙈 **Hide Bitmoji** - Prevent others from seeing your Bitmoji appear in chat!
 
 ✨ And more!
 
