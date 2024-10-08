@@ -47,13 +47,14 @@ function Chats() {
         label={AUTO_SAVE_NAME}
         description={AUTO_SAVE_DESCRIPTION}
       />
-      <Radio
+      {/* currently patched by snapchat */}
+      {/* <Radio
         color="indigo"
         checked={preventReadReceipts}
         onChange={() => handleSettingChange('PREVENT_CHAT_READ_RECEIPTS')}
         description={NO_READ_RECEIPTS_DESCRIPTION}
         label={NO_READ_RECEIPTS_NAME}
-      />
+      /> */}
     </Stack>
   );
 }

@@ -7,6 +7,8 @@ const NAME = 'Half Swipe Notification';
 const DESCRIPTION = 'Recieve a notification when a chat is half-swiped.';
 
 function HalfSwipeNotification() {
+  return null; // currently patched by snapchat
+
   const [enabled, setEnabled] = useSettingState('HALF_SWIPE_NOTIFICATION');
   useNotificationPermission(enabled);
 

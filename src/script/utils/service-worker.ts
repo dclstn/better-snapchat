@@ -28,6 +28,8 @@ function initalizeServiceWorker(initialSettings: any) {
 }
 
 export default function patchServiceWorker() {
+  return; // temp return;
+
   const oldBlobClass = window.Blob;
   class HookedBlob extends window.Blob {
     constructor(...args: any[]) {

@@ -4,9 +4,11 @@ import Switch from '../Switch';
 import useNotificationPermission from '../../../../hooks/useNotificationPermission';
 
 const NAME = 'Open Chat Notification';
-const DESCRIPTION = 'Recieve a notification when a chat is opened.';
+const DESCRIPTION = 'This features has been patched by Snapchat.';
 
 function OpenChatNotification() {
+  return null; // currently patched by snapchat
+
   const [enabled, setEnabled] = useSettingState('OPEN_CHAT_NOTIFICATION');
   useNotificationPermission(enabled);
 
@@ -15,7 +17,8 @@ function OpenChatNotification() {
       color="indigo"
       label={NAME}
       description={DESCRIPTION}
-      checked={enabled}
+      // checked={enabled}
+      disabled
       onChange={() => setEnabled(!enabled)}
     />
   );

@@ -17,6 +17,8 @@ const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Appear offline to everyone.';
 
 function BitmojiSettings() {
+  return null; // current patched by snapchat
+
   const [hideBitmoji, setHideBitmoji] = useSettingState('HIDE_BITMOJI');
   const [mobileBitmoji, setMobileBitmoji] = useSettingState('MOBILE_BITMOJI');
 
