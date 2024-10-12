@@ -1,21 +1,21 @@
-.saveImage div[role='img'] > img {
+.saveImage div > img {
   pointer-events: unset !important;
   user-select: none;
 }
 
-.saveImage div[role='img'] > img:hover {
+.saveImage div > img:hover {
   cursor: pointer;
 }
 
-.saveImage div[role='img'] video {
+.saveImage div video {
   user-select: none;
   pointer-events: unset !important;
 }
 
-.saveImage div[role='img'] video:hover {
+.saveImage div video:hover {
   cursor: pointer;
 }
 
-.saveImage div[role='img']:has(video):has(img) > img {
+.saveImage div:has(video):has(img) > img {
   pointer-events: none !important;
 }
