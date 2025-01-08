@@ -25,5 +25,6 @@
     "expect": true,
     "jsdom": true,
     "JSX": true
-  }
+  },
+  "ignorePatterns": ["esbuild.config.js", "node_modules/", "public/"]
 }
