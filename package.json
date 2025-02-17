@@ -44,7 +44,7 @@
     "@eslint/js": "^9.17.0",
     "@types/chrome": "^0.0.280",
     "@types/lodash.throttle": "^4.1.9",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.0.9",
     "@types/react-dom": "^18.3.1",
     "@types/ua-parser-js": "^0.7.39",
     "@types/ws": "^8.5.13",
