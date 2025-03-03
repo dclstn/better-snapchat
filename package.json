@@ -28,7 +28,7 @@
   "homepage": "https://github.com/dclstn/better-snapchat#readme",
   "dependencies": {
     "@mantine/core": "7.16.2",
-    "@mantine/hooks": "^7.6.2",
+    "@mantine/hooks": "^7.17.1",
     "@tabler/icons-react": "^3.19.0",
     "cookies-js": "^1.2.3",
     "eventemitter3": "^5.0.1",
