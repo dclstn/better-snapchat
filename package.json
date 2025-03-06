@@ -1,6 +1,6 @@
 {
   "name": "BetterSnap - Make Snapchat Web Better",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Screenshot & View Unread Chats, Send as Mobile, and more! Previously known as Better Snapchat.",
   "scripts": {
     "start": "rm -rf ./public/build/ && node ./scripts/dev.js",
