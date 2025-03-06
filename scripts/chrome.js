@@ -41,14 +41,14 @@ const alias = require('esbuild-plugin-alias');
     },
     content_scripts: [
       {
-        matches: ['https://web.snapchat.com/*'],
+        matches: ['https://*.snapchat.com/*'],
         js: ['./build/script.js'],
         css: ['./build/script.css'],
         run_at: 'document_start',
         world: 'MAIN',
       },
     ],
-    host_permissions: ['https://web.snapchat.com/*'],
+    host_permissions: ['https://*.snapchat.com/*'],
   };
 
   await fs.writeFile('./public/manifest.json', JSON.stringify(manifest, null, 2));

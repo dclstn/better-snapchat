@@ -2,8 +2,12 @@
 
 (() => {
   chrome.webNavigation.onCommitted.addListener(({ url, frameId, tabId }) => {
-    const parsedUrl = new URL(url);
-    if (parsedUrl.hostname !== 'web.snapchat.com') {
+    const { hostname, pathname } = new URL(url);
+    if (!['web.snapchat.com', 'www.snapchat.com'].includes(hostname)) {
+      return;
+    }
+
+    if (hostname === 'www.snapchat.com' && !pathname.startsWith('/web')) {
       return;
     }
 
@@ -21,8 +25,11 @@
   });
 
   async function reloadTabs() {
-    const tabs = await chrome.tabs.query({ url: 'https://web.snapchat.com/*' });
-    for (const tab of tabs) {
+    const tabs = await Promise.all([
+      chrome.tabs.query({ url: 'https://web.snapchat.com/*' }),
+      chrome.tabs.query({ url: 'https://www.snapchat.com/web/*' }),
+    ]);
+    for (const tab of tabs.flat()) {
       if (tab.id == null) {
         continue;
       }

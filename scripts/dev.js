@@ -16,10 +16,10 @@ const manifest = {
   description: package.description,
   version: package.version,
   icons: { 32: 'logo32.png', 48: 'logo48.png', 96: 'logo96.png', 128: 'logo128.png' },
-  host_permissions: ['https://web.snapchat.com/*'],
+  host_permissions: ['https://*.snapchat.com/*'],
   background: { service_worker: './build/hmr.js' },
   permissions: ['webNavigation', 'scripting', 'tabs', 'activeTab'],
-  web_accessible_resources: [{ resources: ['./build/*'], matches: ['https://web.snapchat.com/*'] }],
+  web_accessible_resources: [{ resources: ['./build/*'], matches: ['https://*.snapchat.com/*'] }],
 };
 
 async function buildExtension() {

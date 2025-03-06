@@ -11,6 +11,7 @@ const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
 // @version      ${package.version}
 // @description  ${package.description}
 // @author       ${package.author}
+// @match        https://www.snapchat.com/web/*
 // @match        https://web.snapchat.com/*
 // @icon         https://better-snapchat.pages.dev/logo128.png
 // @run-at       document-start
