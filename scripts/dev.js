@@ -27,7 +27,7 @@ async function buildExtension() {
     ESBuild.build({
       entryPoints: ['./src/script', './src/hmr'],
       bundle: true,
-      minify: true,
+      minify: false,
       sourcemap: true,
       target: ['chrome58'],
       outbase: './src/',
