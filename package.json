@@ -52,7 +52,7 @@
     "addons-linter": "^7.7.0",
     "chokidar": "^4.0.3",
     "dotenv": "^16.4.7",
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.25.1",
     "esbuild-css-modules-plugin": "^3.1.2",
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-import-glob": "^0.1.1",
