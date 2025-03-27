@@ -1,9 +1,8 @@
 import settings from '../../lib/settings';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
-import { getSnapchatStore } from '../../utils/snapchat'
+import { getSnapchatStore } from '../../utils/snapchat';
 
 let oldCreatePresenceSession: any = null;
-
 
 function handleStoreEffect(storeState: any) {
   const enabled = settings.getSetting('HIDE_BITMOJI');
@@ -19,8 +18,8 @@ function handleStoreEffect(storeState: any) {
     talkCoreWasm.createPresenceSession = function (...args: any[]) {
       const session = oldCreatePresenceSession.apply(this, args);
       session.activate = () => {};
-      return session
-    }
+      return session;
+    };
   }
 
   if (!enabled && oldCreatePresenceSession != null) {
@@ -34,7 +33,7 @@ function handleStoreEffect(storeState: any) {
 class CreatePresenceSession {
   constructor() {
     const store = getSnapchatStore();
-    store.subscribe(handleStoreEffect)
+    store.subscribe(handleStoreEffect);
     registerMiddleware(handleStoreEffect);
     settings.on(`HIDE_BITMOJI.setting:update`, updateSnapchatStore);
   }

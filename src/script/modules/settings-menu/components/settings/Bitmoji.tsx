@@ -10,15 +10,10 @@ const NAME = 'Presence Settings';
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 
-const MOBILE_NAME = 'Mobile';
-const MOBILE_DESCRIPTION = 'Appear to be on mobile.';
-
 const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Appear offline to everyone.';
 
 function BitmojiSettings() {
-  return null; // current patched by snapchat
-
   const [hideBitmoji, setHideBitmoji] = useSettingState('HIDE_BITMOJI');
   const [mobileBitmoji, setMobileBitmoji] = useSettingState('MOBILE_BITMOJI');
 
@@ -41,13 +36,6 @@ function BitmojiSettings() {
       />
       <Radio
         color="indigo"
-        checked={mobileBitmoji}
-        onChange={() => handleSettingsChange('MOBILE_BITMOJI')}
-        label={MOBILE_NAME}
-        description={MOBILE_DESCRIPTION}
-      />
-      <Radio
-        color="indigo"
         checked={hideBitmoji}
         onChange={() => handleSettingsChange('HIDE_BITMOJI')}
         label={HIDE_NAME}
@@ -58,7 +46,7 @@ function BitmojiSettings() {
 }
 
 export default {
-  name: [NAME, DEFAULT_NAME, HIDE_NAME, MOBILE_NAME],
-  description: [DEFAULT_DESCRIPTION, HIDE_DESCRIPTION, MOBILE_DESCRIPTION],
+  name: [NAME, DEFAULT_NAME, HIDE_NAME],
+  description: [DEFAULT_DESCRIPTION, HIDE_DESCRIPTION],
   component: BitmojiSettings,
 };
