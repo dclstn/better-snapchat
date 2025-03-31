@@ -2,6 +2,7 @@ export const defaultSettingValues = {
   ALLOW_SCREENSHOT: true,
   SAVE_IMAGE: true,
   ALWAYS_PRESENT: true,
+  SEND_UNSAVEABLE: false,
   PREVENT_TYPING_NOTIFICATION: false,
   PREVENT_TYPING: false,
   HIDE_BITMOJI: false,
