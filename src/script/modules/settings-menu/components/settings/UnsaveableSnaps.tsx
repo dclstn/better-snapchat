@@ -5,7 +5,7 @@ import Switch from '../Switch';
 const NAME = 'Send Unsaveable';
 const DESCRIPTION = "Make snaps and chats you send unsaveable in chat.";
 
-function AllowScreenshot() {
+function UnsaveableSnaps() {
   const [enabled, setEnabled] = useSettingState('SEND_UNSAVEABLE');
   return (
     <Switch
@@ -21,5 +21,5 @@ function AllowScreenshot() {
 export default {
   name: NAME,
   description: DESCRIPTION,
-  component: AllowScreenshot,
+  component: UnsaveableSnaps,
 };
