@@ -67,6 +67,25 @@ export function getSnapchatStore() {
   return snapchatStore;
 }
 
+let cofStore: any = null;
+
+export function getCofStore() {
+  if (cofStore != null) {
+    return cofStore;
+  }
+
+  const webpackRequire = getSnapchatWebpackRequire();
+  const someModuleId = getSnapchatWebpackModuleId((module) => module.includes('cof_targeting_query_attempt'));
+  if (webpackRequire == null || someModuleId == null) {
+    return null;
+  }
+
+  const module = webpackRequire(someModuleId) as Record<string, any>;
+  cofStore = Object.values(module).find((value) => value.getState != null && value.setState != null);
+
+  return cofStore;
+}
+
 export function getProvConsts() {
   const webpackRequire = getSnapchatWebpackRequire();
   const someModuleId = getSnapchatWebpackModuleId((module) => module.includes('SNAPCHAT_WEB_APP'));

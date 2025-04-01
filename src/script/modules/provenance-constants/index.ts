@@ -2,7 +2,7 @@ import settings from '../../lib/settings';
 import { getProvConsts } from '../../utils/snapchat';
 
 let oldWebAppConst: any = null;
-class FilePrevention {
+class ProvenanceConstants {
   constructor() {
     this.load();
     settings.on(`SNAP_AS_MOBILE.setting:update`, this.load);
@@ -27,4 +27,4 @@ class FilePrevention {
   }
 }
 
-export default new FilePrevention();
+export default new ProvenanceConstants();
