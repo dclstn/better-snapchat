@@ -8,11 +8,18 @@ function handleStoreEffect(storeState: any) {
   if (oldGetClientCofValue == null) {
     oldGetClientCofValue = storeState.getClientCofValue;
     storeState.getClientCofValue = function (...args: any[]) {
-      const enabled = settings.getSetting('SNAP_AS_MOBILE');
-      if (enabled && args[0] && args[0] === 'DWEB_SNAP_SENDING_CONTEXT') {
+      const mobileEnabled = settings.getSetting('SNAP_AS_MOBILE');
+      if (mobileEnabled && args[0] && args[0] === 'DWEB_SNAP_SENDING_CONTEXT') {
         return true;
       }
       const originalValue = oldGetClientCofValue.apply(this, args);
+      const viewingEnabled = settings.getSetting('ALLOW_SNAP_VIEWING');
+      if (args[0] && args[0] === 'DWEB_SNAP_VIEWING') {
+        return originalValue.then((resolvedValue: any) => {
+          resolvedValue.value[1] = viewingEnabled ? 1 : 0;
+          return resolvedValue;
+        });
+      }
       return originalValue;
     };
   }

@@ -4,6 +4,7 @@ export const defaultSettingValues = {
   ALWAYS_PRESENT: true,
   SEND_UNSAVEABLE: false,
   SNAP_AS_MOBILE: true,
+  ALLOW_SNAP_VIEWING: true,
   PREVENT_TYPING_NOTIFICATION: false,
   PREVENT_TYPING: false,
   HIDE_BITMOJI: false,
