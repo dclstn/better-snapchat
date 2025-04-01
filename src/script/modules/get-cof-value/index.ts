@@ -2,6 +2,7 @@ import settings from '../../lib/settings';
 import { getCofStore } from '../../utils/snapchat';
 
 let oldGetClientCofValue: any = null;
+let oldGetClientCofValueAndLogExposure: any = null;
 
 function handleStoreEffect(storeState: any) {
 
@@ -16,6 +17,10 @@ function handleStoreEffect(storeState: any) {
       if (args[0] && args[0] === 'DWEB_ENABLE_ADS') {
         return adsEnabled ? "enabled" : "disabled";
       }
+      const myaiEnabled = settings.getSetting('MY_AI_MENTIONS');
+      if (args[0] && args[0] === 'DWEB_ENABLE_MY_AI_MENTION') {
+        return myaiEnabled ? "enabled" : "disabled";
+      }
       const originalValue = oldGetClientCofValue.apply(this, args);
       const viewingEnabled = settings.getSetting('ALLOW_SNAP_VIEWING');
       if (args[0] && args[0] === 'DWEB_SNAP_VIEWING') {
@@ -26,6 +31,20 @@ function handleStoreEffect(storeState: any) {
       }
       return originalValue;
     };
+
+    if (oldGetClientCofValueAndLogExposure == null) {
+      oldGetClientCofValueAndLogExposure = storeState.getClientCofValueAndLogExposure;
+      storeState.getClientCofValueAndLogExposure = function (...args: any[]) {
+        const myaiEnabled = settings.getSetting('MY_AI_MENTIONS');
+        if (args[0] && args[0] === 'DWEB_ENABLE_MY_AI_MENTION') {
+          return {
+            value: myaiEnabled ? "enabled" : "disabled"
+          }
+        }
+        const originalValue = oldGetClientCofValueAndLogExposure.apply(this, args);
+        return originalValue;
+      };
+    }
   }
 
   return storeState;
