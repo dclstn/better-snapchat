@@ -5,6 +5,7 @@ export const defaultSettingValues = {
   SEND_UNSAVEABLE: false,
   SNAP_AS_MOBILE: true,
   MY_AI_MENTIONS: true,
+  PRIVATE_STORIES: true,
   ADS_ENABLED: false,
   ALLOW_SNAP_VIEWING: true,
   PREVENT_TYPING_NOTIFICATION: false,
