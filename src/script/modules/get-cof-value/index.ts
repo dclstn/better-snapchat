@@ -12,6 +12,10 @@ function handleStoreEffect(storeState: any) {
       if (mobileEnabled && args[0] && args[0] === 'DWEB_SNAP_SENDING_CONTEXT') {
         return true;
       }
+      const adsEnabled = settings.getSetting('ADS_ENABLED');
+      if (args[0] && args[0] === 'DWEB_ENABLE_ADS') {
+        return adsEnabled ? "enabled" : "disabled";
+      }
       const originalValue = oldGetClientCofValue.apply(this, args);
       const viewingEnabled = settings.getSetting('ALLOW_SNAP_VIEWING');
       if (args[0] && args[0] === 'DWEB_SNAP_VIEWING') {
