@@ -6,6 +6,8 @@ const NAME = 'Ads Enabled';
 const DESCRIPTION = "Whether to have annoying ads enabled.";
 
 function AdsEnabled() {
+  return null;
+  
   const [enabled, setEnabled] = useSettingState('ADS_ENABLED');
   return (
     <Switch
