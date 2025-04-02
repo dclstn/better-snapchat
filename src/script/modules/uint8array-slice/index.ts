@@ -11,7 +11,7 @@ function checkIfPresence(arr: any) : boolean {
                 break;
             }
         }
-        if (match) {
+        if (match === true) {
             return true;
         }
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import Switch from '../Switch';
 
-const NAME = 'Send Unsaveable';
+const NAME = 'Unsaveable Messages / Snaps';
 const DESCRIPTION = "Make snaps and chats you send unsaveable in chat.";
 
 function UnsaveableSnaps() {

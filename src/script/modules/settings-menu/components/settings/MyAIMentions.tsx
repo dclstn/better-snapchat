@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import Switch from '../Switch';
 
-const NAME = 'My AI Mentions';
-const DESCRIPTION = "Whether to be able to mention @myai in chat.";
+const NAME = 'Enable AI Mentions';
+const DESCRIPTION = "Allows you to mention @myai in any chat.";
 
 function MyAIMentions() {
   const [enabled, setEnabled] = useSettingState('MY_AI_MENTIONS');
