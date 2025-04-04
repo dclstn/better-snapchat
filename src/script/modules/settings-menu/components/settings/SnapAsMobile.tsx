@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import Switch from '../Switch';
 
-const NAME = 'Snap As Mobile';
-const DESCRIPTION = "Send snaps while appearing as mobile.";
+const NAME = 'Send Snaps as Mobile';
+const DESCRIPTION = 'Snaps sent will appear sent from Mobile.';
 
 function SnapAsMobile() {
   const [enabled, setEnabled] = useSettingState('SNAP_AS_MOBILE');

@@ -4,7 +4,6 @@ export const defaultSettingValues = {
   ALWAYS_PRESENT: true,
   SEND_UNSAVEABLE: false,
   SNAP_AS_MOBILE: false,
-  MY_AI_MENTIONS: true,
   PRIVATE_STORIES: false,
   UPLOAD_SNAPS: false,
   ALLOW_SNAP_VIEWING: true,

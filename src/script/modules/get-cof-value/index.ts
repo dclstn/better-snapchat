@@ -1,59 +1,59 @@
 import settings from '../../lib/settings';
 import { getCofStore } from '../../utils/snapchat';
 
-let oldGetClientCofValue: any = null;
-let oldGetClientCofValueAndLogExposure: any = null;
+enum CofKeys {
+  DWEB_SNAP_SENDING_CONTEXT = 'DWEB_SNAP_SENDING_CONTEXT',
+  DWEB_PRIVATE_STORIES_VIEWING = 'DWEB_PRIVATE_STORIES_VIEWING',
+  DWEB_SNAP_VIEWING = 'DWEB_SNAP_VIEWING',
+}
+
+let patchedStore: boolean = false;
 
 function handleStoreEffect(storeState: any) {
-  if (oldGetClientCofValue == null) {
-    oldGetClientCofValue = storeState.getClientCofValue;
-    storeState.getClientCofValue = function (...args: any[]) {
+  if (patchedStore || storeState.getClientCofValue == null) {
+    return;
+  }
+
+  patchedStore = true;
+
+  storeState.getClientCofValue = new Proxy(storeState.getClientCofValue, {
+    apply(target: any, thisArg: any, args: any[]) {
+      const originalValue = Reflect.apply(target, thisArg, args) as Promise<any>;
+      if (args.length === 0 || args[0] == null) {
+        return originalValue;
+      }
+
+      const [cofKey] = args;
       const mobileEnabled = settings.getSetting('SNAP_AS_MOBILE');
-      if (mobileEnabled && args[0] && args[0] === 'DWEB_SNAP_SENDING_CONTEXT') {
+      if (mobileEnabled && cofKey === CofKeys.DWEB_SNAP_SENDING_CONTEXT) {
         return true;
       }
-      const myaiEnabled = settings.getSetting('MY_AI_MENTIONS');
-      if (args[0] && args[0] === 'DWEB_ENABLE_MY_AI_MENTION') {
-        return myaiEnabled ? 'enabled' : 'disabled';
-      }
+
       const privStoryEnabled = settings.getSetting('PRIVATE_STORIES');
-      if (args[0] && args[0] === 'DWEB_PRIVATE_STORIES_VIEWING') {
+      if (cofKey === CofKeys.DWEB_PRIVATE_STORIES_VIEWING) {
         return { value: privStoryEnabled ? 'enabled' : 'disabled' };
       }
-      const originalValue = oldGetClientCofValue.apply(this, args);
+
       const viewingEnabled = settings.getSetting('ALLOW_SNAP_VIEWING');
-      if (args[0] && args[0] === 'DWEB_SNAP_VIEWING') {
+      if (cofKey === CofKeys.DWEB_SNAP_VIEWING) {
         return originalValue.then((resolvedValue: any) => {
           resolvedValue.value[1] = viewingEnabled ? 1 : 0;
           return resolvedValue;
         });
       }
-      return originalValue;
-    };
 
-    if (oldGetClientCofValueAndLogExposure == null) {
-      oldGetClientCofValueAndLogExposure = storeState.getClientCofValueAndLogExposure;
-      storeState.getClientCofValueAndLogExposure = function (...args: any[]) {
-        const myaiEnabled = settings.getSetting('MY_AI_MENTIONS');
-        if (args[0] && args[0] === 'DWEB_ENABLE_MY_AI_MENTION') {
-          return {
-            value: myaiEnabled ? 'enabled' : 'disabled',
-          };
-        }
-        const originalValue = oldGetClientCofValueAndLogExposure.apply(this, args);
-        return originalValue;
-      };
-    }
-  }
+      return originalValue;
+    },
+  });
 
   return storeState;
 }
 
-class GetCofValue {
+class ConditionOnsetFlags {
   constructor() {
     const store = getCofStore();
     store.subscribe(handleStoreEffect);
   }
 }
 
-export default new GetCofValue();
+export default new ConditionOnsetFlags();

@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import Switch from '../Switch';
 
-const NAME = 'View Private Stories';
-const DESCRIPTION = "Be able to view your private stories.";
+const NAME = 'Private Stories';
+const DESCRIPTION = 'Enable to view private stories.';
 
 function ViewPrivateStories() {
   const [enabled, setEnabled] = useSettingState('PRIVATE_STORIES');

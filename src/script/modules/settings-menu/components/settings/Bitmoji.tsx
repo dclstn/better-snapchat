@@ -11,7 +11,7 @@ const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 
 const HIDE_NAME = 'Invisible';
-const HIDE_DESCRIPTION = 'Appear offline to everyone.';
+const HIDE_DESCRIPTION = 'Hide your bitmoji from chat.';
 
 const MOBILE_NAME = 'Mobile';
 const MOBILE_DESCRIPTION = 'Appear as if you are using the mobile app.';
