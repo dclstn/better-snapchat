@@ -22,11 +22,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class SetAwayState {
+class PresenceDetection {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`ALWAYS_PRESENT.setting:update`, updateSnapchatStore);
   }
 }
 
-export default new SetAwayState();
+export default new PresenceDetection();

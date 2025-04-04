@@ -1,7 +1,7 @@
 import settings from '../../lib/settings';
 
 let oldFilePrototype: any = null;
-class FilePrevention {
+class MediaRestrictions {
   constructor() {
     this.load();
     settings.on(`UNLIMITED_FILE_SIZE.setting:update`, this.load);
@@ -22,4 +22,4 @@ class FilePrevention {
   }
 }
 
-export default new FilePrevention();
+export default new MediaRestrictions();

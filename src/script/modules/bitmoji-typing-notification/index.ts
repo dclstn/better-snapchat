@@ -21,11 +21,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class SendTypingNotification {
+class BitmojiTypingNotification {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`PREVENT_TYPING_NOTIFICATION.setting:update`, updateSnapchatStore);
   }
 }
 
-export default new SendTypingNotification();
+export default new BitmojiTypingNotification();

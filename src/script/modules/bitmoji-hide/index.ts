@@ -32,7 +32,7 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class CreatePresenceSession {
+class BitmojiHide {
   constructor() {
     const store = getSnapchatStore();
     store.subscribe(handleStoreEffect);
@@ -41,4 +41,4 @@ class CreatePresenceSession {
   }
 }
 
-export default new CreatePresenceSession();
+export default new BitmojiHide();

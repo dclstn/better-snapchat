@@ -49,11 +49,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class ConditionOnsetFlags {
+class DevelopmentFlags {
   constructor() {
     const store = getCofStore();
     store.subscribe(handleStoreEffect);
   }
 }
 
-export default new ConditionOnsetFlags();
+export default new DevelopmentFlags();
