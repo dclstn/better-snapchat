@@ -15,7 +15,7 @@ const MOBILE_NAME = 'Mobile';
 const MOBILE_DESCRIPTION = 'Appear as if you are using the mobile app.';
 
 function BitmojiSettings() {
-  const [bitmojiPresence, setBitmojiPresence] = useSettingState<BitmojiPresence>('BITMOJI_PRESENCE');
+  const [bitmojiPresence, setBitmojiPresence] = useSettingState('BITMOJI_PRESENCE');
   return (
     <Radio.Group
       label={NAME}

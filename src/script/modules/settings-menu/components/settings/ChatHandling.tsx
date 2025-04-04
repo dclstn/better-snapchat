@@ -15,7 +15,7 @@ const NO_READ_RECEIPTS_NAME = 'Unread';
 const NO_READ_RECEIPTS_DESCRIPTION = 'Prevent others from knowing you read their message.';
 
 function ChatHandling_() {
-  const [chatHandling, setChatHandling] = useSettingState<ChatHandling>('CHAT_HANDLING');
+  const [chatHandling, setChatHandling] = useSettingState('CHAT_HANDLING');
   return (
     <Radio.Group label={NAME} value={chatHandling} onChange={(value) => setChatHandling(value as ChatHandling)}>
       <Stack>
