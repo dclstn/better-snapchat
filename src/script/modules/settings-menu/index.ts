@@ -1,23 +1,33 @@
 import { render, h } from 'preact';
 import App from './SettingsMenu';
-import styles from './SettingsMenu.module.css';
 
 const APP_CONTAINER_ID = 'better-snap-app';
 
+let appContainer: HTMLDivElement | null = null;
+
 class SettingsMenu {
   constructor() {
-    this.load();
-  }
-
-  load() {
     if (document.getElementById(APP_CONTAINER_ID) != null) {
       return;
     }
-    const appContainer = document.createElement('div');
+
+    appContainer = document.createElement('div');
     appContainer.setAttribute('id', APP_CONTAINER_ID);
-    appContainer.classList.add(styles.appContainer);
     document.body.appendChild(appContainer);
     render(h(App, {}), appContainer);
+
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+
+  handleResize() {
+    if (appContainer == null) {
+      return;
+    }
+
+    const { innerWidth, innerHeight } = window;
+    appContainer.style.width = `${innerWidth}px`;
+    appContainer.style.height = `${innerHeight}px`;
   }
 }
 

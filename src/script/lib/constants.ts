@@ -3,7 +3,7 @@ export const SettingIds = {
   ALLOW_SCREENSHOT: 'ALLOW_SCREENSHOT',
   SAVE_IMAGE: 'SAVE_IMAGE',
   ALWAYS_PRESENT: 'ALWAYS_PRESENT',
-  SEND_UNSAVEABLE: 'SEND_UNSAVEABLE',
+  SEND_UNSAVEABLE_MESSAGES: 'SEND_UNSAVEABLE_MESSAGES',
   SNAP_AS_MOBILE: 'SNAP_AS_MOBILE',
   PRIVATE_STORIES: 'PRIVATE_STORIES',
   UPLOAD_SNAPS: 'UPLOAD_SNAPS',
@@ -26,6 +26,7 @@ export const SettingIds = {
   PREVENT_STORY_READ_RECEIPTS: 'PREVENT_STORY_READ_RECEIPTS',
   HALF_SWIPE_NOTIFICATION: 'HALF_SWIPE_NOTIFICATION',
   OPEN_CHAT_NOTIFICATION: 'OPEN_CHAT_NOTIFICATION',
+  CHAT_HANDLING: 'CHAT_HANDLING',
 } as const;
 
 export enum BitmojiPresence {
@@ -34,11 +35,17 @@ export enum BitmojiPresence {
   MOBILE = 'MOBILE',
 }
 
+export enum ChatHandling {
+  DEFAULT = 'DEFAULT',
+  AUTO_SAVE = 'AUTO_SAVE',
+  NO_READ_RECEIPTS = 'NO_READ_RECEIPTS',
+}
+
 export const defaultSettingValues = {
   [SettingIds.ALLOW_SCREENSHOT]: true,
   [SettingIds.SAVE_IMAGE]: true,
   [SettingIds.ALWAYS_PRESENT]: true,
-  [SettingIds.SEND_UNSAVEABLE]: false,
+  [SettingIds.SEND_UNSAVEABLE_MESSAGES]: false,
   [SettingIds.SNAP_AS_MOBILE]: false,
   [SettingIds.PRIVATE_STORIES]: false,
   [SettingIds.UPLOAD_SNAPS]: false,
@@ -56,6 +63,7 @@ export const defaultSettingValues = {
   [SettingIds.HALF_SWIPE_NOTIFICATION]: false,
   [SettingIds.OPEN_CHAT_NOTIFICATION]: false,
   [SettingIds.BITMOJI_PRESENCE]: BitmojiPresence.DEFAULT,
+  [SettingIds.CHAT_HANDLING]: ChatHandling.DEFAULT,
 };
 
 export type SettingId = keyof typeof SettingIds;
