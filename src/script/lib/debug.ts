@@ -1,23 +1,19 @@
 const PREFIX = '[Better-Snap]';
 
-let iframeConsole: any | null = null;
+let iframeContentWindow: any | null = null;
 
-export function getIframeConsole() {
-  if (iframeConsole != null) {
-    return iframeConsole;
+export function getIframeContentWindow() {
+  if (iframeContentWindow != null) {
+    return iframeContentWindow;
   }
   const iframe = document.createElement('iframe');
   iframe.style.display = 'none';
   (document.head ?? document.documentElement).appendChild(iframe);
-  iframeConsole = iframe.contentWindow;
-  return iframeConsole;
+  iframeContentWindow = iframe.contentWindow;
+  return iframeContentWindow;
 }
 
 export function logInfo(...args: unknown[]) {
-  const { console } = getIframeConsole();
+  const { console } = getIframeContentWindow();
   console.log(PREFIX, ...args);
-}
-
-export function logTimeSensitiveInfo(...args: unknown[]) {
-  logInfo(`[${new Date().toISOString()}]`, ...args);
 }

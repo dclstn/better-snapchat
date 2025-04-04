@@ -1,7 +1,6 @@
 import EventEmitter from 'eventemitter3';
-import { defaultSettingValues, EventType, eventTypes, SettingId } from './constants';
+import { defaultSettingValues, EventType, SettingId } from './constants';
 import storage from './storage';
-import broadcastChannel from './broadcast-channel';
 
 class Settings {
   settings: Map<string, boolean>;
@@ -14,12 +13,6 @@ class Settings {
     } else {
       this.settings = new Map();
     }
-
-    broadcastChannel.addEventListener('message', ({ data }) => {
-      if (data.type === 'setting:update') {
-        this.setSettings(data.settings);
-      }
-    });
   }
 
   setSetting(key: SettingId, value: any): void {

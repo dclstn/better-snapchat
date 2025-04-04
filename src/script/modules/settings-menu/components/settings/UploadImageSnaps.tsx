@@ -3,7 +3,7 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
 const NAME = 'Upload Image Snaps';
-const DESCRIPTION = 'Uploaded images will be sent as snaps';
+const DESCRIPTION = 'Uploaded images will be sent as snaps.';
 
 function UploadImageSnaps() {
   const [enabled, setEnabled] = useSettingState('UPLOAD_SNAPS');
