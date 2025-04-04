@@ -1,6 +1,5 @@
 import './index.css';
 import patchNavigator from './utils/navigator.js';
-import patchServiceWorker from './utils/service-worker';
 import patchBroadcastChannel from './utils/broadcast-channel';
 import { logInfo } from './lib/debug';
 import patchFetch from './utils/fetch';
@@ -31,7 +30,6 @@ import patchConsole from './utils/console';
     { once: true },
   );
 
-  patchServiceWorker();
   patchConsole();
   patchNavigator();
   patchBroadcastChannel();

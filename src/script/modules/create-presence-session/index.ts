@@ -1,3 +1,4 @@
+import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
 import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 import { getSnapchatStore } from '../../utils/snapchat';
@@ -5,7 +6,8 @@ import { getSnapchatStore } from '../../utils/snapchat';
 let oldCreatePresenceSession: any = null;
 
 function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting('HIDE_BITMOJI');
+  const bitmojiPresence = settings.getSetting('BITMOJI_PRESENCE');
+  const enabled = bitmojiPresence === BitmojiPresence.HIDE;
   if (!storeState.talk?.client) {
     return storeState;
   }
@@ -35,7 +37,7 @@ class CreatePresenceSession {
     const store = getSnapchatStore();
     store.subscribe(handleStoreEffect);
     registerMiddleware(handleStoreEffect);
-    settings.on(`HIDE_BITMOJI.setting:update`, updateSnapchatStore);
+    settings.on(`BITMOJI_PRESENCE.setting:update`, updateSnapchatStore);
   }
 }
 

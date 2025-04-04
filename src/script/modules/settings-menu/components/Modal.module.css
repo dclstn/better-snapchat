@@ -52,3 +52,11 @@
 .logo {
   padding: 0px;
 }
+
+.footerText {
+  margin: 0 0 0 auto;
+}
+
+.emptySettings {
+  margin: 0;
+}

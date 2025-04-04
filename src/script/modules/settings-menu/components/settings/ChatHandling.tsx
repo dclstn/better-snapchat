@@ -3,7 +3,7 @@ import { Radio, Stack } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { ChatHandling } from '../../../../lib/constants';
 
-const NAME = 'Chat Settings';
+const NAME = 'Message Settings';
 
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
