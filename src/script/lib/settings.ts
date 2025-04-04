@@ -22,7 +22,7 @@ class Settings {
     });
   }
 
-  setSetting(key: SettingId, value: boolean): void {
+  setSetting(key: SettingId, value: any): void {
     if (this.settings.get(key) === value) {
       return;
     }

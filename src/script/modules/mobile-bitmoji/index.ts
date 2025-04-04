@@ -1,3 +1,4 @@
+import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
 
 const PRESENCE_TARGET = new Uint8Array([0x70, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x63, 0x65]);
@@ -36,8 +37,8 @@ function hookSlice() {
   Uint8Array.prototype.slice = new Proxy(Uint8Array.prototype.slice, {
     apply: function (target, thisArg: Uint8Array, args: any[]) {
       if (compareUint8Array(thisArg, PRESENCE_TARGET)) {
-        const enabled = settings.getSetting('MOBILE_BITMOJI');
-        if (enabled) {
+        const flag = settings.getSetting('BITMOJI_PRESENCE');
+        if (flag === BitmojiPresence.MOBILE) {
           thisArg = modifyWebSenderPlatform(thisArg);
         }
       }

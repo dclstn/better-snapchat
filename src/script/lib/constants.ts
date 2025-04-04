@@ -1,27 +1,64 @@
+export const SettingIds = {
+  BITMOJI_PRESENCE: 'BITMOJI_PRESENCE',
+  ALLOW_SCREENSHOT: 'ALLOW_SCREENSHOT',
+  SAVE_IMAGE: 'SAVE_IMAGE',
+  ALWAYS_PRESENT: 'ALWAYS_PRESENT',
+  SEND_UNSAVEABLE: 'SEND_UNSAVEABLE',
+  SNAP_AS_MOBILE: 'SNAP_AS_MOBILE',
+  PRIVATE_STORIES: 'PRIVATE_STORIES',
+  UPLOAD_SNAPS: 'UPLOAD_SNAPS',
+  ALLOW_SNAP_VIEWING: 'ALLOW_SNAP_VIEWING',
+  PREVENT_TYPING_NOTIFICATION: 'PREVENT_TYPING_NOTIFICATION',
+  PREVENT_TYPING: 'PREVENT_TYPING',
+  /**
+   * @deprecated Use {@link SettingIds.BITMOJI_PRESENCE} instead.
+   */
+  HIDE_BITMOJI: 'HIDE_BITMOJI',
+  /**
+   * @deprecated Use {@link SettingIds.BITMOJI_PRESENCE} instead.
+   */
+  MOBILE_BITMOJI: 'MOBILE_BITMOJI',
+  AUTO_SAVE_CHATS: 'AUTO_SAVE_CHATS',
+  SHOW_STREAKS: 'SHOW_STREAKS',
+  PREVENT_CHAT_READ_RECEIPTS: 'PREVENT_CHAT_READ_RECEIPTS',
+  UNLIMITED_FILE_SIZE: 'UNLIMITED_FILE_SIZE',
+  ALLOW_CROSS_TAB: 'ALLOW_CROSS_TAB',
+  PREVENT_STORY_READ_RECEIPTS: 'PREVENT_STORY_READ_RECEIPTS',
+  HALF_SWIPE_NOTIFICATION: 'HALF_SWIPE_NOTIFICATION',
+  OPEN_CHAT_NOTIFICATION: 'OPEN_CHAT_NOTIFICATION',
+} as const;
+
+export enum BitmojiPresence {
+  DEFAULT = 'DEFAULT',
+  HIDE = 'HIDE',
+  MOBILE = 'MOBILE',
+}
+
 export const defaultSettingValues = {
-  ALLOW_SCREENSHOT: true,
-  SAVE_IMAGE: true,
-  ALWAYS_PRESENT: true,
-  SEND_UNSAVEABLE: false,
-  SNAP_AS_MOBILE: false,
-  PRIVATE_STORIES: false,
-  UPLOAD_SNAPS: false,
-  ALLOW_SNAP_VIEWING: true,
-  PREVENT_TYPING_NOTIFICATION: false,
-  PREVENT_TYPING: false,
-  HIDE_BITMOJI: false,
-  MOBILE_BITMOJI: false,
-  AUTO_SAVE_CHATS: false,
-  SHOW_STREAKS: true,
-  PREVENT_CHAT_READ_RECEIPTS: false,
-  UNLIMITED_FILE_SIZE: true,
-  ALLOW_CROSS_TAB: true,
-  PREVENT_STORY_READ_RECEIPTS: false,
-  HALF_SWIPE_NOTIFICATION: false,
-  OPEN_CHAT_NOTIFICATION: false,
+  [SettingIds.ALLOW_SCREENSHOT]: true,
+  [SettingIds.SAVE_IMAGE]: true,
+  [SettingIds.ALWAYS_PRESENT]: true,
+  [SettingIds.SEND_UNSAVEABLE]: false,
+  [SettingIds.SNAP_AS_MOBILE]: false,
+  [SettingIds.PRIVATE_STORIES]: false,
+  [SettingIds.UPLOAD_SNAPS]: false,
+  [SettingIds.ALLOW_SNAP_VIEWING]: true,
+  [SettingIds.PREVENT_TYPING_NOTIFICATION]: false,
+  [SettingIds.PREVENT_TYPING]: false,
+  [SettingIds.HIDE_BITMOJI]: false,
+  [SettingIds.MOBILE_BITMOJI]: false,
+  [SettingIds.AUTO_SAVE_CHATS]: false,
+  [SettingIds.SHOW_STREAKS]: true,
+  [SettingIds.PREVENT_CHAT_READ_RECEIPTS]: false,
+  [SettingIds.UNLIMITED_FILE_SIZE]: true,
+  [SettingIds.ALLOW_CROSS_TAB]: true,
+  [SettingIds.PREVENT_STORY_READ_RECEIPTS]: false,
+  [SettingIds.HALF_SWIPE_NOTIFICATION]: false,
+  [SettingIds.OPEN_CHAT_NOTIFICATION]: false,
+  [SettingIds.BITMOJI_PRESENCE]: BitmojiPresence.DEFAULT,
 };
 
-export type SettingId = keyof typeof defaultSettingValues;
+export type SettingId = keyof typeof SettingIds;
 
 export const eventTypes = ['setting:update'] as const;
 
