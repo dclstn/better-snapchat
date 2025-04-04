@@ -13,6 +13,9 @@ const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Appear offline to everyone.';
 
+const MOBILE_NAME = 'Mobile';
+const MOBILE_DESCRIPTION = 'Appear as if you are using the mobile app.';
+
 function BitmojiSettings() {
   const [hideBitmoji, setHideBitmoji] = useSettingState('HIDE_BITMOJI');
   const [mobileBitmoji, setMobileBitmoji] = useSettingState('MOBILE_BITMOJI');
@@ -33,6 +36,13 @@ function BitmojiSettings() {
         onChange={() => handleSettingsChange(null)}
         label={DEFAULT_NAME}
         description={DEFAULT_DESCRIPTION}
+      />
+      <Radio
+        color="indigo"
+        checked={mobileBitmoji}
+        onChange={() => handleSettingsChange('MOBILE_BITMOJI')}
+        label={MOBILE_NAME}
+        description={MOBILE_DESCRIPTION}
       />
       <Radio
         color="indigo"
