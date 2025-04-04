@@ -4,7 +4,7 @@ import { useDisclosure } from '@mantine/hooks';
 import styles from './SettingsMenu.module.css';
 import ThemeProvider from '../../theme/ThemeProvider';
 import SettingsModal from './components/Modal';
-import Logo from './components/icons/Logo';
+import Logo from './components/icons/BetterSnap';
 
 const portalTargetId = 'settings-menu-portal';
 

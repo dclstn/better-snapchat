@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActionIcon, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
 import styles from './Modal.module.css';
-import Logo from './icons/Logo';
+import Logo from './icons/BetterSnap';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import DiscordIcon from './icons/Discord';
 import Fuse from 'fuse.js';

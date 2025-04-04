@@ -21,11 +21,11 @@ function handleStoreEffect(storeState: any) {
   return storeState;
 }
 
-class BroadcastTypingActivity {
+class BitmojiTypingActivity {
   constructor() {
     registerMiddleware(handleStoreEffect);
     settings.on(`PREVENT_TYPING.setting:update`, updateSnapchatStore);
   }
 }
 
-export default new BroadcastTypingActivity();
+export default new BitmojiTypingActivity();

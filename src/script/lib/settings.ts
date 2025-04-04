@@ -32,13 +32,13 @@ class Settings {
     this.eventEmitter.emit('setting:update', key, value);
   }
 
-  getSetting(key: SettingId) {
+  getSetting<T extends SettingId>(key: T): (typeof defaultSettingValues)[T] {
     const value = this.settings.get(key);
     if (value == null) {
       this.setSetting(key, defaultSettingValues[key]);
       return defaultSettingValues[key];
     }
-    return value;
+    return value as (typeof defaultSettingValues)[T];
   }
 
   getSettings() {

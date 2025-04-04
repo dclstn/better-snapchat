@@ -59,7 +59,7 @@ function handleConversationEffect(storeState: any) {
   }
 }
 
-class AutoSaveChats {
+class AutoSaveMessages {
   constructor() {
     this.load();
     settings.on(`AUTO_SAVE_CHATS.setting:update`, this.load);
@@ -78,4 +78,4 @@ class AutoSaveChats {
   }
 }
 
-export default new AutoSaveChats();
+export default new AutoSaveMessages();

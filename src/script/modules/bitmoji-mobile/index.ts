@@ -47,10 +47,10 @@ function hookSlice() {
   });
 }
 
-class Uint8ArraySlice {
+class BitmojiMobile {
   constructor() {
     hookSlice();
   }
 }
 
-export default new Uint8ArraySlice();
+export default new BitmojiMobile();
