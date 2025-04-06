@@ -1,30 +1,43 @@
 import settings from '../../lib/settings';
-import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
+import { getSnapchatStore } from '../../utils/snapchat';
+
+const store = getSnapchatStore();
 
 let oldSendTypingNotification: any = null;
 
-function handleStoreEffect(storeState: any) {
-  const enabled = settings.getSetting('PREVENT_TYPING_NOTIFICATION');
-
-  if (enabled) {
-    if (oldSendTypingNotification == null) {
-      oldSendTypingNotification = storeState.messaging.sendTypingNotification;
-    }
-    storeState.messaging.sendTypingNotification = () => {};
-  }
-
-  if (!enabled && oldSendTypingNotification != null) {
-    storeState.messaging.sendTypingNotification = oldSendTypingNotification;
-    oldSendTypingNotification = null;
-  }
-
-  return storeState;
-}
+const newSendTypingNotification = () => {};
 
 class BitmojiTypingNotification {
   constructor() {
-    registerMiddleware(handleStoreEffect);
-    settings.on(`PREVENT_TYPING_NOTIFICATION.setting:update`, updateSnapchatStore);
+    this.load();
+    store.subscribe((storeState: any) => storeState.messaging, this.load);
+    settings.on('PREVENT_TYPING_NOTIFICATION.setting:update', () => this.load());
+  }
+
+  load(messageClient?: any) {
+    messageClient = messageClient ?? store.getState().messaging;
+    if (messageClient == null) {
+      return;
+    }
+
+    const preventTypingNotificationEnabled = settings.getSetting('PREVENT_TYPING_NOTIFICATION');
+    const changedValues: any = {};
+
+    if (preventTypingNotificationEnabled && messageClient.sendTypingNotification !== newSendTypingNotification) {
+      oldSendTypingNotification = messageClient.sendTypingNotification;
+      changedValues.sendTypingNotification = newSendTypingNotification;
+    }
+
+    if (!preventTypingNotificationEnabled && oldSendTypingNotification != null) {
+      changedValues.sendTypingNotification = oldSendTypingNotification;
+      oldSendTypingNotification = null;
+    }
+
+    if (Object.keys(changedValues).length === 0) {
+      return;
+    }
+
+    store.setState({ messaging: { ...messageClient, ...changedValues } });
   }
 }
 

@@ -20,8 +20,6 @@ import patchConsole from './utils/console';
   document.addEventListener(
     'DOMContentLoaded',
     async () => {
-      const { attachSnapchatStoreListener } = await import('./utils/middleware.js');
-      attachSnapchatStoreListener();
       logInfo('Hooked into Snapchat Store.');
       // @ts-ignore glob-import
       await import('./modules/**/index.ts');

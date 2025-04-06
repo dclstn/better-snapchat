@@ -1,63 +1,89 @@
 import settings from '../../lib/settings';
-import { registerMiddleware, updateSnapchatStore } from '../../utils/middleware';
 import { getSnapchatStore } from '../../utils/snapchat';
 
-let oldGetConversationManager: any = null;
+const store = getSnapchatStore();
 
-function externalMediaToSnapContent(arr: any): any {
+function modifyExternalMediaToSnapContent(arr: any): any {
   arr = arr.slice(2);
   arr[0] = 0x5a;
   return arr;
 }
 
-function handleStoreEffect(storeState: any) {
-  if (!storeState.messaging?.client) {
-    return storeState;
-  }
+let oldGetConversationManager: any = null;
+let newGetConversationManager: any = null;
 
-  if (!oldGetConversationManager) {
-    oldGetConversationManager = storeState.messaging.client.getConversationManager;
-    storeState.messaging.client.getConversationManager = function () {
-      const originalManager = oldGetConversationManager.apply(this, arguments);
-      return new Proxy(originalManager, {
-        get(target, prop, receiver) {
-          if (prop === 'sendMessageWithContent') {
-            return new Proxy(target[prop], {
-              apply(targetFunc, thisArg, args) {
-                const uploadEnabled = settings.getSetting('UPLOAD_SNAPS');
-                if (uploadEnabled) {
-                  const message = args[1];
-                  if (message.contentType === 3) {
-                    message.contentType = 1;
-                    message.savePolicy = 2;
-                    message.platformAnalytics.metricsMessageType = 3;
-                    message.content = externalMediaToSnapContent(message.content);
-                  }
-                }
-                const unsaveEnabled = settings.getSetting('SEND_UNSAVEABLE_MESSAGES');
-                if (unsaveEnabled) {
-                  args[1].savePolicy = 0;
-                }
+function patchSendMessageWithContent(mananger: any) {
+  return new Proxy(mananger, {
+    get(target, prop, receiver) {
+      if (prop !== 'sendMessageWithContent') {
+        return Reflect.get(target, prop, receiver);
+      }
 
-                return Reflect.apply(targetFunc, thisArg, args);
-              },
-            });
+      return new Proxy(target[prop], {
+        apply(targetFunc, thisArg, args) {
+          const [, message] = args;
+
+          if (settings.getSetting('UPLOAD_SNAPS') && message.contentType === 3) {
+            message.contentType = 1;
+            message.savePolicy = 2;
+            message.platformAnalytics.metricsMessageType = 3;
+            message.content = modifyExternalMediaToSnapContent(message.content);
           }
-          return Reflect.get(target, prop, receiver);
+
+          if (settings.getSetting('SEND_UNSAVEABLE_MESSAGES')) {
+            message.savePolicy = 0;
+          }
+
+          return Reflect.apply(targetFunc, thisArg, args);
         },
       });
-    };
-  }
-
-  return storeState;
+    },
+  });
 }
-
 class MessageContent {
   constructor() {
-    const store = getSnapchatStore();
-    store.subscribe(handleStoreEffect);
-    registerMiddleware(handleStoreEffect);
-    settings.on(`SEND_UNSAVEABLE_MESSAGES.setting:update`, updateSnapchatStore);
+    this.load();
+    store.subscribe((storeState: any) => storeState.messaging.getConversationManager, this.load.bind(this));
+    settings.on('UPLOAD_SNAPS.setting:update', () => this.load());
+    settings.on('SEND_UNSAVEABLE_MESSAGES.setting:update', () => this.load());
+  }
+
+  load() {
+    const messagingClient = store.getState().messaging;
+    if (messagingClient?.client == null) {
+      return;
+    }
+
+    const uploadSnapsEnabled = settings.getSetting('UPLOAD_SNAPS');
+    const sendUnsaveableMessagesEnabled = settings.getSetting('SEND_UNSAVEABLE_MESSAGES');
+    const enabled = uploadSnapsEnabled || sendUnsaveableMessagesEnabled;
+
+    const changedValues: any = {};
+
+    if (!enabled && oldGetConversationManager != null) {
+      changedValues.getConversationManager = oldGetConversationManager;
+      oldGetConversationManager = null;
+      newGetConversationManager = null;
+    }
+
+    if (enabled && messagingClient.client.getConversationManager !== newGetConversationManager) {
+      oldGetConversationManager = messagingClient.client.getConversationManager;
+
+      newGetConversationManager = new Proxy(oldGetConversationManager, {
+        apply: (targetFunc, thisArg, args) => {
+          const conversationManager = Reflect.apply(targetFunc, thisArg, args);
+          return patchSendMessageWithContent(conversationManager);
+        },
+      });
+
+      changedValues.getConversationManager = newGetConversationManager;
+    }
+
+    if (Object.keys(changedValues).length === 0) {
+      return;
+    }
+
+    store.setState({ messaging: { ...messagingClient, client: { ...messagingClient.client, ...changedValues } } });
   }
 }
 

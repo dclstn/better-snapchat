@@ -49,7 +49,7 @@ export const defaultSettingValues = {
   [SettingIds.SNAP_AS_MOBILE]: false,
   [SettingIds.PRIVATE_STORIES]: false,
   [SettingIds.UPLOAD_SNAPS]: false,
-  [SettingIds.ALLOW_SNAP_VIEWING]: true,
+  [SettingIds.ALLOW_SNAP_VIEWING]: false,
   [SettingIds.PREVENT_TYPING_NOTIFICATION]: false,
   [SettingIds.PREVENT_TYPING]: false,
   [SettingIds.HIDE_BITMOJI]: false,

@@ -15,15 +15,18 @@ class MediaSaving {
 
   load() {
     const enabled = settings.getSetting('SAVE_IMAGE');
-    document.body.classList.toggle(styles.saveImage, enabled);
+
     if (!attached && enabled) {
       attached = true;
       window.addEventListener('contextmenu', preventContextMenu, true);
     }
+
     if (attached && !enabled) {
       attached = false;
       window.removeEventListener('contextmenu', preventContextMenu, true);
     }
+
+    document.body.classList.toggle(styles.saveImage, enabled);
   }
 }
 
