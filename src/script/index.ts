@@ -15,7 +15,12 @@ import { logInfo } from './lib/debug';
 
   // @ts-ignore glob import
   import('./patches/*.ts');
-  logInfo('Patches loaded');
-  // @ts-ignore glob import
-  document.addEventListener('DOMContentLoaded', () => import('./modules/**/index.ts'), { once: true });
+
+  if (document.readyState === 'complete') {
+    // @ts-ignore glob import
+    import('./modules/**/index.ts');
+  } else {
+    // @ts-ignore glob import
+    document.addEventListener('DOMContentLoaded', () => import('./modules/**/index.ts'), { once: true });
+  }
 })();

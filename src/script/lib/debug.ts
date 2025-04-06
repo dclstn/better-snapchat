@@ -18,3 +18,8 @@ export function logInfo(...args: unknown[]) {
   const { console } = getIframeContentWindow();
   console.log(PREFIX, ...args);
 }
+
+export function logError(...args: unknown[]) {
+  const { console } = getIframeContentWindow();
+  console.error(PREFIX, ...args);
+}

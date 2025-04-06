@@ -1,32 +1,40 @@
-function patchUserMediaPermissions() {
-  if (
-    !('permissions' in navigator) ||
-    typeof navigator.permissions.query !== 'function' ||
-    !navigator.userAgent.toLowerCase().includes('firefox')
-  ) {
-    return;
+import Patch from '../lib/patch';
+
+class UserMediaPermissions extends Patch {
+  constructor() {
+    super('UserMediaPermissions');
   }
 
-  navigator.getUserMedia = navigator.getUserMedia ?? navigator.webkitGetUserMedia ?? navigator.mozGetUserMedia;
-  function userMediaPromise() {
-    return new Promise((resolve) => {
-      navigator.getUserMedia(
-        { audio: true, video: true },
-        () => resolve({ state: 'granted' }),
-        () => resolve({ state: 'denied' }),
-      );
+  patch() {
+    if (
+      !('permissions' in navigator) ||
+      typeof navigator.permissions.query !== 'function' ||
+      !navigator.userAgent.toLowerCase().includes('firefox')
+    ) {
+      return;
+    }
+
+    navigator.getUserMedia = navigator.getUserMedia ?? navigator.webkitGetUserMedia ?? navigator.mozGetUserMedia;
+    function userMediaPromise() {
+      return new Promise((resolve) => {
+        navigator.getUserMedia(
+          { audio: true, video: true },
+          () => resolve({ state: 'granted' }),
+          () => resolve({ state: 'denied' }),
+        );
+      });
+    }
+
+    navigator.permissions.query = new Proxy(navigator.permissions.query, {
+      apply: async (target, thisArg, args) => {
+        const [permission] = args;
+        if (permission.name === 'camera' || permission.name === 'microphone') {
+          return userMediaPromise();
+        }
+        return target.apply(thisArg, args as any);
+      },
     });
   }
-
-  navigator.permissions.query = new Proxy(navigator.permissions.query, {
-    apply: async (target, thisArg, args) => {
-      const [permission] = args;
-      if (permission.name === 'camera' || permission.name === 'microphone') {
-        return userMediaPromise();
-      }
-      return target.apply(thisArg, args as any);
-    },
-  });
 }
 
-patchUserMediaPermissions();
+export default new UserMediaPermissions();

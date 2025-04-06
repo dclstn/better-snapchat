@@ -1,8 +1,9 @@
+import Patch from '../lib/patch';
 import settings from '../lib/settings';
 
 const CROSS_TAB_BROADCAST_CHANNEL = 'cross_tab';
 
-class BroadcastChannel extends window.BroadcastChannel {
+class PatchedBroadcastChannel extends window.BroadcastChannel {
   addEventListener(type: string, listener: EventListener) {
     return super.addEventListener(type, (event) => {
       if (
@@ -17,4 +18,14 @@ class BroadcastChannel extends window.BroadcastChannel {
   }
 }
 
-window.BroadcastChannel = BroadcastChannel;
+class CrossTabBroadcastChannel extends Patch {
+  constructor() {
+    super('CrossTabBroadcastChannel');
+  }
+
+  patch() {
+    window.BroadcastChannel = PatchedBroadcastChannel;
+  }
+}
+
+export default new CrossTabBroadcastChannel();
