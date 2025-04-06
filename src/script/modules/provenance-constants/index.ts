@@ -1,10 +1,11 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getProvConsts } from '../../utils/snapchat';
 
 let oldWebAppConst: any = null;
-class ProvenanceConstants {
+class ProvenanceConstants extends Module {
   constructor() {
-    this.load();
+    super('ProvenanceConstants');
     settings.on(`SNAP_AS_MOBILE.setting:update`, this.load);
   }
 

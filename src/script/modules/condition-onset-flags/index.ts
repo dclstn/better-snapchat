@@ -1,4 +1,5 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getCofStore } from '../../utils/snapchat';
 
 enum CofKeys {
@@ -12,9 +13,9 @@ const store = getCofStore();
 let oldGetClientCofValue: any = null;
 let newGetClientCofValue: any = null;
 
-class ConditionOnsetFlags {
+class ConditionOnsetFlags extends Module {
   constructor() {
-    this.load();
+    super('ConditionOnsetFlags');
     store.subscribe(({ getClientCofValue }: any) => getClientCofValue, this.load.bind(this));
     settings.on('SNAP_AS_MOBILE.setting:update', this.load.bind(this));
     settings.on('PRIVATE_STORIES.setting:update', this.load.bind(this));

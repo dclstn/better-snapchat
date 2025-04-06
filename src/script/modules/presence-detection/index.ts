@@ -1,4 +1,5 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 let oldSetAwayState: any = null;
@@ -11,9 +12,9 @@ const newBroadcastTypingActivity = () => {};
 
 const store = getSnapchatStore();
 
-class PresenceDetection {
+class PresenceDetection extends Module {
   constructor() {
-    this.load();
+    super('PresenceDetection');
     store.subscribe((storeState: any) => storeState.presence, this.load);
     settings.on('ALWAYS_PRESENT.setting:update', () => this.load());
     settings.on('ALLOW_SCREENSHOT.setting:update', () => this.load());

@@ -1,6 +1,7 @@
 import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
 import { compareUint8Array } from '../../utils/array';
+import Module from '../../utils/module';
 
 let oldUint8ArraySlice: any = null;
 
@@ -16,9 +17,9 @@ function modifyWebSenderPlatformToMobile(arr: any): any {
   return arr;
 }
 
-class BitmojiMobile {
+class BitmojiMobile extends Module {
   constructor() {
-    this.load();
+    super('BitmojiMobile');
     settings.on('BITMOJI_PRESENCE.setting:update', this.load);
   }
 
@@ -26,24 +27,23 @@ class BitmojiMobile {
     const flag = settings.getSetting('BITMOJI_PRESENCE');
     const enabled = flag === BitmojiPresence.MOBILE;
 
-    if (!enabled) {
-      if (oldUint8ArraySlice != null) {
-        Uint8Array.prototype.slice = oldUint8ArraySlice;
-        oldUint8ArraySlice = null;
-      }
+    if (enabled && oldUint8ArraySlice == null) {
+      oldUint8ArraySlice = Uint8Array.prototype.slice;
 
-      return;
+      Uint8Array.prototype.slice = new Proxy(oldUint8ArraySlice, {
+        apply: function (target, thisArg: Uint8Array, args: any[]) {
+          if (compareUint8Array(thisArg, PRESENCE_TARGET)) {
+            thisArg = modifyWebSenderPlatformToMobile(thisArg);
+          }
+          return Reflect.apply(target, thisArg, args);
+        },
+      });
     }
 
-    oldUint8ArraySlice = Uint8Array.prototype.slice;
-    Uint8Array.prototype.slice = new Proxy(oldUint8ArraySlice, {
-      apply: function (target, thisArg: Uint8Array, args: any[]) {
-        if (compareUint8Array(thisArg, PRESENCE_TARGET)) {
-          thisArg = modifyWebSenderPlatformToMobile(thisArg);
-        }
-        return Reflect.apply(target, thisArg, args);
-      },
-    });
+    if (!enabled && oldUint8ArraySlice != null) {
+      Uint8Array.prototype.slice = oldUint8ArraySlice;
+      oldUint8ArraySlice = null;
+    }
   }
 }
 

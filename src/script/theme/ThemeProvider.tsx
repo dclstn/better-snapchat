@@ -2,7 +2,6 @@ import React from 'react';
 import { createTheme, InputWrapper, MantineProvider, Radio, Switch } from '@mantine/core';
 import { getSnapchatStore } from '../utils/snapchat';
 import styles from './ThemeProvider.module.css';
-import radioStyles from './Radio.module.css';
 import switchStyles from './Switch.module.css';
 import inputWrapperStyles from './InputWrapper.module.css';
 
@@ -16,10 +15,7 @@ const mantineTheme = createTheme({
   primaryColor: 'indigo',
   cursorType: 'pointer',
   components: {
-    Radio: Radio.extend({
-      defaultProps: { size: 'md' },
-      classNames: { body: radioStyles.body },
-    }),
+    Radio: Radio.extend({ defaultProps: { size: 'md' } }),
     Switch: Switch.extend({
       defaultProps: { size: 'md' },
       classNames: { body: switchStyles.body, track: switchStyles.track, trackLabel: switchStyles.track },

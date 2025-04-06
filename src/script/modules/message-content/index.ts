@@ -1,4 +1,5 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 const store = getSnapchatStore();
@@ -40,9 +41,9 @@ function patchSendMessageWithContent(mananger: any) {
     },
   });
 }
-class MessageContent {
+class MessageContent extends Module {
   constructor() {
-    this.load();
+    super('MessageContent');
     store.subscribe((storeState: any) => storeState.messaging.getConversationManager, this.load.bind(this));
     settings.on('UPLOAD_SNAPS.setting:update', () => this.load());
     settings.on('SEND_UNSAVEABLE_MESSAGES.setting:update', () => this.load());

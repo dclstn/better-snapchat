@@ -19,12 +19,8 @@ import patchConsole from './utils/console';
 
   document.addEventListener(
     'DOMContentLoaded',
-    async () => {
-      logInfo('Hooked into Snapchat Store.');
-      // @ts-ignore glob-import
-      await import('./modules/**/index.ts');
-      logInfo('Successfully loaded all modules.');
-    },
+    // @ts-ignore
+    () => import('./modules/**/index.ts'),
     { once: true },
   );
 

@@ -1,4 +1,5 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 const store = getSnapchatStore();
@@ -7,9 +8,9 @@ let oldSendTypingNotification: any = null;
 
 const newSendTypingNotification = () => {};
 
-class BitmojiTypingNotification {
+class BitmojiTypingNotification extends Module {
   constructor() {
-    this.load();
+    super('BitmojiTypingNotification');
     store.subscribe((storeState: any) => storeState.messaging, this.load);
     settings.on('PREVENT_TYPING_NOTIFICATION.setting:update', () => this.load());
   }

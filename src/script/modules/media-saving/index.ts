@@ -1,4 +1,5 @@
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import styles from './index.module.css';
 
 let attached = false;
@@ -7,9 +8,9 @@ function preventContextMenu(event: MouseEvent) {
   event.stopImmediatePropagation();
 }
 
-class MediaSaving {
+class MediaSaving extends Module {
   constructor() {
-    this.load();
+    super('MediaSaving');
     settings.on(`SAVE_IMAGE.setting:update`, this.load);
   }
 

@@ -3,6 +3,7 @@ import throttle from 'lodash.throttle';
 import settings from '../../lib/settings';
 import { ChatHandling, SnapchatUpdateMessagePayload } from '../../lib/constants';
 import { getSnapchatStore } from '../../utils/snapchat';
+import Module from '../../utils/module';
 
 const THROTTLE_TIME = 500;
 
@@ -22,9 +23,9 @@ const throttledSaveMessage = throttle(
   { leading: false, trailing: true },
 );
 
-class AutoSaveMessages {
+class AutoSaveMessages extends Module {
   constructor() {
-    this.load();
+    super('AutoSaveMessages');
     settings.on(`CHAT_HANDLING.setting:update`, this.load.bind(this));
   }
 

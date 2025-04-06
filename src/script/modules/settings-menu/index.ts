@@ -1,12 +1,17 @@
 import { render, h } from 'preact';
 import App from './SettingsMenu';
+import Module from '../../utils/module';
 
 const APP_CONTAINER_ID = 'better-snap-app';
 
 let appContainer: HTMLDivElement | null = null;
 
-class SettingsMenu {
+class SettingsMenu extends Module {
   constructor() {
+    super('SettingsMenu');
+  }
+
+  load(): void {
     if (document.getElementById(APP_CONTAINER_ID) != null) {
       return;
     }

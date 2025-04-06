@@ -1,5 +1,6 @@
 import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
+import Module from '../../utils/module';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 const store = getSnapchatStore();
@@ -7,9 +8,9 @@ const store = getSnapchatStore();
 let oldCreatePresenceSession: any = null;
 let newCreatePresenceSession: any = null;
 
-class BitmojiHide {
+class BitmojiHide extends Module {
   constructor() {
-    this.load();
+    super('BitmojiHide');
     store.subscribe((storeState: any) => storeState.talk, this.load.bind(this));
     settings.on(`BITMOJI_PRESENCE.setting:update`, () => this.load());
   }
