@@ -23,6 +23,7 @@ class BitmojiHide extends Module {
 
     const bitmojiPresence = settings.getSetting('BITMOJI_PRESENCE');
     const enabled = bitmojiPresence === BitmojiPresence.HIDE;
+    const changedValues: any = {};
 
     if (enabled && talkClient.client.createPresenceSession !== newCreatePresenceSession) {
       oldCreatePresenceSession = talkClient.client.createPresenceSession;
@@ -35,13 +36,20 @@ class BitmojiHide extends Module {
         },
       });
 
-      talkClient.client.createPresenceSession = newCreatePresenceSession;
+      changedValues.createPresenceSession = newCreatePresenceSession;
     }
 
     if (!enabled && oldCreatePresenceSession != null) {
-      talkClient.client.createPresenceSession = oldCreatePresenceSession;
+      changedValues.createPresenceSession = oldCreatePresenceSession;
       oldCreatePresenceSession = null;
+      newCreatePresenceSession = null;
     }
+
+    if (Object.keys(changedValues).length === 0) {
+      return;
+    }
+
+    store.setState({ talk: { ...talkClient, client: { ...talkClient.client, ...changedValues } } });
   }
 }
 
