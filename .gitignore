@@ -7,3 +7,4 @@ public/manifest.json
 *.zip
 
 .env
+.DS_Store
