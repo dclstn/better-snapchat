@@ -41,6 +41,7 @@ function patchSendMessageWithContent(mananger: any) {
     },
   });
 }
+
 class MessageContent extends Module {
   constructor() {
     super('MessageContent');
