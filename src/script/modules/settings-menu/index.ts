@@ -1,6 +1,6 @@
 import { render, h } from 'preact';
 import App from './SettingsMenu';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 
 const APP_CONTAINER_ID = 'better-snap-app';
 

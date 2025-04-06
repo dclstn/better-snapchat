@@ -1,7 +1,7 @@
 import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
 import { compareUint8Array } from '../../utils/array';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 
 let oldUint8ArraySlice: any = null;
 

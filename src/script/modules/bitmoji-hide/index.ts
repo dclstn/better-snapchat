@@ -1,6 +1,6 @@
 import { BitmojiPresence } from '../../lib/constants';
 import settings from '../../lib/settings';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 import { getSnapchatStore } from '../../utils/snapchat';
 
 const store = getSnapchatStore();

@@ -6,6 +6,7 @@ export function getIframeContentWindow() {
   if (iframeContentWindow != null) {
     return iframeContentWindow;
   }
+
   const iframe = document.createElement('iframe');
   iframe.style.display = 'none';
   (document.head ?? document.documentElement).appendChild(iframe);

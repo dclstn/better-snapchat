@@ -1,5 +1,5 @@
 import settings from '../../lib/settings';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 import styles from './index.module.css';
 
 let attached = false;

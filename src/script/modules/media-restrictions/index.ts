@@ -1,5 +1,5 @@
 import settings from '../../lib/settings';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 
 let oldFilePrototype: any = null;
 class MediaRestrictions extends Module {

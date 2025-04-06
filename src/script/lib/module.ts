@@ -1,4 +1,4 @@
-import { logInfo } from '../lib/debug';
+import { logInfo } from './debug';
 
 export default class Module {
   name: string;

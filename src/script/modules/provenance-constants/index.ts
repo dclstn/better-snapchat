@@ -1,5 +1,5 @@
 import settings from '../../lib/settings';
-import Module from '../../utils/module';
+import Module from '../../lib/module';
 import { getProvConsts } from '../../utils/snapchat';
 
 let oldWebAppConst: any = null;
