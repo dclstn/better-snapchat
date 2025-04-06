@@ -18,8 +18,14 @@ export const SettingIds = {
    * @deprecated Use {@link SettingIds.BITMOJI_PRESENCE} instead.
    */
   MOBILE_BITMOJI: 'MOBILE_BITMOJI',
+  /**
+   * @deprecated Use {@link SettingIds.CHAT_HANDLING} instead.
+   */
   AUTO_SAVE_CHATS: 'AUTO_SAVE_CHATS',
   SHOW_STREAKS: 'SHOW_STREAKS',
+  /**
+   * @deprecated Use {@link SettingIds.CHAT_HANDLING} instead.
+   */
   PREVENT_CHAT_READ_RECEIPTS: 'PREVENT_CHAT_READ_RECEIPTS',
   UNLIMITED_FILE_SIZE: 'UNLIMITED_FILE_SIZE',
   ALLOW_CROSS_TAB: 'ALLOW_CROSS_TAB',
