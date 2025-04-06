@@ -15,13 +15,13 @@ class ProvenanceConstants {
       const provConsts = getProvConsts();
       oldWebAppConst = provConsts.SNAPCHAT_WEB_APP;
       provConsts.SNAPCHAT_WEB_APP = 0;
-      provConsts[0] = "SNAPCHAT_WEB_APP";
+      provConsts[0] = 'SNAPCHAT_WEB_APP';
     }
 
     if (!enabled && oldWebAppConst != null) {
       const provConsts = getProvConsts();
       provConsts.SNAPCHAT_WEB_APP = oldWebAppConst;
-      provConsts[oldWebAppConst] = "SNAPCHAT_WEB_APP";
+      provConsts[oldWebAppConst] = 'SNAPCHAT_WEB_APP';
       oldWebAppConst = null;
     }
   }

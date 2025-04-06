@@ -94,11 +94,12 @@ export function getProvConsts() {
   }
 
   const module = webpackRequire(someModuleId) as Record<string, any>;
-  const provConsts = Object.values(module).find((value) => value.SNAPCHAT_WEB_APP != null && value.SNAPCHAT_WEB_APP != null);
+  const provConsts = Object.values(module).find(
+    (value) => value.SNAPCHAT_WEB_APP != null && value.SNAPCHAT_WEB_APP != null,
+  );
 
   return provConsts;
 }
-
 
 export function getMediaContentProto() {
   const webpackRequire = getSnapchatWebpackRequire();
