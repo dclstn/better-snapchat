@@ -3,7 +3,7 @@ import { Radio, Stack } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { BitmojiPresence } from '../../../../lib/constants';
 
-const NAME = 'Presence Settings';
+const NAME = 'Bitmoji Presence';
 
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
@@ -12,7 +12,7 @@ const HIDE_NAME = 'Invisible';
 const HIDE_DESCRIPTION = 'Hide your bitmoji from chat.';
 
 const MOBILE_NAME = 'Mobile';
-const MOBILE_DESCRIPTION = 'Appear as if you are using the mobile app.';
+const MOBILE_DESCRIPTION = 'Appear as if you are on mobile.';
 
 function BitmojiSettings() {
   const [bitmojiPresence, setBitmojiPresence] = useSettingState('BITMOJI_PRESENCE');

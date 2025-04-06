@@ -2,7 +2,7 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Allow Multiple-Tabs';
+const NAME = 'Multiple Snapchat Tabs';
 const DESCRIPTION = 'Allow multiple tabs of Snapchat to be open at once.';
 
 function CrossTab() {

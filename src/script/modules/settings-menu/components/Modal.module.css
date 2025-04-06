@@ -60,3 +60,8 @@
 .emptySettings {
   margin: 0;
 }
+
+.resetButton {
+  margin: 0;
+  text-align: left;
+}

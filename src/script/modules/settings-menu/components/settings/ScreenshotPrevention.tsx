@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Allow Screenshots';
-const DESCRIPTION = "Disable snapchat's screenshot prevention.";
+const NAME = 'Screenshots';
+const DESCRIPTION = "Enable to bypass Snapchat's screenshot detection.";
 
 function AllowScreenshot() {
   const [enabled, setEnabled] = useSettingState('ALLOW_SCREENSHOT');

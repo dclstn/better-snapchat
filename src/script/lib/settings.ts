@@ -38,7 +38,7 @@ class Settings {
     return Object.fromEntries(this.settings);
   }
 
-  setSettings(settings: Record<string, boolean>) {
+  setSettings(settings: Record<string, any>) {
     for (const [key, value] of Object.entries(settings)) {
       this.setSetting(key as SettingId, value);
     }

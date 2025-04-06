@@ -3,13 +3,13 @@ import { Radio, Stack } from '@mantine/core';
 import useSettingState from '../../../../hooks/useSettingState';
 import { ChatHandling } from '../../../../lib/constants';
 
-const NAME = 'Message Settings';
+const NAME = 'Message Handling';
 
 const DEFAULT_NAME = 'Default';
 const DEFAULT_DESCRIPTION = 'Do what Snapchat normally does.';
 
 const AUTO_SAVE_NAME = 'Auto-Save Messages';
-const AUTO_SAVE_DESCRIPTION = 'Automatically save messages to your history.';
+const AUTO_SAVE_DESCRIPTION = 'Automatically save all messages to your history.';
 
 const NO_READ_RECEIPTS_NAME = 'Unread';
 const NO_READ_RECEIPTS_DESCRIPTION = 'Prevent others from knowing you read their message.';

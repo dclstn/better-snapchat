@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
+import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
 import styles from './Modal.module.css';
 import Logo from './icons/BetterSnap';
 import { IconSearch, IconX } from '@tabler/icons-react';
@@ -8,7 +8,8 @@ import Fuse from 'fuse.js';
 import { type SettingModule } from '../../../../types/client';
 // @ts-ignore glob-import
 import * as migrations from './settings/*.tsx';
-import { ExternalUrls } from '../../../lib/constants';
+import { defaultSettingValues, ExternalUrls } from '../../../lib/constants';
+import settingsManager from '../../../lib/settings';
 
 const { default: settingsDefault } = migrations;
 const settings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
@@ -33,6 +34,15 @@ function ModalSettings({ search }: { search: string }) {
         const settingId = Array.isArray(setting.name) ? setting.name.join('-') : setting.name;
         return <SettingComponent key={settingId} />;
       })}
+      {search.length === 0 ? (
+        <Anchor
+          className={styles.resetButton}
+          component="button"
+          onClick={() => settingsManager.setSettings(defaultSettingValues)}
+        >
+          Reset Settings
+        </Anchor>
+      ) : null}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Started Typing Animation';
+const NAME = 'Actively Typing Animation';
 const DESCRIPTION = 'Let others know when you are typing.';
 
 function TypingAnimation() {

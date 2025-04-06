@@ -2,7 +2,7 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Upload Image Snaps';
+const NAME = 'Upload Images as Snaps';
 const DESCRIPTION = 'Uploaded images will be sent as snaps.';
 
 function UploadImageSnaps() {

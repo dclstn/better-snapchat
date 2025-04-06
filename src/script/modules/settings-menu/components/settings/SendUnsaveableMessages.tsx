@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Unsaveable Messages';
-const DESCRIPTION = 'Chats and snaps will be sent as unsaveable.';
+const NAME = 'Send Messages as Unsaveable';
+const DESCRIPTION = 'Chats and Snaps will be sent as unsaveable.';
 
 function UnsaveableSnaps() {
   const [enabled, setEnabled] = useSettingState('SEND_UNSAVEABLE_MESSAGES');
