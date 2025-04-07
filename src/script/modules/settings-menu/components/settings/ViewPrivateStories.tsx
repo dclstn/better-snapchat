@@ -3,7 +3,7 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
 const NAME = 'Private Stories';
-const DESCRIPTION = 'Enable ability to view private stories.';
+const DESCRIPTION = 'Interact with private stories on web.';
 
 function ViewPrivateStories() {
   const [enabled, setEnabled] = useSettingState('PRIVATE_STORIES');

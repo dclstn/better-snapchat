@@ -2,8 +2,8 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Unlimited File Upload Size';
-const DESCRIPTION = 'Enable sending files of any size.';
+const NAME = 'Unrestricted File Upload Size';
+const DESCRIPTION = 'Enable sending media of any size.';
 
 function UnlimitedFileSize() {
   const [enabled, setEnabled] = useSettingState('UNLIMITED_FILE_SIZE');
