@@ -48,7 +48,7 @@
     "@types/react-dom": "^18.3.1",
     "@types/ua-parser-js": "^0.7.39",
     "@types/ws": "^8.5.13",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
     "addons-linter": "^7.9.0",
     "chokidar": "^4.0.3",
     "dotenv": "^16.4.7",
