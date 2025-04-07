@@ -2,7 +2,7 @@ import React from 'react';
 import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
-const NAME = 'Unrestricted File Upload Size';
+const NAME = 'Unrestricted Files';
 const DESCRIPTION = 'Enable sending media of any size.';
 
 function UnlimitedFileSize() {

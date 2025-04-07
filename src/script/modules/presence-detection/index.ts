@@ -1,6 +1,7 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
 import { getSnapchatStore } from '../../utils/snapchat';
+import { logInfo } from '../../lib/debug';
 
 let oldSetAwayState: any = null;
 let oldSetScreenshotDetected: any = null;
@@ -36,6 +37,7 @@ class PresenceDetection extends Module {
     if (alwaysPresentEnabled && presenceClient.setAwayState !== newSetAwayState) {
       oldSetAwayState = presenceClient.setAwayState;
       changedValues.setAwayState = newSetAwayState;
+      changedValues.awayState = 0;
     }
 
     if (!alwaysPresentEnabled && oldSetAwayState != null) {
@@ -46,6 +48,7 @@ class PresenceDetection extends Module {
     if (allowScreenshotEnabled && presenceClient.setScreenshotDetected !== newSetScreenshotDetected) {
       oldSetScreenshotDetected = presenceClient.setScreenshotDetected;
       changedValues.setScreenshotDetected = newSetScreenshotDetected;
+      changedValues.screenshotDetected = false;
     }
 
     if (!allowScreenshotEnabled && oldSetScreenshotDetected != null) {
