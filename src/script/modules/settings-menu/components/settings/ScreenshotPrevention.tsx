@@ -3,7 +3,7 @@ import useSettingState from '../../../../hooks/useSettingState';
 import { Switch } from '@mantine/core';
 
 const NAME = 'Screenshots';
-const DESCRIPTION = "Enable to bypass Snapchat's screenshot detection.";
+const DESCRIPTION = "Bypass Snapchat's screenshot detection.";
 
 function AllowScreenshot() {
   const [enabled, setEnabled] = useSettingState('ALLOW_SCREENSHOT');
