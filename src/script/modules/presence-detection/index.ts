@@ -1,7 +1,6 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
 import { getSnapchatStore } from '../../utils/snapchat';
-import { logInfo } from '../../lib/debug';
 
 let oldSetAwayState: any = null;
 let oldSetScreenshotDetected: any = null;

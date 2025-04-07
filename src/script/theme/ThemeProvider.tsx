@@ -4,7 +4,6 @@ import { getSnapchatStore } from '../utils/snapchat';
 import styles from './ThemeProvider.module.css';
 import switchStyles from './Switch.module.css';
 import inputWrapperStyles from './InputWrapper.module.css';
-import { logInfo } from '../lib/debug';
 
 const store = getSnapchatStore();
 
@@ -29,8 +28,6 @@ const mantineTheme = createTheme({
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = React.useState();
-
-  logInfo('ThemeProvider', theme);
 
   React.useEffect(() => {
     function updateTheme() {
