@@ -7,7 +7,6 @@
 Screenshot & Always Present, Auto-Save Chats, and more! Previously known as Better Snapchat.
 
 - 👤 **Always Present** – Bypass Snapchat's presence detection.
-- 🕵️‍♂️ **Bitmoji Presence** – Appear as mobile or hide your Bitmoji from chat.
 - 📱 **Mobile** – Appear as if you are on mobile.
 - 👻 **Invisible** – Hide your Bitmoji from chat.
 - 💾 **Auto-Save Messages** – Automatically save all messages to your history.
