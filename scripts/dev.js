@@ -57,7 +57,7 @@ const PING_INTERVAL = 60e3;
   const hmrPort = process.env.HMR_PORT ?? 8080;
   const websocket = new WebSocketServer({ port: hmrPort });
 
-  chokidar.watch('./src').on('change', async (filePath) => {
+  chokidar.watch('./src/script').on('change', async (filePath) => {
     console.log('File changed:', filePath);
     console.log('Esbuild: Rebuilding...');
     await buildExtension();
