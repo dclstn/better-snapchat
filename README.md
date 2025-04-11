@@ -6,10 +6,21 @@
 
 Screenshot & Always Present, Auto-Save Chats, and more! Previously known as Better Snapchat.
 
-- 📸 **Allow Screenshots** - Freely take screenshots of chats / stories!
-- 👤 **Always Present** - Disable Snapchat's presence detection!
-- 💾 **Right-Click Save** - Silently right-click save images / videos from chat!
-- 💬 **Auto-Save Chats** - Automatically save chats when they're sent / received!
+- 👤 **Always Present** – Bypass Snapchat's presence detection.
+- 🕵️‍♂️ **Bitmoji Presence** – Appear as mobile or hide your Bitmoji from chat.
+- 📱 **Mobile** – Appear as if you are on mobile.
+- 👻 **Invisible** – Hide your Bitmoji from chat.
+- 💾 **Auto-Save Messages** – Automatically save all messages to your history.
+- 🗂️ **Multiple Snapchat Tabs** – Allow multiple tabs of Snapchat to be open at once.
+- 💾 **Media Saving** – Enable right-click saving of images and videos.
+- 📸 **Screenshots** – Bypass Snapchat's screenshot detection.
+- 📤 **Send Snaps as Mobile** – Snaps sent will appear sent from mobile.
+- 🚫 **Send Messages as Unsaveable** – Chats and snaps will be sent as unsaveable.
+- ⌨️ **Actively Typing Animation** – Let others know when you are typing.
+- 🔔 **Started Typing Notification** – Let others know when you are typing by push-notification.
+- 📂 **Unrestricted Files** – Enable sending media of any size.
+- 📸 **Upload Images as Snaps** – Uploaded images will be sent as snaps.
+- 🔒 **Private Stories** – Interact with private stories on web.
 
 ✨ And more!
 
@@ -26,6 +37,17 @@ You can install **BetterSnap** via the [Firefox Addon Store](https://addons.mozi
 ### Other Browsers
 
 You can install **BetterSnap** via the [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/).
+
+## How to Contribute
+
+1. Clone or fork the respository `git@github.com:dclstn/better-snapchat.git`.
+2. Install dependencies, typically by `npm install` in the root of the directory.
+3. Run `npm start` to run the development server.
+4. Navigate to `chrome://extensions/` and enable developer-mode (top-right).
+6. Click `Load Unpacked` and add `/public` from your cloned repository.
+7. Finally, navigate to `https://www.snapchat.com/web` and any changes you make to `/src/script` will be reflected there.
+
+> Disable any other instances of BetterSnap you may have running.
 
 ## Other stuff
 
