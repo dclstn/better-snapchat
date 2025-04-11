@@ -17,7 +17,7 @@ const manifest = {
   version: package.version,
   icons: { 32: 'logo32.png', 48: 'logo48.png', 96: 'logo96.png', 128: 'logo128.png' },
   host_permissions: ['https://*.snapchat.com/*'],
-  background: { service_worker: './build/hmr.js' },
+  background: { service_worker: './build/hot-reload.js' },
   permissions: ['webNavigation', 'scripting', 'tabs', 'activeTab'],
   web_accessible_resources: [{ resources: ['./build/*'], matches: ['https://*.snapchat.com/*'] }],
 };
@@ -25,7 +25,7 @@ const manifest = {
 async function buildExtension() {
   await Promise.all([
     ESBuild.build({
-      entryPoints: ['./src/script', './src/hmr'],
+      entryPoints: ['./src/script', './src/hot-reload'],
       bundle: true,
       minify: false,
       sourcemap: true,
@@ -50,24 +50,34 @@ async function buildExtension() {
   ]);
 }
 
+const PING_PAYLOAD = JSON.stringify({ type: 'ping' });
+const PING_INTERVAL = 60e3;
+
 (() => {
   const hmrPort = process.env.HMR_PORT ?? 8080;
   const websocket = new WebSocketServer({ port: hmrPort });
 
   chokidar.watch('./src').on('change', async (filePath) => {
     console.log('File changed:', filePath);
-    console.log('Rebuilding...');
-
+    console.log('Esbuild: Rebuilding...');
     await buildExtension();
-    websocket.clients.forEach((client) => client.send('reload'));
 
-    console.log('Reloaded all clients');
+    if (websocket.clients.size > 0) {
+      const RELOAD_PAYLOAD = JSON.stringify({ type: 'reload', filePath });
+      websocket.clients.forEach((client) => client.send(RELOAD_PAYLOAD));
+      console.log('Reloaded all clients');
+    }
   });
 
-  setInterval(() => {
-    websocket.clients.forEach((client) => client.send('ping'));
-  }, 60e3);
-
-  console.log('Building: Chrome Extension');
   buildExtension();
+  console.log('Esbuild: Watching for changes...');
+
+  setInterval(() => {
+    websocket.clients.forEach((client) => client.send(PING_PAYLOAD));
+  }, PING_INTERVAL);
+
+  websocket.on('connection', (client) => {
+    console.log('Service Worker: Connected');
+    client.on('close', () => console.log('Service Worker: Disconnected'));
+  });
 })();
