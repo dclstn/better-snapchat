@@ -14,7 +14,7 @@ Screenshot & Always Present, Auto-Save Chats, and more! Previously known as Bett
 - 💾 **Media Saving** – Enable right-click saving of images and videos.
 - 📸 **Screenshots** – Bypass Snapchat's screenshot detection.
 - 📤 **Send Snaps as Mobile** – Snaps sent will appear sent from mobile.
-- 🚫 **Send Messages as Unsaveable** – Chats and snaps will be sent as unsaveable.
+- 🚫 **Send Messages as Unsavable** – Chats and snaps will be sent as unsavable.
 - ⌨️ **Actively Typing Animation** – Let others know when you are typing.
 - 🔔 **Started Typing Notification** – Let others know when you are typing by push-notification.
 - 📂 **Unrestricted Files** – Enable sending media of any size.
