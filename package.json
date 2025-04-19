@@ -1,7 +1,7 @@
 {
   "name": "BetterSnap - Make Snapchat Web Better",
   "version": "1.4.0",
-  "description": "Screenshot & View Unread Chats, Send as Mobile, and more! Previously known as Better Snapchat.",
+  "description": "Screenshot Freely, Save Media, Bypass Presence Detection and more! Previously known as Better Snapchat.",
   "scripts": {
     "start": "rm -rf ./public/build/ && node ./scripts/dev.js",
     "build": "npm run build:chrome",
