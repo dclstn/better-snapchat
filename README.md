@@ -4,7 +4,7 @@
 
 ![Node CI badge](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
 
-Screenshot & Always Present, Auto-Save Chats, and more! Previously known as Better Snapchat.
+Screenshot Freely, Save Media, Bypass Presence Detection and more! Previously known as Better Snapchat.
 
 - 👤 **Always Present** – Bypass Snapchat's presence detection.
 - 📱 **Mobile** – Appear as if you are on mobile.
