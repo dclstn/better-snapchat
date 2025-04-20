@@ -121,7 +121,6 @@ class PresenceLogging extends Module {
     store.subscribe((storeState: any) => storeState.presence, this.load);
     settings.on('PRESENCE_LOGGING.setting:update', () => this.load());
     settings.on('HALF_SWIPE_NOTIFICATION.setting:update', () => this.load());
-    settings.on('OPEN_CHAT_NOTIFICATION.setting:update', () => this.load());
   }
 
   load(presenceClient?: any) {
