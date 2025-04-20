@@ -69,6 +69,7 @@ export const defaultSettingValues = {
   [SettingIds.OPEN_CHAT_NOTIFICATION]: false,
   [SettingIds.BITMOJI_PRESENCE]: BitmojiPresence.DEFAULT,
   [SettingIds.CHAT_HANDLING]: ChatHandling.DEFAULT,
+  [SettingIds.PRESENCE_LOGGING]: false,
 };
 
 export type SettingId = keyof typeof SettingIds;
