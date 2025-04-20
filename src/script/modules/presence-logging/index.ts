@@ -13,14 +13,16 @@ function sendPresenceNotification({
   user,
   presenceState,
   conversation,
+  conversationId,
 }: {
   user: any;
   presenceState: PresenceState;
   conversation: any;
+  conversationId?: string;
 }) {
   const { username, bitmojiAvatarId, bitmojiSelfieId } = user;
-  const conversationTitle = conversation.title ?? 'your Chat';
-  const navigationPath = conversation.id != null ? `/${conversation.id}` : undefined;
+  const conversationTitle = conversation?.title ?? 'your Chat';
+  const navigationPath = `/web/${conversationId}`;
   const action = PresenceActionMap[presenceState](conversationTitle);
 
   let iconUrl = undefined;
@@ -40,7 +42,8 @@ function sendPresenceNotification({
 }
 
 const userPresenceMap: Map<string, PresenceState> = new Map();
-const serializeUserConversationId = (userId: string, conversationId: string) => `${userId}:${conversationId}`;
+const serializeUserConversationId = (userId: string, conversationId?: string) =>
+  `${userId}:${conversationId ?? 'direct'}`;
 
 async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
   const halfSwipeNotificationEnabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
@@ -49,9 +52,6 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
   for (const [conversationId, { peekingParticipants, typingParticipants }] of activeConversationInfo.entries()) {
     const conversation = getConversation(conversationId)?.conversation;
     const conversationTitle = conversation?.title ?? 'your Chat';
-    if (conversation == null) {
-      continue;
-    }
 
     for (const userId of peekingParticipants) {
       const user = await getSnapchatPublicUser(userId);
@@ -69,7 +69,12 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
       }
 
       if (halfSwipeNotificationEnabled) {
-        sendPresenceNotification({ user, presenceState: PresenceState.PEEKING, conversation });
+        sendPresenceNotification({
+          user,
+          conversation,
+          conversationId,
+          presenceState: PresenceState.PEEKING,
+        });
       }
 
       userPresenceMap.set(serializedId, PresenceState.PEEKING);
