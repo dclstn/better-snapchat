@@ -20,7 +20,7 @@ function sendPresenceNotification({
   conversation: any;
   conversationId?: string;
 }) {
-  const { username, bitmojiAvatarId, bitmojiSelfieId } = user;
+  const { username, bitmoji_avatar_id: bitmojiAvatarId, bitmoji_selfie_id: bitmojiSelfieId } = user;
   const conversationTitle = conversation?.title ?? 'your Chat';
   const navigationPath = `/web/${conversationId}`;
   const action = PresenceActionMap[presenceState](conversationTitle);
@@ -38,7 +38,21 @@ function sendPresenceNotification({
     data: { url: navigationPath },
   };
 
-  return new Notification(username, notificationOptions);
+  const notification = new Notification(username, notificationOptions);
+
+  notification.addEventListener(
+    'click',
+    (event) => {
+      event.preventDefault();
+      window.focus();
+      window.history.pushState({}, '', navigationPath);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      notification.close();
+    },
+    { once: true },
+  );
+
+  return notification;
 }
 
 const userPresenceMap: Map<string, PresenceState> = new Map();
@@ -61,7 +75,7 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[PresenceState.PEEKING](conversationTitle);
-        logInfo(user.username, action);
+        logInfo(`${user.username}:`, action);
       }
 
       if (previousState === PresenceState.PEEKING) {
@@ -89,7 +103,7 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[presenceState](conversationTitle);
-        logInfo(user.username, action);
+        logInfo(`${user.username}:`, action);
       }
 
       if (previousState === presenceState) {
@@ -112,7 +126,7 @@ class PresenceLogging extends Module {
 
   load(presenceClient?: any) {
     presenceClient = presenceClient ?? store.getState().presence;
-    if (presenceClient == null || oldOnActiveConversationInfoUpdated != null) {
+    if (presenceClient == null) {
       return;
     }
 
