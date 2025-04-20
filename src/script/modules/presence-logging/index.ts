@@ -1,19 +1,13 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
 import { getConversation, getSnapchatPublicUser, getSnapchatStore } from '../../utils/snapchat';
-import { logPresence } from '../../lib/debug';
-import { PresenceState } from '../../lib/constants';
+import { logInfo, logPresence } from '../../lib/debug';
+import { PresenceActionMap, PresenceState } from '../../lib/constants';
 
 const store = getSnapchatStore();
 
 let oldOnActiveConversationInfoUpdated: any = null;
 let newOnActiveConversationInfoUpdated: any = null;
-
-const PresenceActionMap = {
-  [PresenceState.TYPING]: (conversationTitle: string) => `Typing in ${conversationTitle}`,
-  [PresenceState.IDLE]: (conversationTitle: string) => `Idle in ${conversationTitle}`,
-  [PresenceState.PEEKING]: (conversationTitle: string) => `Peeking at ${conversationTitle}`,
-};
 
 function sendPresenceNotification({
   user,
@@ -29,7 +23,7 @@ function sendPresenceNotification({
   const navigationPath = conversation.id != null ? `/${conversation.id}` : undefined;
   const action = PresenceActionMap[presenceState](conversationTitle);
 
-  let iconUrl = '';
+  let iconUrl = undefined;
   if (bitmojiSelfieId != null && bitmojiAvatarId != null) {
     iconUrl = `https://sdk.bitmoji.com/render/panel/${bitmojiSelfieId}-${bitmojiAvatarId}-v1.webp?transparent=1&trim=circle&scale=1`;
   } else if (bitmojiAvatarId != null) {
@@ -37,7 +31,7 @@ function sendPresenceNotification({
   }
 
   const notificationOptions = {
-    body: `${action} ${conversationTitle}`,
+    body: action,
     icon: iconUrl,
     data: { url: navigationPath },
   };
@@ -50,11 +44,11 @@ const serializeUserConversationId = (userId: string, conversationId: string) => 
 
 function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
   const halfSwipeNotificationEnabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
-  const openChatNotificationEnabled = settings.getSetting('OPEN_CHAT_NOTIFICATION');
   const presenceLoggingEnabled = settings.getSetting('PRESENCE_LOGGING');
 
   for (const [conversationId, { peekingParticipants, typingParticipants }] of activeConversationInfo.entries()) {
     const conversation = getConversation(conversationId)?.conversation;
+    const conversationTitle = conversation?.title ?? 'your Chat';
     if (conversation == null) {
       continue;
     }
@@ -66,7 +60,8 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
       const previousState = userPresenceMap.get(serializedId);
 
       if (presenceLoggingEnabled) {
-        logPresence(PresenceState.PEEKING, user.username, conversationId);
+        const action = PresenceActionMap[PresenceState.PEEKING](conversationTitle);
+        logPresence(PresenceState.PEEKING, user.username, action);
       }
 
       if (previousState === PresenceState.PEEKING) {
@@ -74,6 +69,7 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
       }
 
       if (halfSwipeNotificationEnabled) {
+        logInfo(user);
         sendPresenceNotification({ user, presenceState: PresenceState.PEEKING, conversation });
       }
 
@@ -88,7 +84,8 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
       const previousState = userPresenceMap.get(serializedId);
 
       if (presenceLoggingEnabled) {
-        logPresence(presenceState, user.username, conversationId);
+        const action = PresenceActionMap[presenceState](conversationTitle);
+        logPresence(presenceState, user.username, action);
       }
 
       if (previousState === presenceState) {
@@ -116,9 +113,8 @@ class PresenceLogging extends Module {
     }
 
     const halfSwipeNotificationEnabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
-    const openChatNotificationEnabled = settings.getSetting('OPEN_CHAT_NOTIFICATION');
     const presenceLoggingEnabled = settings.getSetting('PRESENCE_LOGGING');
-    const enabled = halfSwipeNotificationEnabled || openChatNotificationEnabled || presenceLoggingEnabled;
+    const enabled = halfSwipeNotificationEnabled || presenceLoggingEnabled;
     const changedValues: any = {};
 
     if (enabled && presenceClient.onActiveConversationInfoUpdated !== newOnActiveConversationInfoUpdated) {

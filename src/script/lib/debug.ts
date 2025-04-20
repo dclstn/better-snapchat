@@ -23,13 +23,13 @@ export function logInfo(...args: unknown[]) {
 
 const PresenceStateToColor: Record<PresenceState, string> = {
   [PresenceState.TYPING]: '#38d9a9',
-  [PresenceState.STOPPED]: '#ff922b',
+  [PresenceState.IDLE]: '#ff922b',
   [PresenceState.PEEKING]: '#7F00FF',
 };
 
-export function logPresence(presenceState: PresenceState, user: any, conversationId: string) {
+export function logPresence(presenceState: PresenceState, username: string, action: string) {
   const { console } = getIframeContentWindow();
-  console.log(`%c[${presenceState}]`, `color: ${PresenceStateToColor[presenceState]}`, user, `in ${conversationId}`);
+  console.log(`%c[${presenceState}]`, `color: ${PresenceStateToColor[presenceState]}`, username, action);
 }
 
 export function logError(...args: unknown[]) {

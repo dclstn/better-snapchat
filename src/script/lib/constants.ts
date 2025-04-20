@@ -93,3 +93,9 @@ export enum PresenceState {
   IDLE = 'IDLE',
   PEEKING = 'PEEKING',
 }
+
+export const PresenceActionMap = {
+  [PresenceState.TYPING]: (conversationTitle: string) => `Typing in ${conversationTitle}`,
+  [PresenceState.IDLE]: (conversationTitle: string) => `Idle in ${conversationTitle}`,
+  [PresenceState.PEEKING]: (conversationTitle: string) => `Peeked at ${conversationTitle}`,
+};
