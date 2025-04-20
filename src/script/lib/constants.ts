@@ -32,6 +32,7 @@ export const SettingIds = {
   HALF_SWIPE_NOTIFICATION: 'HALF_SWIPE_NOTIFICATION',
   OPEN_CHAT_NOTIFICATION: 'OPEN_CHAT_NOTIFICATION',
   CHAT_HANDLING: 'CHAT_HANDLING',
+  PRESENCE_LOGGING: 'PRESENCE_LOGGING',
 } as const;
 
 export enum BitmojiPresence {
@@ -68,6 +69,7 @@ export const defaultSettingValues = {
   [SettingIds.OPEN_CHAT_NOTIFICATION]: false,
   [SettingIds.BITMOJI_PRESENCE]: BitmojiPresence.DEFAULT,
   [SettingIds.CHAT_HANDLING]: ChatHandling.DEFAULT,
+  [SettingIds.PRESENCE_LOGGING]: false,
 };
 
 export type SettingId = keyof typeof SettingIds;
@@ -85,4 +87,16 @@ export const ExternalUrls = {
   GITHUB: 'https://github.com/dclstn/better-snapchat',
   GITHUB_DCLSTN: 'https://github.com/dclstn',
   BUY_ME_A_COFFEE: 'https://www.buymeacoffee.com/dclstn',
+};
+
+export enum PresenceState {
+  TYPING = 'TYPING',
+  IDLE = 'IDLE',
+  PEEKING = 'PEEKING',
+}
+
+export const PresenceActionMap = {
+  [PresenceState.TYPING]: (conversationTitle: string) => `Typing in ${conversationTitle}`,
+  [PresenceState.IDLE]: (conversationTitle: string) => `Idle in ${conversationTitle}`,
+  [PresenceState.PEEKING]: (conversationTitle: string) => `Peeked at ${conversationTitle}`,
 };

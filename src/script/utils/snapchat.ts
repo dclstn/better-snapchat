@@ -100,3 +100,40 @@ export function getProvConsts() {
 
   return provConsts;
 }
+
+export async function getSnapchatPublicUser(userId: string, retry = true) {
+  const { fetchPublicInfo, publicUsers } = getSnapchatStore().getState().user;
+  if (fetchPublicInfo == null || publicUsers == null) {
+    return null;
+  }
+
+  const user = publicUsers.entries().find(([{ str }]: [{ str: string }]) => str === userId);
+
+  if (user == null && retry) {
+    const serializedId = getSerializedSnapchatId(userId);
+    await fetchPublicInfo([serializedId]);
+    return getSnapchatPublicUser(userId, false);
+  }
+
+  return user != null ? user[1] : null;
+}
+
+export function getSerializedSnapchatId(uuid: string): { id: Uint8Array; str: string } {
+  const hexStr = uuid.replace(/-/g, '');
+  const bytes = new Uint8Array(16);
+
+  for (let i = 0; i < 16; i++) {
+    bytes[i] = parseInt(hexStr.slice(i * 2, i * 2 + 2), 16);
+  }
+
+  return { id: bytes, str: uuid };
+}
+
+export function getConversation(conversationId: string) {
+  const { conversations } = getSnapchatStore().getState().messaging;
+  if (conversations == null) {
+    return null;
+  }
+
+  return conversations[conversationId];
+}
