@@ -20,7 +20,12 @@ function sendPresenceNotification({
   conversation: any;
   conversationId?: string;
 }) {
-  const { username, bitmoji_avatar_id: bitmojiAvatarId, bitmoji_selfie_id: bitmojiSelfieId } = user;
+  const {
+    username,
+    bitmoji_avatar_id: bitmojiAvatarId,
+    bitmoji_selfie_id: bitmojiSelfieId,
+    display_name: displayName,
+  } = user;
   const conversationTitle = conversation?.title ?? 'your Chat';
   const navigationPath = `/web/${conversationId}`;
   const action = PresenceActionMap[presenceState](conversationTitle);
@@ -38,7 +43,7 @@ function sendPresenceNotification({
     data: { url: navigationPath },
   };
 
-  const notification = new Notification(username, notificationOptions);
+  const notification = new Notification(displayName ?? username, notificationOptions);
 
   notification.addEventListener(
     'click',
@@ -75,7 +80,7 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[PresenceState.PEEKING](conversationTitle);
-        logInfo(`${user.username}:`, action);
+        logInfo(`${user.display_name ?? user.username}:`, action);
       }
 
       if (previousState === PresenceState.PEEKING) {
@@ -103,7 +108,7 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[presenceState](conversationTitle);
-        logInfo(`${user.username}:`, action);
+        logInfo(`${user.display_name ?? user.username}:`, action);
       }
 
       if (previousState === presenceState) {
