@@ -1,7 +1,7 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
 import { getConversation, getSnapchatPublicUser, getSnapchatStore } from '../../utils/snapchat';
-import { logPresence } from '../../lib/debug';
+import { logInfo } from '../../lib/debug';
 import { PresenceActionMap, PresenceState } from '../../lib/constants';
 
 const store = getSnapchatStore();
@@ -42,7 +42,7 @@ function sendPresenceNotification({
 const userPresenceMap: Map<string, PresenceState> = new Map();
 const serializeUserConversationId = (userId: string, conversationId: string) => `${userId}:${conversationId}`;
 
-function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
+async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
   const halfSwipeNotificationEnabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
   const presenceLoggingEnabled = settings.getSetting('PRESENCE_LOGGING');
 
@@ -54,14 +54,14 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
     }
 
     for (const userId of peekingParticipants) {
-      const user = getSnapchatPublicUser(userId);
+      const user = await getSnapchatPublicUser(userId);
 
       const serializedId = serializeUserConversationId(userId, conversationId);
       const previousState = userPresenceMap.get(serializedId);
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[PresenceState.PEEKING](conversationTitle);
-        logPresence(PresenceState.PEEKING, user.username, action);
+        logInfo(user.username, action);
       }
 
       if (previousState === PresenceState.PEEKING) {
@@ -72,11 +72,11 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
         sendPresenceNotification({ user, presenceState: PresenceState.PEEKING, conversation });
       }
 
-      userPresenceMap.set(userId, PresenceState.PEEKING);
+      userPresenceMap.set(serializedId, PresenceState.PEEKING);
     }
 
     for (const { userId, typingState } of typingParticipants) {
-      const user = getSnapchatPublicUser(userId);
+      const user = await getSnapchatPublicUser(userId);
       const presenceState = typingState === 1 ? PresenceState.TYPING : PresenceState.IDLE;
 
       const serializedId = serializeUserConversationId(userId, conversationId);
@@ -84,7 +84,7 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
 
       if (presenceLoggingEnabled) {
         const action = PresenceActionMap[presenceState](conversationTitle);
-        logPresence(presenceState, user.username, action);
+        logInfo(user.username, action);
       }
 
       if (previousState === presenceState) {
