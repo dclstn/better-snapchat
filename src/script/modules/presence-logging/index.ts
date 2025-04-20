@@ -1,7 +1,7 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
 import { getConversation, getSnapchatPublicUser, getSnapchatStore } from '../../utils/snapchat';
-import { logInfo, logPresence } from '../../lib/debug';
+import { logPresence } from '../../lib/debug';
 import { PresenceActionMap, PresenceState } from '../../lib/constants';
 
 const store = getSnapchatStore();
@@ -69,7 +69,6 @@ function handleOnActiveConversationInfoUpdated(activeConversationInfo: any) {
       }
 
       if (halfSwipeNotificationEnabled) {
-        logInfo(user);
         sendPresenceNotification({ user, presenceState: PresenceState.PEEKING, conversation });
       }
 
