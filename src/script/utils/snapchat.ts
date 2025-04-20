@@ -117,3 +117,12 @@ export function getSnapchatPublicUser(userId: string) {
 
   return user[1];
 }
+
+export function getConversation(conversationId: string) {
+  const { conversations } = getSnapchatStore().getState().messaging;
+  if (conversations == null) {
+    return null;
+  }
+
+  return conversations[conversationId];
+}

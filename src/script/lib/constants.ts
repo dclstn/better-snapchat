@@ -32,6 +32,7 @@ export const SettingIds = {
   HALF_SWIPE_NOTIFICATION: 'HALF_SWIPE_NOTIFICATION',
   OPEN_CHAT_NOTIFICATION: 'OPEN_CHAT_NOTIFICATION',
   CHAT_HANDLING: 'CHAT_HANDLING',
+  PRESENCE_LOGGING: 'PRESENCE_LOGGING',
 } as const;
 
 export enum BitmojiPresence {
@@ -86,3 +87,9 @@ export const ExternalUrls = {
   GITHUB_DCLSTN: 'https://github.com/dclstn',
   BUY_ME_A_COFFEE: 'https://www.buymeacoffee.com/dclstn',
 };
+
+export enum PresenceState {
+  TYPING = 'TYPING',
+  IDLE = 'IDLE',
+  PEEKING = 'PEEKING',
+}

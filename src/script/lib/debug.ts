@@ -1,3 +1,5 @@
+import { PresenceState } from './constants';
+
 const PREFIX = '[Better-Snap]';
 
 let iframeContentWindow: any | null = null;
@@ -19,16 +21,15 @@ export function logInfo(...args: unknown[]) {
   console.log(`%c${PREFIX}`, 'color: #3b5bdb', ...args);
 }
 
-export enum PresenceState {
-  TYPING = 'TYPING',
-  STOPPED = 'STOPPED TYPING',
-  PEEKING = 'PEEKING',
-  PRESENT = 'PRESENT IN CHAT',
-}
+const PresenceStateToColor: Record<PresenceState, string> = {
+  [PresenceState.TYPING]: '#38d9a9',
+  [PresenceState.STOPPED]: '#ff922b',
+  [PresenceState.PEEKING]: '#7F00FF',
+};
 
-export function logPresence(presenceState: PresenceState, user: any) {
+export function logPresence(presenceState: PresenceState, user: any, conversationId: string) {
   const { console } = getIframeContentWindow();
-  console.log(`%c[${presenceState}]`, 'color: yellow', user.username, user.user_id);
+  console.log(`%c[${presenceState}]`, `color: ${PresenceStateToColor[presenceState]}`, user, `in ${conversationId}`);
 }
 
 export function logError(...args: unknown[]) {
