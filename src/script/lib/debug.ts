@@ -16,7 +16,19 @@ export function getIframeContentWindow() {
 
 export function logInfo(...args: unknown[]) {
   const { console } = getIframeContentWindow();
-  console.log(PREFIX, ...args);
+  console.log(`%c${PREFIX}`, 'color: #3b5bdb', ...args);
+}
+
+export enum PresenceState {
+  TYPING = 'TYPING',
+  STOPPED = 'STOPPED TYPING',
+  PEEKING = 'PEEKING',
+  PRESENT = 'PRESENT IN CHAT',
+}
+
+export function logPresence(presenceState: PresenceState, user: any) {
+  const { console } = getIframeContentWindow();
+  console.log(`%c[${presenceState}]`, 'color: yellow', user.username, user.user_id);
 }
 
 export function logError(...args: unknown[]) {

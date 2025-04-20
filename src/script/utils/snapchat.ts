@@ -1,3 +1,5 @@
+import { logInfo } from '../lib/debug';
+
 type WebpackRequire = <T>(id: string) => T;
 
 let snapchatWebpackRequire: WebpackRequire | null = null;
@@ -99,4 +101,19 @@ export function getProvConsts() {
   );
 
   return provConsts;
+}
+
+export function getSnapchatPublicUser(userId: string) {
+  const { fetchPublicInfo, publicUsers } = getSnapchatStore().getState().user;
+
+  if (fetchPublicInfo == null || publicUsers == null) {
+    return null;
+  }
+
+  const user = publicUsers.entries().find(([{ str }]: [{ str: string }]) => str === userId);
+  if (user == null) {
+    return null;
+  }
+
+  return user[1];
 }
