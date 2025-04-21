@@ -13,13 +13,12 @@ import { logInfo } from './lib/debug';
 
   logInfo(`BetterSnap v${process.env.VERSION}`);
 
-  // @ts-ignore glob import
-  import('./patches/*.ts');
-
   if (['complete', 'interactive'].includes(document.readyState)) {
     // @ts-ignore glob import
     import('./modules/**/index.ts');
   } else {
+    // @ts-ignore glob import
+    import('./patches/*.ts');
     // @ts-ignore glob import
     document.addEventListener('DOMContentLoaded', () => import('./modules/**/index.ts'), { once: true });
   }
