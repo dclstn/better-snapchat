@@ -14,7 +14,7 @@ const store = getSnapchatStore();
 
 class PresenceDetection extends Module {
   constructor() {
-    super('PresenceDetection');
+    super('Presence Detection');
     store.subscribe((storeState: any) => storeState.presence, this.load);
     settings.on('ALWAYS_PRESENT.setting:update', () => this.load());
     settings.on('ALLOW_SCREENSHOT.setting:update', () => this.load());

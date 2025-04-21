@@ -8,7 +8,7 @@ let appContainer: HTMLDivElement | null = null;
 
 class SettingsMenu extends Module {
   constructor() {
-    super('SettingsMenu');
+    super('Settings Menu');
   }
 
   load(): void {

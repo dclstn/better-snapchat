@@ -25,7 +25,7 @@ const throttledSaveMessage = throttle(
 
 class AutoSaveMessages extends Module {
   constructor() {
-    super('AutoSaveMessages');
+    super('Auto Save Messages');
     settings.on(`CHAT_HANDLING.setting:update`, this.load.bind(this));
   }
 

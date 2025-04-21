@@ -10,7 +10,7 @@ function preventContextMenu(event: MouseEvent) {
 
 class MediaSaving extends Module {
   constructor() {
-    super('MediaSaving');
+    super('Media Saving');
     settings.on(`SAVE_IMAGE.setting:update`, this.load);
   }
 

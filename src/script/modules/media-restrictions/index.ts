@@ -4,7 +4,7 @@ import Module from '../../lib/module';
 let oldFilePrototype: any = null;
 class MediaRestrictions extends Module {
   constructor() {
-    super('MediaRestrictions');
+    super('Media Restrictions');
     settings.on(`UNLIMITED_FILE_SIZE.setting:update`, this.load);
   }
 

@@ -15,7 +15,7 @@ let newGetClientCofValue: any = null;
 
 class ConditionOnsetFlags extends Module {
   constructor() {
-    super('ConditionOnsetFlags');
+    super('Condition Onset Flags');
     store.subscribe(({ getClientCofValue }: any) => getClientCofValue, this.load.bind(this));
     settings.on('SNAP_AS_MOBILE.setting:update', this.load.bind(this));
     settings.on('PRIVATE_STORIES.setting:update', this.load.bind(this));

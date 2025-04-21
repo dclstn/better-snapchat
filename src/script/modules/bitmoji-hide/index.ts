@@ -10,7 +10,7 @@ let newCreatePresenceSession: any = null;
 
 class BitmojiHide extends Module {
   constructor() {
-    super('BitmojiHide');
+    super('Bitmoji Hide');
     store.subscribe((storeState: any) => storeState.talk, this.load.bind(this));
     settings.on(`BITMOJI_PRESENCE.setting:update`, () => this.load());
   }

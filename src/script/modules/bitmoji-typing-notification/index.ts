@@ -10,7 +10,7 @@ const newSendTypingNotification = () => {};
 
 class BitmojiTypingNotification extends Module {
   constructor() {
-    super('BitmojiTypingNotification');
+    super('Bitmoji Typing Notification');
     store.subscribe((storeState: any) => storeState.messaging, this.load);
     settings.on('PREVENT_TYPING_NOTIFICATION.setting:update', () => this.load());
   }

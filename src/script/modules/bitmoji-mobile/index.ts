@@ -19,7 +19,7 @@ function modifyWebSenderPlatformToMobile(arr: any): any {
 
 class BitmojiMobile extends Module {
   constructor() {
-    super('BitmojiMobile');
+    super('Bitmoji Mobile');
     settings.on('BITMOJI_PRESENCE.setting:update', this.load);
   }
 

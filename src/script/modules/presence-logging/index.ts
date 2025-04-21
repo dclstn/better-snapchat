@@ -122,7 +122,7 @@ async function handleOnActiveConversationInfoUpdated(activeConversationInfo: any
 
 class PresenceLogging extends Module {
   constructor() {
-    super('PresenceLogging');
+    super('Presence Logging');
     store.subscribe((storeState: any) => storeState.presence, this.load);
     settings.on('PRESENCE_LOGGING.setting:update', () => this.load());
     settings.on('HALF_SWIPE_NOTIFICATION.setting:update', () => this.load());
