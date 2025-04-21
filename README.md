@@ -20,6 +20,7 @@ Screenshot Freely, Save Media, Bypass Presence Detection and more! Previously kn
 - 🔔 **Started Typing Notification** – Let others know when you are typing by push-notification.
 - 📂 **Unrestricted Files** – Enable sending media of any size.
 - 📸 **Upload Images as Snaps** – Uploaded images will be sent as snaps.
+- 🫣 **Peeking Notification** - Receive a notification when someone is peeking at a conversation.
 - 🔒 **Private Stories** – Interact with private stories on web.
 
 ✨ And more!
@@ -44,8 +45,8 @@ You can install **BetterSnap** via the [User-Script](https://better-snapchat.vas
 2. Install dependencies, typically by `npm install` in the root of the directory.
 3. Run `npm start` to run the development server.
 4. Navigate to `chrome://extensions/` and enable developer-mode (top-right).
-6. Click `Load Unpacked` and add `/public` from your cloned repository.
-7. Finally, navigate to `https://www.snapchat.com/web` and any changes you make to `/src/script` will be reflected there.
+5. Click `Load Unpacked` and add `/public` from your cloned repository.
+6. Finally, navigate to `https://www.snapchat.com/web` and any changes you make to `/src/script` will be reflected there.
 
 > Disable any other instances of BetterSnap you may have running.
 
