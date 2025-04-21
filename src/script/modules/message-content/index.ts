@@ -45,7 +45,7 @@ function patchSendMessageWithContent(mananger: any) {
 class MessageContent extends Module {
   constructor() {
     super('MessageContent');
-    store.subscribe((storeState: any) => storeState.messaging.getConversationManager, this.load.bind(this));
+    store.subscribe((storeState: any) => storeState.messaging, this.load.bind(this));
     settings.on('UPLOAD_SNAPS.setting:update', () => this.load());
     settings.on('SEND_UNSAVEABLE_MESSAGES.setting:update', () => this.load());
   }
