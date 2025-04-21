@@ -7,7 +7,7 @@ const USER_AGENTS = [
 
 class UserAgent extends Patch {
   constructor() {
-    super('UserAgent');
+    super('User Agent');
   }
 
   patch() {

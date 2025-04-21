@@ -2,7 +2,7 @@ import Patch from '../lib/patch';
 
 class UserMediaPermissions extends Patch {
   constructor() {
-    super('UserMediaPermissions');
+    super('User Media Permissions');
   }
 
   patch() {

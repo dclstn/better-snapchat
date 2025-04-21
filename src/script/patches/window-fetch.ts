@@ -5,7 +5,7 @@ const STORY_READ_RECEIPT_REGEX = /\/readreceipt-indexer\/batchuploadreadreceipts
 
 class WindowFetch extends Patch {
   constructor() {
-    super('WindowFetch');
+    super('Window Fetch');
   }
 
   patch() {

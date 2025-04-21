@@ -3,7 +3,7 @@ import settings from '../lib/settings';
 
 class CrossTabBroadcastChannel extends Patch {
   constructor() {
-    super('CrossTabBroadcastChannel');
+    super('Cross-Tab Broadcast Channel');
   }
 
   patch() {
