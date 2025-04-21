@@ -16,7 +16,7 @@ import { logInfo } from './lib/debug';
   // @ts-ignore glob import
   import('./patches/*.ts');
 
-  if (document.readyState === 'complete') {
+  if (['complete', 'interactive'].includes(document.readyState)) {
     // @ts-ignore glob import
     import('./modules/**/index.ts');
   } else {
