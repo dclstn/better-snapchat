@@ -1,4 +1,4 @@
-![Extension menu preview](https://github.com/dclstn/better-snapchat/assets/51604173/48ea06e4-7315-4dec-9cd7-039f063ffa6a)
+![Extension menu preview](https://github.com/user-attachments/assets/ecdbbe0b-8d74-4806-b168-f7e0cbf6a324)
 
 ## BetterSnap
 
