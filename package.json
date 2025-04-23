@@ -51,7 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "addons-linter": "^7.9.0",
     "chokidar": "^4.0.3",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "esbuild": "^0.25.2",
     "esbuild-css-modules-plugin": "^3.1.2",
     "esbuild-plugin-alias": "^0.2.1",
