@@ -13,7 +13,7 @@ import { logInfo } from './lib/debug';
 
   logInfo(`BetterSnap v${process.env.VERSION}`);
 
-  if (['complete', 'interactive'].includes(document.readyState)) {
+  if (document.readyState === 'complete') {
     // @ts-ignore glob import
     import('./modules/**/index.ts');
   } else {
