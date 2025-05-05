@@ -18,7 +18,8 @@ export function getIframeContentWindow() {
 
 export function logInfo(...args: unknown[]) {
   const { console } = getIframeContentWindow();
-  console.log(`%c${PREFIX}`, 'color: #3b5bdb', ...args);
+  const timestamp = new Date().toLocaleTimeString();
+  console.log(`%c${PREFIX}`, 'color: #3b5bdb', `[${timestamp}]`, ...args);
 }
 
 export function logError(...args: unknown[]) {
