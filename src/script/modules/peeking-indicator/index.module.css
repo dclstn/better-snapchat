@@ -1,0 +1,75 @@
+.peeking {
+    position: relative;
+    display: none;
+    width: 40px;
+    height: 54px;
+    overflow: visible;
+    order: -1;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    border-radius: 8px;
+    margin-right: 4px;
+}
+
+.peekingItem {
+    position: absolute;
+    font-size: x-large;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.peekingItem::after {
+    content: "👀";
+    font-size: 28px;
+    animation: pulse 1s infinite alternate;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+.isPeeking .peeking {
+    display: block;
+}
+
+.isPeeking .peekingItem {
+    transform: translateX(0);
+}
+
+.isPeeking {
+    position: relative;
+}
+
+.isPeeking::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 0, 0.6);
+    pointer-events: none;
+    animation: glow 1.5s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+    }
+}
