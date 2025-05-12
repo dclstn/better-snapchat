@@ -30,15 +30,19 @@
     content: "👀";
     font-size: 28px;
     animation: pulse 1s infinite alternate;
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.7));
 }
 
 .isPeeking .peeking {
-    display: block;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .isPeeking .peekingItem {
     transform: translateX(0);
+    display: flex !important;
 }
 
 .isPeeking {
