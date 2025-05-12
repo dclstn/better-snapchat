@@ -5,7 +5,7 @@ import styles from './index.module.css';
 import { logInfo } from '../../lib/debug';
 
 const store = getSnapchatStore();
-let initialized = false;
+let unsubscribe: (() => void) | null = null;
 
 class PeekingIndicator extends Module {
   constructor() {
@@ -16,67 +16,53 @@ class PeekingIndicator extends Module {
   }
 
   findSnapchatConversationContainers() {
-    const possibleContainers = [
-      ...document.querySelectorAll('.O4POs'),
-      ...document.querySelectorAll('[data-testid="conversation_item_container"]'),
-      ...document.querySelectorAll('[data-role="conversation_item"]'),
-      ...document.querySelectorAll('[role="listitem"]'),
-    ];
-    return possibleContainers;
+    return document.querySelectorAll('[data-testid="conversation_item_container"]');
   }
 
-  initMutationObserver() {
-    if (initialized) return;
+  getConversationIdFromReactProps(element: Element): string | null {
+    try {
+      const key = Object.keys(element).find(
+        (key) => key.startsWith('__reactFiber$') || key.startsWith('__reactInternalInstance$'),
+      );
 
-    initialized = true;
+      if (!key) return null;
 
-    const observer = new MutationObserver((mutations) => {
-      let shouldCheckForContainers = false;
+      // @ts-ignore
+      let fiber = element[key];
+      while (fiber) {
+        const props = fiber.memoizedProps;
 
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-          shouldCheckForContainers = true;
+        if (props) {
+          if (props.conversation?.id?.str) {
+            return props.conversation.id.str;
+          }
+
+          if (props.conversation?.conversationId?.str) {
+            return props.conversation.conversationId.str;
+          }
+
+          if (props.data?.id?.str) {
+            return props.data.id.str;
+          }
+
+          if (props.conversationId?.str) {
+            return props.conversationId.str;
+          }
+          if (typeof props.conversationId === 'string') {
+            return props.conversationId;
+          }
         }
-      });
 
-      if (shouldCheckForContainers) {
-        this.processConversationContainers();
+        fiber = fiber.return;
       }
-    });
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    this.processConversationContainers();
-    setInterval(() => this.processConversationContainers(), 2000);
-  }
-
-  processConversationContainers() {
-    const enabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
-    if (!enabled) return;
-
-    const containers = this.findSnapchatConversationContainers();
-    containers.forEach((container) => this.addPeekingIndicator(container));
-  }
-
-  addPeekingIndicator(container: Element) {
-    if (container.querySelector(`.${styles.peeking}`)) {
-      return;
+      return null;
+    } catch (error) {
+      return this.getConversationIdFromAttribute(element);
     }
-
-    const peekingDiv = document.createElement('div');
-    peekingDiv.className = styles.peeking;
-
-    const peekingItem = document.createElement('div');
-    peekingItem.className = styles.peekingItem;
-
-    peekingDiv.appendChild(peekingItem);
-    container.prepend(peekingDiv);
   }
 
-  getConversationIdFromElement(container: Element): string | null {
+  getConversationIdFromAttribute(container: Element): string | null {
     try {
       const dataConvId = container.getAttribute('data-conversation-id');
       if (dataConvId) return dataConvId;
@@ -84,10 +70,8 @@ class PeekingIndicator extends Module {
       const innerElement = container.querySelector('[data-conversation-id]');
       if (innerElement) return innerElement.getAttribute('data-conversation-id');
 
-      // Try extracting from aria-labelledby attribute which may contain the ID
       const ariaLabelledBy = container.querySelector('[aria-labelledby]')?.getAttribute('aria-labelledby');
       if (ariaLabelledBy) {
-        // Format example: "title-4da2e5d9-b5e7-5472-96b3-a0191987ef3b comma1 status-4da2e5d9-b5e7-5472-96b3-a0191987ef3b"
         const match = ariaLabelledBy.match(/title-([0-9a-f-]+)/);
         if (match && match[1]) {
           return match[1];
@@ -103,44 +87,9 @@ class PeekingIndicator extends Module {
         }
       }
 
-      const statusSpan = container.querySelector('span[id^="status-"]');
-      if (statusSpan) {
-        const statusId = statusSpan.id;
-        const match = statusId.match(/status-([0-9a-f-]+)/);
-        if (match && match[1]) {
-          return match[1];
-        }
-      }
-
-      const anchor = container.querySelector('a[href*="/web/"]');
-      if (anchor) {
-        const href = anchor.getAttribute('href');
-        if (href) {
-          const match = href.match(/\/web\/([^/]+)/);
-          if (match && match[1]) return match[1];
-        }
-      }
-
-      const projectionElement = container.querySelector('[data-projection-id]');
-      if (projectionElement) {
-        const projectionId = projectionElement.getAttribute('data-projection-id');
-        if (projectionId) {
-          return `projection-${projectionId}`;
-        }
-      }
-
-      for (const attr of Array.from(container.attributes)) {
-        if (
-          attr.name.startsWith('data-') &&
-          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(attr.value)
-        ) {
-          return attr.value;
-        }
-      }
-
       return null;
     } catch (error) {
-      logInfo('Error getting conversation ID:', error);
+      logInfo('Error getting conversation ID from attributes:', error);
       return null;
     }
   }
@@ -156,7 +105,7 @@ class PeekingIndicator extends Module {
     }
 
     try {
-      const peekingConversations = new Map<string, any>();
+      const peekingIds = new Set<string>();
 
       if (typeof presence.activeConversationInfo.entries === 'function') {
         const entries = Array.from(presence.activeConversationInfo.entries());
@@ -171,21 +120,17 @@ class PeekingIndicator extends Module {
             if (typeof entry[0] === 'object' && entry[0] !== null) {
               if (entry[0].str && typeof entry[0].str === 'string') {
                 conversationId = entry[0].str;
-              } else if (entry[0].id && typeof entry[0].id === 'object') {
-                conversationId = String(entry[0].id);
               } else {
-                conversationId = JSON.stringify(entry[0]);
+                return;
               }
             } else {
               conversationId = String(entry[0]);
             }
           } catch (e) {
-            conversationId = `ID-${Math.random().toString(36).substring(2, 8)}`;
-            logInfo('Error converting conversation ID to string:', e);
+            return;
           }
 
           const info = entry[1];
-
           if (!info) {
             return;
           }
@@ -194,92 +139,35 @@ class PeekingIndicator extends Module {
             peekingParticipants && Array.isArray(peekingParticipants) && peekingParticipants.length > 0;
 
           if (hasPeeking) {
-            peekingConversations.set(conversationId, info);
-            const displayName = info.displayName || info.name || 'Unknown';
-            //logInfo(`👀 Peeking detected in conversation: ${displayName} (ID: ${conversationId})`);
+            peekingIds.add(conversationId);
           }
         });
       }
 
-      const containers = this.findSnapchatConversationContainers();
-      containers.forEach((container) => {
-        container.classList.remove(styles.isPeeking);
-      });
+      if (peekingIds.size > 0) {
+        const containers = this.findSnapchatConversationContainers();
 
-      const containerMap = new Map<string, Element>();
-      const containersByTitle = new Map<string, Element>();
+        containers.forEach((container) => {
+          const id = this.getConversationIdFromReactProps(container);
 
-      containers.forEach((container) => {
-        const id = this.getConversationIdFromElement(container);
-        const titleElement = container.querySelector('span[id^="title-"]');
-        const titleText = titleElement?.textContent?.trim() || '';
+          container.classList.remove(styles.isPeeking);
+          if (!id || !peekingIds.has(id)) {
+            return;
+          }
 
-        if (id) {
-          containerMap.set(id, container);
-        }
-
-        if (titleText) {
-          containersByTitle.set(titleText, container);
-        }
-      });
-      let foundMatch = false;
-
-      peekingConversations.forEach((info, conversationId) => {
-        //logInfo(`Looking for container match for conversation: ${conversationId}`);
-
-        if (containerMap.has(conversationId)) {
-          const container = containerMap.get(conversationId)!;
           container.classList.add(styles.isPeeking);
-          foundMatch = true;
-          //logInfo(`✅ Found exact ID match for: ${conversationId}`);
-          return;
-        }
 
-        const conversationName = info.displayName || info.name;
-        if (conversationName) {
-          for (const [title, container] of containersByTitle.entries()) {
-            if (title.includes(conversationName) || conversationName.includes(title)) {
-              container.classList.add(styles.isPeeking);
-              foundMatch = true;
-              break;
-            }
+          if (!container.querySelector(`.${styles.peeking}`)) {
+            const peekingDiv = document.createElement('div');
+            peekingDiv.className = styles.peeking;
+
+            const peekingItem = document.createElement('div');
+            peekingItem.className = styles.peekingItem;
+
+            peekingDiv.appendChild(peekingItem);
+            container.prepend(peekingDiv);
           }
-        }
-
-        const participants = info.participants || [];
-        if (participants.length > 0 && !foundMatch) {
-          participants.forEach((participant: any) => {
-            const participantName = participant.displayName || participant.username || participant.userId;
-            if (!participantName) return;
-
-            for (const [title, container] of containersByTitle.entries()) {
-              if (title.includes(participantName)) {
-                container.classList.add(styles.isPeeking);
-                foundMatch = true;
-                break;
-              }
-            }
-          });
-        }
-      });
-      if (!foundMatch && peekingConversations.size > 0 && containers.length > 0) {
-        let applied = false;
-
-        for (const container of containers) {
-          const titleElement = container.querySelector('span[id^="title-"]');
-          if (titleElement) {
-            container.classList.add(styles.isPeeking);
-            applied = true;
-            break;
-          }
-        }
-
-        if (!applied && containers.length > 0) {
-          const firstContainer = containers[0];
-          if (firstContainer) {
-            firstContainer.classList.add(styles.isPeeking);
-          }
-        }
+        });
       }
     } catch (error) {
       logInfo('Error updating peeking state:', error);
@@ -287,15 +175,24 @@ class PeekingIndicator extends Module {
   }
 
   load() {
-    store.subscribe(
-      (storeState: any) => storeState.presence,
-      () => {
-        this.updatePeekingState();
-      },
-    );
+    const enabled = settings.getSetting('HALF_SWIPE_NOTIFICATION');
 
-    this.initMutationObserver();
-    this.updatePeekingState();
+    if (!enabled && unsubscribe !== null) {
+      unsubscribe();
+      unsubscribe = null;
+      return;
+    }
+
+    if (enabled && unsubscribe === null) {
+      this.updatePeekingState();
+
+      unsubscribe = store.subscribe(
+        (storeState: any) => storeState.presence,
+        () => {
+          this.updatePeekingState();
+        },
+      );
+    }
   }
 }
 
