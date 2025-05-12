@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme, InputWrapper, MantineProvider, Radio, Switch } from '@mantine/core';
+import { createTheme, InputWrapper, MantineColorSchemeManager, MantineProvider, Radio, Switch } from '@mantine/core';
 import { getSnapchatStore } from '../utils/snapchat';
 import styles from './ThemeProvider.module.css';
 import switchStyles from './Switch.module.css';
@@ -7,9 +7,7 @@ import inputWrapperStyles from './InputWrapper.module.css';
 
 const store = getSnapchatStore();
 
-function getAppTheme() {
-  return store.getState().localSettings.appTheme;
-}
+let unsubscribe: (() => void) | undefined;
 
 const mantineTheme = createTheme({
   primaryColor: 'indigo',
@@ -26,22 +24,43 @@ const mantineTheme = createTheme({
   },
 });
 
+const colorModeManager = {
+  set: (value) => {},
+  get: () => {
+    const theme = store.getState().localSettings.appTheme;
+    return theme === 'system' ? 'dark' : theme;
+  },
+  subscribe: (onUpdate) => {
+    unsubscribe?.();
+
+    unsubscribe = store.subscribe((state: any, prevState: any) => {
+      if (state.localSettings.appTheme === prevState.localSettings.appTheme) {
+        return;
+      }
+
+      if (state.localSettings.appTheme === 'system') {
+        onUpdate('dark');
+      } else {
+        onUpdate(state.localSettings.appTheme);
+      }
+    });
+  },
+  unsubscribe: () => {
+    unsubscribe?.();
+    unsubscribe = undefined;
+  },
+  clear: () => {},
+} satisfies MantineColorSchemeManager;
+
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = React.useState();
-
-  React.useEffect(() => {
-    function updateTheme() {
-      let appTheme = getAppTheme();
-      appTheme = appTheme === 'system' ? 'auto' : appTheme;
-      setTheme(appTheme);
-    }
-    updateTheme();
-    const unsubscribe = store.subscribe(updateTheme);
-    return () => unsubscribe();
-  }, [setTheme]);
-
   return (
-    <MantineProvider theme={mantineTheme} classNamesPrefix="bs-" forceColorScheme={theme} withGlobalClasses={false}>
+    <MantineProvider
+      defaultColorScheme="light"
+      colorSchemeManager={colorModeManager}
+      theme={mantineTheme}
+      classNamesPrefix="bs"
+      withGlobalClasses={false}
+    >
       <main className={styles.main}>{children}</main>
     </MantineProvider>
   );
