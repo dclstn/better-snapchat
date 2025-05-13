@@ -9,7 +9,7 @@ class WindowFetch extends Patch {
   }
 
   patch() {
-    window.fetch = new Proxy(window.fetch, {
+    new Proxy(window.fetch, {
       apply(target, thisArg, [request, ...rest]: [Request, AbortSignal]) {
         if (settings.getSetting('PREVENT_STORY_READ_RECEIPTS') && STORY_READ_RECEIPT_REGEX.test(request.url)) {
           return new Promise((resolve) => resolve(new Response(null, { status: 200 })));
