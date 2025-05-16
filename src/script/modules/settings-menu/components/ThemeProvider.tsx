@@ -85,9 +85,7 @@ function ThemeProvider(
       withCssVariables
       {...props}
     >
-      <main className="mantine-theme-provider" ref={ref}>
-        {children}
-      </main>
+      <main ref={ref}>{children}</main>
     </MantineProvider>
   );
 }

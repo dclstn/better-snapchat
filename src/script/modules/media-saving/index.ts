@@ -1,12 +1,14 @@
 import settings from '../../lib/settings';
 import Module from '../../lib/module';
-import styles from './index.module.scss';
+import styles from './index.scss';
 
 let attached = false;
 
 function preventContextMenu(event: MouseEvent) {
   event.stopImmediatePropagation();
 }
+
+let styleElement: HTMLStyleElement | null = null;
 
 class MediaSaving extends Module {
   constructor() {
@@ -27,7 +29,16 @@ class MediaSaving extends Module {
       window.removeEventListener('contextmenu', preventContextMenu, true);
     }
 
-    document.body.classList.toggle(styles.saveImage!, enabled);
+    if (styleElement != null && !enabled) {
+      styleElement.remove();
+      styleElement = null;
+    }
+
+    if (styleElement == null && enabled) {
+      styleElement = document.createElement('style');
+      styleElement.textContent = styles;
+      document.head.appendChild(styleElement);
+    }
   }
 }
 

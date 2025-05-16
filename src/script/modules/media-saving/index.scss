@@ -1,0 +1,23 @@
+div {
+  > img {
+    pointer-events: unset !important;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  video {
+    user-select: none;
+    pointer-events: unset !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:has(video):has(img) > img {
+    pointer-events: none !important;
+  }
+}
