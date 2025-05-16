@@ -37,7 +37,6 @@
     "preact": "^10.25.0",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
-    "reconnecting-websocket": "^4.4.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -66,6 +65,7 @@
     "globals": "^16.0.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.3.3",
-    "ws": "^8.18.2"
+    "ws": "^8.18.2",
+    "reconnecting-websocket": "^4.4.0"
   }
 }
