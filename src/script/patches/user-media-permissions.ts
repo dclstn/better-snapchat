@@ -25,7 +25,7 @@ class UserMediaPermissions extends Patch {
       });
     }
 
-    new Proxy(navigator.permissions.query, {
+    navigator.permissions.query = new Proxy(navigator.permissions.query, {
       apply: async (target, thisArg, args) => {
         const [permission] = args;
         if (permission.name === 'camera' || permission.name === 'microphone') {
