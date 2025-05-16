@@ -4,6 +4,7 @@ const package = require('../package.json');
 const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
 const { default: sassPlugin } = require('esbuild-sass-plugin');
+const { transform } = require('lightningcss');
 
 const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // ==UserScript==
