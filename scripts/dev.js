@@ -35,7 +35,6 @@ async function buildExtension() {
       logLevel: 'info',
       plugins: [
         EsbuildPluginImportGlob(),
-        sassPlugin({ type: 'local-css', filter: /\.module\.(scss|css)$/ }),
         sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
         alias({
           react: require.resolve('preact/compat'),
