@@ -1,12 +1,12 @@
 const ESBuild = require('esbuild');
-const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
-const CSSModulesPlugin = require('esbuild-css-modules-plugin');
+const { default: EsbuildPluginImportGlob } = require('esbuild-plugin-import-glob');
 const package = require('../package.json');
 const fs = require('fs/promises');
 const alias = require('esbuild-plugin-alias');
 const dotenv = require('dotenv');
 const chokidar = require('chokidar');
 const { WebSocketServer } = require('ws');
+const { sassPlugin } = require('esbuild-sass-plugin');
 
 dotenv.config();
 
@@ -34,8 +34,9 @@ async function buildExtension() {
       outdir: './public/build/',
       logLevel: 'info',
       plugins: [
-        EsbuildPluginImportGlob.default(),
-        CSSModulesPlugin(),
+        EsbuildPluginImportGlob(),
+        sassPlugin({ type: 'local-css', filter: /\.module\.(scss|css)$/ }),
+        sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
         alias({
           react: require.resolve('preact/compat'),
           'react-dom': require.resolve('preact/compat'),

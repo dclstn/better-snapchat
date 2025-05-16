@@ -1,9 +1,9 @@
 const ESBuild = require('esbuild');
 const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
-const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('../package.json');
 const fs = require('fs/promises');
 const alias = require('esbuild-plugin-alias');
+const { default: sassPlugin } = require('esbuild-sass-plugin');
 
 (async () => {
   console.log('Building: Chrome Extension');
@@ -18,8 +18,9 @@ const alias = require('esbuild-plugin-alias');
     outdir: './public/build/',
     logLevel: 'info',
     plugins: [
-      EsbuildPluginImportGlob.default(),
-      CSSModulesPlugin(),
+      EsbuildPluginImportGlob(),
+      sassPlugin({ type: 'local-css', filter: /\.module\.(scss|css)$/ }),
+      sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
       alias({
         react: require.resolve('preact/compat'),
         'react-dom': require.resolve('preact/compat'),

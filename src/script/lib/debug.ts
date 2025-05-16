@@ -1,5 +1,3 @@
-import { PresenceState } from './constants';
-
 const PREFIX = '[Better-Snap]';
 
 let iframeContentWindow: any | null = null;
@@ -19,6 +17,11 @@ export function getIframeContentWindow() {
 export function logInfo(...args: unknown[]) {
   const { console } = getIframeContentWindow();
   console.log(`%c${PREFIX}`, 'color: #3b5bdb', ...args);
+}
+
+export function logWarn(...args: unknown[]) {
+  const { console } = getIframeContentWindow();
+  console.warn(PREFIX, ...args);
 }
 
 export function logError(...args: unknown[]) {

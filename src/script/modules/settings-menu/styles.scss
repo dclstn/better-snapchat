@@ -1,3 +1,10 @@
+.settingsButton {
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  z-index: 9999;
+}
+
 .modalSettings {
   display: flex;
   flex-direction: column;
@@ -33,20 +40,6 @@
 
 .searchInput {
   height: 20px;
-}
-
-.modalBody {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
-
-.modalContent {
-  border-radius: 12px;
-  border-width: 1px;
-  border: solid;
-  border-color: var(--mantine-color-gray-light);
 }
 
 .logo {

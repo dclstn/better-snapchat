@@ -1,9 +1,14 @@
 import React from 'react';
-import { createTheme, InputWrapper, MantineColorSchemeManager, MantineProvider, Radio, Switch } from '@mantine/core';
-import { getSnapchatStore } from '../utils/snapchat';
-import styles from './ThemeProvider.module.css';
-import switchStyles from './Switch.module.css';
-import inputWrapperStyles from './InputWrapper.module.css';
+import {
+  createTheme,
+  InputWrapper,
+  MantineColorSchemeManager,
+  MantineProvider,
+  Modal,
+  Radio,
+  Switch,
+} from '@mantine/core';
+import { getSnapchatStore } from '../../../utils/snapchat';
 
 const store = getSnapchatStore();
 
@@ -16,16 +21,30 @@ const mantineTheme = createTheme({
     Radio: Radio.extend({ defaultProps: { size: 'md' } }),
     Switch: Switch.extend({
       defaultProps: { size: 'md' },
-      classNames: { body: switchStyles.body, track: switchStyles.track, trackLabel: switchStyles.track },
+      styles: () => ({
+        body: { alignItems: 'center', gap: 4 },
+        track: { '--switch-width': '40px' },
+      }),
     }),
     InputWrapper: InputWrapper.extend({
-      classNames: { label: inputWrapperStyles.label },
+      styles: () => ({ label: { marginBottom: 16 } }),
+    }),
+    Modal: Modal.extend({
+      styles: () => ({
+        body: { display: 'flex', flexDirection: 'column', gap: 20, padding: 20 },
+        content: {
+          borderRadius: 12,
+          borderWidth: 1,
+          borderStyle: 'solid',
+          borderColor: 'var(--mantine-color-gray-light)',
+        },
+      }),
     }),
   },
 });
 
 const colorModeManager = {
-  set: (value) => {},
+  set: () => {},
   get: () => {
     const theme = store.getState().localSettings.appTheme;
     return theme === 'system' ? 'dark' : theme;
@@ -52,16 +71,23 @@ const colorModeManager = {
   clear: () => {},
 } satisfies MantineColorSchemeManager;
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+function ThemeProvider(
+  { children, ...props }: React.PropsWithChildren<React.ComponentProps<typeof MantineProvider>>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   return (
     <MantineProvider
       defaultColorScheme="light"
       colorSchemeManager={colorModeManager}
       theme={mantineTheme}
-      classNamesPrefix="bs"
+      cssVariablesSelector=":host > main"
       withGlobalClasses={false}
+      withCssVariables
+      {...props}
     >
-      <main className={styles.main}>{children}</main>
+      <main ref={ref}>{children}</main>
     </MantineProvider>
   );
 }
+
+export default React.forwardRef(ThemeProvider);

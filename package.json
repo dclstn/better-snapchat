@@ -37,7 +37,8 @@
     "preact": "^10.25.0",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
-    "reconnecting-websocket": "^4.4.0"
+    "reconnecting-websocket": "^4.4.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -56,6 +57,7 @@
     "esbuild-css-modules-plugin": "^3.1.2",
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-import-glob": "^0.1.1",
+    "esbuild-sass-plugin": "^3.3.1",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",

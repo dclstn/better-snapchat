@@ -1,5 +1,4 @@
-import './index.css';
-import { logInfo } from './lib/debug';
+import { logInfo, logWarn } from './lib/debug';
 
 (async () => {
   const { hostname, pathname } = new URL(location.href);
@@ -14,6 +13,7 @@ import { logInfo } from './lib/debug';
   logInfo(`BetterSnap v${process.env.VERSION}`);
 
   if (document.readyState === 'complete') {
+    logWarn('BetterSnap did not inject immediately, page was already loaded.');
     // @ts-ignore glob import
     import('./modules/**/index.ts');
   } else {

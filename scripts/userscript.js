@@ -1,9 +1,9 @@
 const ESBuild = require('esbuild');
 const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
-const CSSModulesPlugin = require('esbuild-css-modules-plugin');
 const package = require('../package.json');
 const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
+const { default: sassPlugin } = require('esbuild-sass-plugin');
 
 const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
 // ==UserScript==
@@ -45,8 +45,9 @@ GM_addElement('link', {
     outdir: './public/build/',
     logLevel: 'info',
     plugins: [
-      EsbuildPluginImportGlob.default(),
-      CSSModulesPlugin(),
+      EsbuildPluginImportGlob(),
+      sassPlugin({ type: 'local-css', filter: /\.module\.(scss|css)$/ }),
+      sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
       alias({
         react: require.resolve('preact/compat'),
         'react-dom': require.resolve('preact/compat'),
