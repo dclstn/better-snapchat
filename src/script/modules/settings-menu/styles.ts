@@ -12,7 +12,7 @@ import mantineStackStyles from '@mantine/core/styles/Stack.css';
 import mantineRadioStyles from '@mantine/core/styles/Radio.css';
 import mantineSwitchStyles from '@mantine/core/styles/Switch.css';
 import mantineAnchorStyles from '@mantine/core/styles/Anchor.css';
-import settingsMenuStyles from './index.css';
+import settingsMenuStyles from './index.scss';
 
 export default [
   mantineOverlayStyles,
