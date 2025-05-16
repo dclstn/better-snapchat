@@ -50,5 +50,5 @@ GM_addElement('script', {
   });
 
   const scriptTextContent = await fs.readFile(`./public/build/script.js`, 'utf-8');
-  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(scriptTextContent, styleTextContent));
+  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(scriptTextContent));
 })();
