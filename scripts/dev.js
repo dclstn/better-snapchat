@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const chokidar = require('chokidar');
 const { WebSocketServer } = require('ws');
 const { sassPlugin } = require('esbuild-sass-plugin');
+const { transform } = require('lightningcss');
 
 dotenv.config();
 
@@ -28,14 +29,26 @@ async function buildExtension() {
       entryPoints: ['./src/script', './src/hot-reload'],
       bundle: true,
       minify: false,
-      sourcemap: true,
+      sourcemap: false,
       target: ['chrome58'],
       outbase: './src/',
       outdir: './public/build/',
       logLevel: 'info',
       plugins: [
         EsbuildPluginImportGlob(),
-        sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
+        sassPlugin({
+          type: 'css-text',
+          filter: /\.(scss|css)$/,
+          transform: (code, _, filePath) => {
+            const { code: transformedCode } = transform({
+              code: Buffer.from(code),
+              filename: filePath,
+              minify: true,
+            });
+
+            return transformedCode.toString();
+          },
+        }),
         alias({
           react: require.resolve('preact/compat'),
           'react-dom': require.resolve('preact/compat'),

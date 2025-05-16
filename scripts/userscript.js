@@ -40,7 +40,19 @@ GM_addElement('script', {
     logLevel: 'info',
     plugins: [
       EsbuildPluginImportGlob(),
-      sassPlugin({ type: 'css-text', filter: /\.(scss|css)$/ }),
+      sassPlugin({
+        type: 'css-text',
+        filter: /\.(scss|css)$/,
+        transform: (code, _, filePath) => {
+          const { code: transformedCode } = transform({
+            code: Buffer.from(code),
+            filename: filePath,
+            minify: true,
+          });
+
+          return transformedCode.toString();
+        },
+      }),
       alias({
         react: require.resolve('preact/compat'),
         'react-dom': require.resolve('preact/compat'),
