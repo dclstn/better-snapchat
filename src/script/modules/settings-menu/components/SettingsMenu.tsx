@@ -65,7 +65,7 @@ function ModalHeader({
       <FocusTrap active>
         <Input
           variant="default"
-          size="xs"
+          size="sm"
           autoFocus
           placeholder="Search settings"
           leftSection={<IconSearch size={16} />}
