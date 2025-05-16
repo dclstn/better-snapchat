@@ -1,5 +1,5 @@
 const ESBuild = require('esbuild');
-const EsbuildPluginImportGlob = require('esbuild-plugin-import-glob');
+const { default: EsbuildPluginImportGlob } = require('esbuild-plugin-import-glob');
 const package = require('../package.json');
 const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
