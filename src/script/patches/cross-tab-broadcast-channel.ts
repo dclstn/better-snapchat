@@ -11,7 +11,7 @@ class CrossTabBroadcastChannel extends Patch {
   patch() {
     const oldBroadcastChannel = window.BroadcastChannel;
 
-    window.BroadcastChannel = class PatchedBroadcastChannel extends window.BroadcastChannel {
+    window.BroadcastChannel = class BroadcastChannel extends window.BroadcastChannel {
       constructor(name: string) {
         super(name);
 
