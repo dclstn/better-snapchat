@@ -20,11 +20,6 @@ const PORT = process.env.HMR_PORT ?? 9292;
       files: ['build/script.js'],
       injectImmediately: true,
     });
-
-    chrome.scripting.insertCSS({
-      target: { tabId, frameIds: [frameId] },
-      files: ['build/script.css'],
-    });
   });
 
   async function reloadTabs() {

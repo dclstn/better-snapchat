@@ -5,7 +5,7 @@ const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
 const { default: sassPlugin } = require('esbuild-sass-plugin');
 
-const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
+const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // ==UserScript==
 // @name         ${package.name}
 // @version      ${package.version}
@@ -23,12 +23,6 @@ const USER_SCRIPT_METADATA = (scriptTextContent, styleTextContent) => `
 GM_addElement('script', {
   type: 'text/javascript',
   textContent: ${JSON.stringify(scriptTextContent)}
-});
-
-GM_addElement('link', {
-  rel: 'stylesheet',
-  type: 'text/css',
-  href: 'data:text/css;charset=utf-8,' + encodeURIComponent(${JSON.stringify(styleTextContent)})
 });
 `;
 
@@ -55,10 +49,6 @@ GM_addElement('link', {
     define: { 'process.env.VERSION': JSON.stringify(package.version) },
   });
 
-  const [scriptTextContent, styleTextContent] = await Promise.all([
-    fs.readFile(`./public/build/script.js`, 'utf-8'),
-    fs.readFile(`./public/build/script.css`, 'utf-8'),
-  ]);
-
+  const scriptTextContent = await fs.readFile(`./public/build/script.js`, 'utf-8');
   await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(scriptTextContent, styleTextContent));
 })();

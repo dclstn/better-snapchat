@@ -43,7 +43,6 @@ const { default: sassPlugin } = require('esbuild-sass-plugin');
       {
         matches: ['https://web.snapchat.com/*', 'https://*.snapchat.com/*'],
         js: ['./build/script.js'],
-        css: ['./build/script.css'],
         run_at: 'document_start',
         world: 'MAIN',
       },
