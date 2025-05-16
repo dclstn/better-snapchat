@@ -2,9 +2,8 @@ import { render, h } from 'preact';
 import Module from '../../lib/module';
 import { generateTagName } from '../../utils/document';
 import styleText from './styles.scss';
-// @ts-ignore
-import mantineStyles from '@mantine/core/styles.css';
 import SettingsMenuComponent from './components/SettingsMenu';
+import mantineStyles from './mantine';
 
 const APP_CONTAINER_ID = generateTagName();
 
@@ -34,11 +33,13 @@ class SettingsMenu extends Module {
 
     appContainer = document.createElement(APP_CONTAINER_ID) as ShadowDOM;
     const shadowRoot = appContainer.attachShadow({ mode: 'closed' });
-    // inject mantine themes
-    const mantineSheet = new CSSStyleSheet();
-    mantineSheet.replaceSync(mantineStyles);
-    shadowRoot.adoptedStyleSheets.push(mantineSheet);
-    // inject settings menu styles
+
+    for (const style of mantineStyles) {
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(style);
+      shadowRoot.adoptedStyleSheets.push(sheet);
+    }
+
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(styleText);
     shadowRoot.adoptedStyleSheets.push(sheet);
