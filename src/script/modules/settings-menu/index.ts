@@ -43,7 +43,7 @@ class SettingsMenu extends Module {
     sheet.replaceSync(styleText);
     shadowRoot.adoptedStyleSheets.push(sheet);
 
-    document.body.appendChild(appContainer);
+    document.documentElement.appendChild(appContainer);
     render(h(SettingsMenuComponent, {}), shadowRoot);
   }
 }
