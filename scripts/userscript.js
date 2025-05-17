@@ -5,6 +5,24 @@ const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
 const { default: sassPlugin } = require('esbuild-sass-plugin');
 const { transform } = require('lightningcss');
+const JavaScriptObfuscator = require('javascript-obfuscator');
+
+function ObfuscatorPlugin(options = {}) {
+  return {
+    name: 'obfuscator',
+    setup(build) {
+      build.onLoad({ filter: /\.ts$/ }, async (args) => {
+        let source = await fs.readFile(args.path, 'utf8');
+        const result = await ESBuild.transform(source, { loader: 'ts', sourcemap: false });
+
+        source = result.code;
+        source = JavaScriptObfuscator.obfuscate(source, options).getObfuscatedCode();
+
+        return { contents: source, loader: 'ts' };
+      });
+    },
+  };
+}
 
 const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // ==UserScript==
@@ -53,6 +71,12 @@ GM_addElement('script', {
 
           return transformedCode.toString();
         },
+      }),
+      ObfuscatorPlugin({
+        compact: true,
+        selfDefending: true,
+        controlFlowFlattening: true,
+        renameGlobals: true,
       }),
       alias({
         react: require.resolve('preact/compat'),
