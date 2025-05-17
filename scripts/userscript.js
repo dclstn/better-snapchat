@@ -72,15 +72,15 @@ GM_addElement('script', {
           return transformedCode.toString();
         },
       }),
+      alias({
+        react: require.resolve('preact/compat'),
+        'react-dom': require.resolve('preact/compat'),
+      }),
       ObfuscatorPlugin({
         compact: true,
         selfDefending: true,
         controlFlowFlattening: true,
         renameGlobals: true,
-      }),
-      alias({
-        react: require.resolve('preact/compat'),
-        'react-dom': require.resolve('preact/compat'),
       }),
     ],
     define: { 'process.env.VERSION': JSON.stringify(package.version) },
