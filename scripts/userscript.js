@@ -7,23 +7,6 @@ const { default: sassPlugin } = require('esbuild-sass-plugin');
 const { transform } = require('lightningcss');
 const JavaScriptObfuscator = require('javascript-obfuscator');
 
-function ObfuscatorPlugin(options = {}) {
-  return {
-    name: 'obfuscator',
-    setup(build) {
-      build.onLoad({ filter: /\.ts$/ }, async (args) => {
-        let source = await fs.readFile(args.path, 'utf8');
-        const result = await ESBuild.transform(source, { loader: 'ts', sourcemap: false });
-
-        source = result.code;
-        source = JavaScriptObfuscator.obfuscate(source, options).getObfuscatedCode();
-
-        return { contents: source, loader: 'ts' };
-      });
-    },
-  };
-}
-
 const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // ==UserScript==
 // @name         ${package.name}
@@ -76,16 +59,20 @@ GM_addElement('script', {
         react: require.resolve('preact/compat'),
         'react-dom': require.resolve('preact/compat'),
       }),
-      ObfuscatorPlugin({
-        compact: true,
-        selfDefending: true,
-        controlFlowFlattening: true,
-        renameGlobals: true,
-      }),
     ],
     define: { 'process.env.VERSION': JSON.stringify(package.version) },
   });
 
   const scriptTextContent = await fs.readFile(`./public/build/script.js`, 'utf-8');
-  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(scriptTextContent));
+
+  console.log('Obfuscating: User Script');
+  const obfuscatedCode = JavaScriptObfuscator.obfuscate(scriptTextContent, {
+    compact: true,
+    selfDefending: true,
+    controlFlowFlattening: true,
+    renameGlobals: true,
+  }).getObfuscatedCode();
+
+  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(obfuscatedCode));
+  console.log('User Script built successfully!');
 })();
