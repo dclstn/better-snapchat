@@ -4,7 +4,6 @@ const package = require('../package.json');
 const fs = require('fs/promises');
 const alias = require('esbuild-plugin-alias');
 const { default: sassPlugin } = require('esbuild-sass-plugin');
-const postcssMinify = require('postcss-minify');
 const { transform } = require('lightningcss');
 
 (async () => {
