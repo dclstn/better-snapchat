@@ -39,6 +39,8 @@ You can install **BetterSnap** via the [Firefox Addon Store](https://addons.mozi
 
 You can install **BetterSnap** via the [User-Script](https://better-snapchat.vasp.dev/build/userscript.js) with a tool like [Tampermonkey](https://www.tampermonkey.net/).
 
+For [Tampermonkey](https://www.tampermonkey.net/) it's recommended you set Security > Content Script API to `UserScripts API Dynamic`, for BetterSnap to be injected reliably.
+
 ## How to Contribute
 
 1. Clone or fork the respository `git@github.com:dclstn/better-snapchat.git`.
