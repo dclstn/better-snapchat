@@ -5,7 +5,6 @@ const alias = require('esbuild-plugin-alias');
 const fs = require('fs/promises');
 const { default: sassPlugin } = require('esbuild-sass-plugin');
 const { transform } = require('lightningcss');
-const JavaScriptObfuscator = require('javascript-obfuscator');
 
 const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // ==UserScript==
@@ -64,15 +63,5 @@ GM_addElement('script', {
   });
 
   const scriptTextContent = await fs.readFile(`./public/build/script.js`, 'utf-8');
-
-  console.log('Obfuscating: User Script');
-  const obfuscatedCode = JavaScriptObfuscator.obfuscate(scriptTextContent, {
-    compact: true,
-    selfDefending: true,
-    controlFlowFlattening: true,
-    renameGlobals: true,
-  }).getObfuscatedCode();
-
-  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(obfuscatedCode));
-  console.log('User Script built successfully!');
+  await fs.writeFile('./public/build/userscript.js', USER_SCRIPT_METADATA(scriptTextContent));
 })();
