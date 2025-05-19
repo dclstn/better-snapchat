@@ -28,7 +28,7 @@
   "dependencies": {
     "@mantine/core": "^8.0.1",
     "@mantine/hooks": "^8.0.1",
-    "@tabler/icons-react": "^3.19.0",
+    "@tabler/icons-react": "^3.33.0",
     "cookies-js": "^1.2.3",
     "eventemitter3": "^5.0.1",
     "fast-deep-equal": "^3.1.3",
