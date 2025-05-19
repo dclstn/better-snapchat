@@ -57,7 +57,7 @@
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-import-glob": "^0.1.1",
     "esbuild-sass-plugin": "^3.3.1",
-    "eslint": "^9.24.0",
+    "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
