@@ -16,8 +16,6 @@ Screenshot Freely, Save Media, Bypass Presence Detection and more! Previously kn
 - 📸 **Screenshots** – Bypass Snapchat's screenshot detection.
 - 📤 **Send Snaps as Mobile** – Snaps sent will appear sent from mobile.
 - 🚫 **Send Messages as Unsavable** – Chats and snaps will be sent as unsavable.
-- ⌨️ **Actively Typing Animation** – Let others know when you are typing.
-- 🔔 **Started Typing Notification** – Let others know when you are typing by push-notification.
 - 📂 **Unrestricted Files** – Enable sending media of any size.
 - 📸 **Upload Images as Snaps** – Uploaded images will be sent as snaps.
 - 🫣 **Peeking Notification** - Receive a notification when someone is peeking at a conversation.
