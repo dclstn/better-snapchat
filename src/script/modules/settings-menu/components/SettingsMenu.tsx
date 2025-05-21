@@ -116,16 +116,15 @@ function SettingsMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  // keybinding shift + e to open settings
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (!event.shiftKey || event.key !== 'Q') {
         return;
       }
 
+      toggle();
       event.preventDefault();
       event.stopPropagation();
-      toggle();
     }
 
     window.addEventListener('keydown', handleKeyDown);
