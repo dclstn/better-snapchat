@@ -116,6 +116,22 @@ function SettingsMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
+  // keybinding shift + e to open settings
+  React.useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (!event.shiftKey || event.key !== 'Q') {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      toggle();
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggle]);
+
   return (
     <ThemeProvider ref={ref} getRootElement={() => ref.current!}>
       <ActionIcon size="xl" className="settingsButton" variant="filled" onClick={toggle}>

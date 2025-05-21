@@ -43,22 +43,24 @@ const mantineTheme = createTheme({
   },
 });
 
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
 const colorModeManager = {
   set: () => {},
   get: () => {
     const theme = store.getState().localSettings.appTheme;
-    return theme === 'system' ? 'light' : theme;
+    return theme === 'system' ? getSystemTheme() : theme;
   },
   subscribe: (onUpdate) => {
-    unsubscribe?.();
-
     unsubscribe = store.subscribe((state: any, prevState: any) => {
       if (state.localSettings.appTheme === prevState.localSettings.appTheme) {
         return;
       }
 
       if (state.localSettings.appTheme === 'system') {
-        onUpdate('light');
+        onUpdate(getSystemTheme());
       } else {
         onUpdate(state.localSettings.appTheme);
       }
