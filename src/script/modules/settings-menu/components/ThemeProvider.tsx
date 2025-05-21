@@ -18,9 +18,9 @@ const mantineTheme = createTheme({
   primaryColor: 'indigo',
   cursorType: 'pointer',
   components: {
-    Radio: Radio.extend({ defaultProps: { size: 'md' } }),
+    Radio: Radio.extend({ defaultProps: { size: 'md', color: 'indigo' } }),
     Switch: Switch.extend({
-      defaultProps: { size: 'md' },
+      defaultProps: { size: 'md', color: 'indigo' },
       styles: () => ({
         body: { alignItems: 'center', gap: 4 },
         track: { '--switch-width': '40px' },
@@ -47,7 +47,7 @@ const colorModeManager = {
   set: () => {},
   get: () => {
     const theme = store.getState().localSettings.appTheme;
-    return theme === 'system' ? 'dark' : theme;
+    return theme === 'system' ? 'light' : theme;
   },
   subscribe: (onUpdate) => {
     unsubscribe?.();
@@ -58,7 +58,7 @@ const colorModeManager = {
       }
 
       if (state.localSettings.appTheme === 'system') {
-        onUpdate('dark');
+        onUpdate('light');
       } else {
         onUpdate(state.localSettings.appTheme);
       }
