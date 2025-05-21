@@ -60,6 +60,12 @@
 
 .footerText {
   margin: 0 0 0 auto;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .emptySettings {

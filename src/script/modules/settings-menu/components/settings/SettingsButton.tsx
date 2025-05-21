@@ -9,7 +9,7 @@ const DEFAULT_NAME = 'Right';
 const DEFAULT_DESCRIPTION = 'Show Settings button on the right side of the screen.';
 
 const HIDDEN_NAME = 'Hidden';
-const HIDDEN_DESCRIPTION = 'Hide Settings button completely.';
+const HIDDEN_DESCRIPTION = 'Hide Settings button completely. (Shift + Q to Open)';
 
 function _SettingsButtonLayout() {
   const [settingButtonLayout, setSettingButtonLayout] = useSettingState('SETTINGS_BUTTON_LAYOUT');
