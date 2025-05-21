@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
+import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Popover, Text, Tooltip } from '@mantine/core';
 import Logo from './icons/BetterSnap';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import DiscordIcon from './icons/Discord';
@@ -7,10 +7,11 @@ import Fuse from 'fuse.js';
 import { type SettingModule } from '../../../../types/client';
 // @ts-ignore glob-import
 import * as migrations from './settings/*.tsx';
-import { defaultSettingValues, ExternalUrls } from '../../../lib/constants';
+import { defaultSettingValues, ExternalUrls, SettingIds, SettingsButtonLayout } from '../../../lib/constants';
 import settingsManager from '../../../lib/settings';
 import ThemeProvider from './ThemeProvider';
 import { useDisclosure } from '@mantine/hooks';
+import useSettingState from '../../../hooks/useSettingState';
 
 const { default: settingsDefault } = migrations;
 const settings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
@@ -106,6 +107,7 @@ function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
 function SettingsMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
+  const [setting] = useSettingState(SettingIds.SETTINGS_BUTTON_LAYOUT);
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -124,9 +126,11 @@ function SettingsMenu() {
 
   return (
     <ThemeProvider>
-      <ActionIcon size="xl" className="settingsButton" variant="filled" onClick={toggle}>
-        <Logo size={18} />
-      </ActionIcon>
+      {setting !== SettingsButtonLayout.HIDDEN ? (
+        <ActionIcon size="xl" radius="md" className="settingsButton" variant="filled" onClick={toggle}>
+          <Logo size={18} />
+        </ActionIcon>
+      ) : null}
       <SettingsModal isOpen={opened} onClose={close} />
     </ThemeProvider>
   );

@@ -7,6 +7,14 @@
   top: 50%;
   right: 0px;
   z-index: 9999;
+
+  &:active {
+    scale: 0.95;
+  }
+
+  transition-property: scale;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modalSettings {
