@@ -73,10 +73,8 @@ const colorModeManager = {
   clear: () => {},
 } satisfies MantineColorSchemeManager;
 
-function ThemeProvider(
-  { children, ...props }: React.PropsWithChildren<React.ComponentProps<typeof MantineProvider>>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+function ThemeProvider({ children, ...props }: React.PropsWithChildren<React.ComponentProps<typeof MantineProvider>>) {
+  const ref = React.useRef<HTMLDivElement>(null);
   return (
     <MantineProvider
       defaultColorScheme="light"
@@ -85,6 +83,7 @@ function ThemeProvider(
       cssVariablesSelector=":host > main"
       withGlobalClasses={false}
       withCssVariables
+      getRootElement={() => ref.current!}
       {...props}
     >
       <main ref={ref}>{children}</main>
@@ -92,4 +91,4 @@ function ThemeProvider(
   );
 }
 
-export default React.forwardRef(ThemeProvider);
+export default ThemeProvider;

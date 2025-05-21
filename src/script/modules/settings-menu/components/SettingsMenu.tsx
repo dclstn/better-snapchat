@@ -80,15 +80,7 @@ function ModalHeader({
   );
 }
 
-function SettingsModal({
-  isOpen,
-  onClose,
-  portalTarget,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  portalTarget: HTMLElement;
-}) {
+function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [search, setSearch] = React.useState('');
   return (
     <Modal
@@ -98,7 +90,7 @@ function SettingsModal({
       centered
       size="lg"
       lockScroll={false}
-      portalProps={{ target: portalTarget }}
+      withinPortal={false}
     >
       <ModalHeader onClose={onClose} search={search} setSearch={setSearch} />
       <ModalSettings search={search} />
@@ -114,7 +106,6 @@ function SettingsModal({
 
 function SettingsMenu() {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -132,11 +123,11 @@ function SettingsMenu() {
   }, [toggle]);
 
   return (
-    <ThemeProvider ref={ref} getRootElement={() => ref.current!}>
+    <ThemeProvider>
       <ActionIcon size="xl" className="settingsButton" variant="filled" onClick={toggle}>
         <Logo size={18} />
       </ActionIcon>
-      <SettingsModal isOpen={opened} onClose={close} portalTarget={ref.current!} />
+      <SettingsModal isOpen={opened} onClose={close} />
     </ThemeProvider>
   );
 }
