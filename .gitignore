@@ -8,3 +8,5 @@ public/manifest.json
 
 .env
 .DS_Store
+*.bat
+*.ps1
