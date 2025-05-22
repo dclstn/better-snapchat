@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Popover, Text, Tooltip } from '@mantine/core';
+import React from 'react';
+import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
 import Logo from './icons/BetterSnap';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import DiscordIcon from './icons/Discord';
