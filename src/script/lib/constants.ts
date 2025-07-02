@@ -91,7 +91,7 @@ export enum SnapchatUpdateMessagePayload {
 
 export const ExternalUrls = {
   DISCORD: 'https://discord.gg/hpmjAJZR3H',
-  GITHUB: 'https://github.com/dclstn/better-snapchat',
+  GITHUB: 'https://github.com/dclstn/better-chat',
   GITHUB_DCLSTN: 'https://github.com/dclstn',
   BUY_ME_A_COFFEE: 'https://www.buymeacoffee.com/dclstn',
 };

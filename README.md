@@ -2,7 +2,7 @@
 
 ## BetterChat
 
-![Node CI badge](https://github.com/dclstn/better-snapchat/actions/workflows/node.js.yml/badge.svg)
+![Node CI badge](https://github.com/dclstn/better-chat/actions/workflows/node.js.yml/badge.svg)
 [![Discord Badge](https://dcbadge.limes.pink/api/server/https://discord.gg/hpmjAJZR3H?style=flat)](https://discord.gg/hpmjAJZR3H)
 
 Screenshot Freely, Save Media, Bypass Presence Detection and more!
