@@ -10,10 +10,10 @@ import { logInfo, logWarn } from './lib/debug';
     return;
   }
 
-  logInfo(`BetterSnap v${process.env.VERSION}`);
+  logInfo(`BetterChat v${process.env.VERSION}`);
 
   if (document.readyState === 'complete') {
-    logWarn('BetterSnap did not inject immediately, page was already loaded.');
+    logWarn('BetterChat did not inject immediately, page was already loaded.');
     // @ts-ignore glob import
     import('./modules/**/index.ts');
   } else {

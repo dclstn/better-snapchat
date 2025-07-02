@@ -13,12 +13,12 @@ const USER_SCRIPT_METADATA = (scriptTextContent) => `
 // @description  ${package.description}
 // @author       ${package.author}
 // @match        https://*.snapchat.com/*
-// @icon         https://better-snapchat.pages.dev/logo128.png
+// @icon         https://better-chat.pages.dev/logo128.png
 // @run-at       document-start
 // @grant        GM_addElement
-// @connect      better-snapchat.vasp.dev
+// @connect      better-chat.vasp.dev
 // @license      MIT
-// @namespace    https://better-snapchat.vasp.dev
+// @namespace    https://better-chat.vasp.dev
 // ==/UserScript==
 
 GM_addElement('script', {

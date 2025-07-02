@@ -1,7 +1,6 @@
 import React from 'react';
 import { ActionIcon, Anchor, Button, FocusTrap, Input, Modal, Text } from '@mantine/core';
-import Logo from './icons/BetterSnap';
-import { IconSearch, IconX } from '@tabler/icons-react';
+import { IconSearch, IconX, IconSettingsFilled } from '@tabler/icons-react';
 import DiscordIcon from './icons/Discord';
 import Fuse from 'fuse.js';
 import { type SettingModule } from '../../../../types/client';
@@ -60,9 +59,6 @@ function ModalHeader({
 }) {
   return (
     <div className="modalSection">
-      <ActionIcon size="lg" variant="filled" component="a" href={ExternalUrls.BUY_ME_A_COFFEE}>
-        <Logo size={18} />
-      </ActionIcon>
       <FocusTrap active>
         <Input
           variant="default"
@@ -104,7 +100,7 @@ function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           component="a"
           href={`https://github.com/dclstn/better-snapchat/releases/tag/v${process.env.VERSION}`}
         >
-          BetterSnap v{process.env.VERSION} ❤️
+          BetterChat v{process.env.VERSION} ❤️
         </Text>
       </div>
     </Modal>
@@ -138,7 +134,7 @@ function SettingsMenu() {
     <ThemeProvider>
       {setting !== SettingsButtonLayout.HIDDEN ? (
         <ActionIcon size="xl" radius="md" className="settingsButton" variant="filled" onClick={toggle}>
-          <Logo size={18} />
+          <IconSettingsFilled size={18} />
         </ActionIcon>
       ) : null}
       <MemoSettingsModal isOpen={opened} onClose={close} />
