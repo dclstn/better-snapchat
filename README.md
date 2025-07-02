@@ -1,4 +1,4 @@
-![Extension menu preview](https://github.com/user-attachments/assets/ecdbbe0b-8d74-4806-b168-f7e0cbf6a324)
+![Extension menu preview](https://github.com/user-attachments/assets/be8f5858-4f11-43f0-ad09-28f5e2c1ddb2)
 
 ## BetterChat
 
