@@ -23,7 +23,39 @@
   gap: 20px;
   height: 380px;
   overflow-y: scroll;
+  padding-top: 20px; /* Add padding to separate from tabs */
 }
+
+.settingsTabs {
+  .mantine-Tabs-list {
+    border-bottom: 1px solid var(--mantine-color-gray-3);
+    margin-bottom: 20px;
+  }
+
+  .mantine-Tabs-tab {
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 6px 6px 0 0; /* Added for a softer, more modern look */
+
+    &[data-active] {
+      /* Swapped with the original hover style */
+      background-color: rgba(76, 110, 215, 0.7);
+    }
+
+    &:hover {
+      /* Swapped with the original active style */
+      background-color: color-mix(in srgb, var(--mantine-color-blue-light) 80%, white);
+      color: var(--mantine-color-blue-filled);
+      border-bottom-color: var(--mantine-color-blue-filled);
+    }
+  }
+
+  .mantine-Tabs-panel {
+    padding: 0;
+  }
+}
+
 
 .modalSettings::-webkit-scrollbar {
   width: 8px;
