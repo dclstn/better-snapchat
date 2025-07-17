@@ -11,24 +11,25 @@ import settingsManager from '../../../lib/settings';
 import ThemeProvider from './ThemeProvider';
 import { useDisclosure } from '@mantine/hooks';
 import useSettingState from '../../../hooks/useSettingState';
+import SettingsTabs from './SettingsTabs';
 
 const { default: settingsDefault } = migrations;
-const settings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
+const allSettings = settingsDefault.map(({ default: setting }: { default: SettingModule }) => setting);
 
 function ModalSettings({ search }: { search: string }) {
-  const fuse = React.useMemo(() => new Fuse(settings, { keys: ['name', 'description'] }), []);
+  const fuse = React.useMemo(() => new Fuse(allSettings, { keys: ['name', 'description'] }), []);
 
   const filteredSettings = React.useMemo(() => {
     if (search.length > 0) {
       return fuse.search(search).map((result) => result.item);
     }
-    return settings;
+    return allSettings;
   }, [search, fuse]);
 
   return (
     <div className="modalSettings">
       {search.length > 0 && filteredSettings.length === 0 ? (
-        <Text className="emptySettings">No settings found matching &quot;{search}&quot;.</Text>
+        <Text className="emptySettings">No settings found matching "{search}".</Text>
       ) : null}
       {filteredSettings.map((setting: SettingModule) => {
         const SettingComponent = setting.component;
@@ -90,7 +91,7 @@ function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       withinPortal={false}
     >
       <ModalHeader onClose={onClose} search={search} setSearch={setSearch} />
-      <ModalSettings search={search} />
+      {search.length > 0 ? <ModalSettings search={search} /> : <SettingsTabs allSettings={allSettings} />}
       <div className="modalSection">
         <Button leftSection={<DiscordIcon size={18} />} variant="light" component="a" href={ExternalUrls.DISCORD}>
           Join our Discord
