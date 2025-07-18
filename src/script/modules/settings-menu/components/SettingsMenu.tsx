@@ -117,7 +117,13 @@ function SettingsMenu() {
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (!event.shiftKey || event.key !== 'Q') {
+      if (
+        !event.shiftKey ||
+        event.key !== 'Q' ||
+        (document.activeElement as HTMLElement | null)?.contentEditable === 'true' ||
+        (document.activeElement as HTMLElement | null)?.tagName === 'INPUT' ||
+        (document.activeElement as HTMLElement | null)?.tagName === 'TEXTAREA'
+      ) {
         return;
       }
 
